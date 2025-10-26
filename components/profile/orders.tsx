@@ -188,13 +188,13 @@ export default function Orders() {
   const statusTone = (status?: string, paymentStatus?: string) => {
     const s = (status || "").toUpperCase()
     const ps = (paymentStatus || "").toUpperCase()
-    if (s === "CANCELLED" || s === "REJECTED") return "bg-red-50 text-red-700 border border-red-200"
+    if (s === "CANCELLED" || s === "REJECTED") return "bg-destructive/10 text-destructive border border-destructive/20"
     if (ps === "COMPLETED") return "bg-green-50 text-green-700 border border-green-200"
-    if (ps === "PENDING_VERIFICATION") return "bg-blue-50 text-blue-700 border border-blue-200"
+    if (ps === "PENDING_VERIFICATION") return "bg-primary/10 text-primary border border-primary/20"
     if (s === "COMPLETED") return "bg-green-50 text-green-700 border border-green-200"
-    if (s === "PENDING_VERIFICATION") return "bg-blue-50 text-blue-700 border border-blue-200"
+    if (s === "PENDING_VERIFICATION") return "bg-primary/10 text-primary border border-primary/20"
     if (s === "PENDING") return "bg-amber-50 text-amber-700 border border-amber-200"
-    return "bg-gray-100 text-gray-700 border border-gray-200"
+    return "bg-muted text-muted-foreground border border-border"
   }
 
   const onOpenUpload = (order: Order) => {
@@ -252,7 +252,7 @@ export default function Orders() {
               <CardContent className="p-4">
                 <div className="grid gap-4 grid-cols-1 sm:grid-cols-[8rem_1fr_auto] sm:items-center">
                   {/* รูป: COURSE (16:9) / EBOOK (3:4) — ใช้ 3:4 เป็น default ในช่วงโหลดเพื่อสมดุลบนมือถือ */}
-                  <div className="relative w-full sm:w-auto aspect-[3/4] rounded-md bg-gray-100 ring-1 ring-black/5 overflow-hidden">
+                  <div className="relative w-full sm:w-auto aspect-[3/4] rounded-md bg-muted ring-1 ring-border overflow-hidden">
                     <Skeleton className="h-full w-full rounded-none" />
                   </div>
                   <div className="flex-1 min-w-0 space-y-2">
@@ -271,10 +271,10 @@ export default function Orders() {
         </div>
       )}
 
-      {!loading && error && <div className="text-red-600">เกิดข้อผิดพลาด: {error}</div>}
+      {!loading && error && <div className="text-destructive">เกิดข้อผิดพลาด: {error}</div>}
 
       {!loading && !error && orders.length === 0 && (
-        <div className="text-gray-600">ยังไม่มีคำสั่งซื้อ</div>
+        <div className="text-muted-foreground">ยังไม่มีคำสั่งซื้อ</div>
       )}
 
       {!loading && !error && orders.length > 0 && (
@@ -326,14 +326,14 @@ export default function Orders() {
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div className="space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <div className="text-base font-semibold text-gray-900">คำสั่งซื้อ #{displayId}</div>
+                        <div className="text-base font-semibold text-foreground">คำสั่งซื้อ #{displayId}</div>
                         <Badge className={`whitespace-nowrap ${statusTone(o.status, o.payment?.status)}`}>{statusLabel}</Badge>
                       </div>
-                      {createdAt && <div className="text-xs text-gray-500">สั่งซื้อเมื่อ {createdAt}</div>}
-                      <div className="text-sm text-gray-700">ยอดรวม {formatCurrency(o.total)} บาท</div>
-                      <div className="text-xs text-gray-500">สถานะตรวจสลิป: {slipStatusText(payStatus)}</div>
+                      {createdAt && <div className="text-xs text-muted-foreground">สั่งซื้อเมื่อ {createdAt}</div>}
+                      <div className="text-sm text-foreground">ยอดรวม {formatCurrency(o.total)} บาท</div>
+                      <div className="text-xs text-muted-foreground">สถานะตรวจสลิป: {slipStatusText(payStatus)}</div>
                       {o.payment?.ref && (
-                        <div className="text-xs text-gray-500">เลขอ้างอิง: {o.payment.ref}</div>
+                        <div className="text-xs text-muted-foreground">เลขอ้างอิง: {o.payment.ref}</div>
                       )}
                     </div>
 
@@ -347,7 +347,7 @@ export default function Orders() {
                       {needsSlipUpload ? (
                         <Button
                           onClick={() => onOpenUpload(o)}
-                          className="bg-yellow-400 hover:bg-yellow-500 text-white w-full md:w-[7.5rem]"
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground w-full md:w-[7.5rem]"
                         >
                           อัพโหลดสลิป
                         </Button>
@@ -360,7 +360,7 @@ export default function Orders() {
                   </div>
 
                   {items.length > 0 && (
-                    <div className="space-y-3 border-t border-amber-100/60 pt-3">
+                    <div className="space-y-3 border-t border-border pt-3">
                       {items.map((item, idx) => {
                         const type = String(item.itemType || o.orderType || "")
                         const resolvedType = type.toUpperCase()
@@ -382,10 +382,10 @@ export default function Orders() {
                         return (
                           <div
                             key={`${item._key}-${idx}`}
-                            className="flex flex-col gap-3 rounded-lg border bg-white/80 p-3 sm:grid sm:grid-cols-[auto,1fr,auto] sm:items-center sm:gap-4 md:gap-6"
+                            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-3 sm:grid sm:grid-cols-[auto,1fr,auto] sm:items-center sm:gap-4 md:gap-6"
                           >
                             <div
-                              className={`relative ${sizeClass} ${aspectClass} overflow-hidden rounded-md bg-gray-100 ring-1 ring-black/5 mx-auto sm:mx-0`}
+                              className={`relative ${sizeClass} ${aspectClass} overflow-hidden rounded-md bg-muted ring-1 ring-border mx-auto sm:mx-0`}
                             >
                               <Image
                                 src={cover}
@@ -397,19 +397,19 @@ export default function Orders() {
                             </div>
                             <div className="min-w-0 space-y-1 sm:order-2 sm:min-w-[18rem]">
                               <div className="flex flex-wrap items-center gap-2">
-                                <div className="font-medium text-gray-900 line-clamp-2">{title}</div>
-                                <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-700">
+                                <div className="font-medium text-foreground line-clamp-2">{title}</div>
+                                <Badge variant="outline" className="border-primary/20 bg-primary/10 text-primary">
                                   {itemTypeLabel(resolvedType)}
                                 </Badge>
                               </div>
-                              <div className="text-xs text-gray-500">
+                              <div className="text-xs text-muted-foreground">
                                 จำนวน: {quantity} {quantity > 1 ? "ชิ้น" : "รายการ"}
                               </div>
-                              <div className="text-xs text-gray-500">
+                              <div className="text-xs text-muted-foreground">
                                 ราคาต่อหน่วย: {formatCurrency(unitPrice)}
                               </div>
                             </div>
-                            <div className="text-right text-sm font-semibold text-gray-900 self-end sm:order-3 sm:self-center">
+                            <div className="text-right text-sm font-semibold text-foreground self-end sm:order-3 sm:self-center">
                               {formatCurrency(totalPrice)}
                             </div>
                           </div>
@@ -431,7 +431,7 @@ export default function Orders() {
             <DialogTitle>อัพโหลดหลักฐานการชำระเงิน</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <div className="text-sm text-gray-700">
+            <div className="text-sm text-foreground">
               คำสั่งซื้อ: <span className="font-medium">{selectedOrder?.id}</span>{" "}
               ยอดชำระ:{" "}
               <span className="font-medium">
@@ -443,7 +443,7 @@ export default function Orders() {
               accept="image/*"
               onChange={(e) => setFile(e.target.files?.[0] || null)}
             />
-            {uploadError && <div className="text-sm text-red-600">{uploadError}</div>}
+            {uploadError && <div className="text-sm text-destructive">{uploadError}</div>}
             {uploadSuccess && <div className="text-sm text-green-600">{uploadSuccess}</div>}
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setOpenUpload(false)}>
@@ -452,7 +452,7 @@ export default function Orders() {
               <Button
                 disabled={!file || uploading}
                 onClick={handleUpload}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 {uploading ? `กำลังอัพโหลด ${uploadProgress}%` : "อัพโหลด"}
               </Button>
