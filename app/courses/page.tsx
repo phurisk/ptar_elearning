@@ -293,7 +293,7 @@ export default function CoursesPage() {
         size="sm"
         onClick={onClick}
         disabled={disabled}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-yellow-50 hover:border-yellow-400"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-primary/10 hover:border-primary"
       >
         {icon}
       </Button>
@@ -315,7 +315,7 @@ export default function CoursesPage() {
           return (
             <span
               key={`dots-${idx}`}
-              className="flex h-9 w-9 shrink-0 items-center justify-center text-gray-400"
+              className="flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground"
             >
               &#8230;
             </span>
@@ -325,8 +325,8 @@ export default function CoursesPage() {
         const className = [
           "flex h-9 min-w-[2.5rem] shrink-0 items-center justify-center rounded-full px-0",
           isActive
-            ? "bg-yellow-400 hover:bg-yellow-500 text-white"
-            : "hover:bg-yellow-50 hover:border-yellow-400",
+            ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+            : "hover:bg-primary/10 hover:border-primary",
         ].join(" ")
         return (
           <Button
@@ -378,7 +378,7 @@ export default function CoursesPage() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gray-50 pt-0 md:pt-20">
+      <div className="min-h-screen bg-background pt-0 md:pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
          
           <motion.div
@@ -387,8 +387,8 @@ export default function CoursesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-balance">คอร์สเรียนทั้งหมด</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-pretty">
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">คอร์สเรียนทั้งหมด</h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
               เลือกคอร์สที่เหมาะกับระดับการศึกษาของคุณ เรียนกับอาจารย์เต้ยผู้เชี่ยวชาญ
             </p>
           </motion.div>
@@ -397,8 +397,8 @@ export default function CoursesPage() {
           {/* Removed category filter as requested */}
 
           <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <div className="flex items-center justify-center gap-2 text-gray-800 mb-3">
-              <GraduationCap className="h-5 w-5 text-yellow-600" />
+            <div className="flex items-center justify-center gap-2 text-foreground mb-3">
+              <GraduationCap className="h-5 w-5 text-primary" />
               <span className="font-semibold">เลือกระดับ</span>
             </div>
             <div className="hidden md:flex flex-wrap justify-center gap-3">
@@ -406,7 +406,7 @@ export default function CoursesPage() {
                 <Button
                   key={l.id}
                   variant={selectedLevel === l.id ? "default" : "outline"}
-                  className={`px-5 py-2 ${selectedLevel === l.id ? "bg-yellow-400 hover:bg-yellow-500 text-white" : "hover:bg-yellow-50 hover:border-yellow-400"}`}
+                  className={`px-5 py-2 ${selectedLevel === l.id ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "hover:bg-primary/10 hover:border-primary"}`}
                   onClick={() => setSelectedLevel(l.id)}
                 >
                   {l.name}
@@ -428,8 +428,8 @@ export default function CoursesPage() {
           </motion.div>
 
           <motion.div className="mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}>
-            <div className="flex items-center justify-center gap-2 text-gray-800 mb-3">
-              <BookIcon className="h-5 w-5 text-yellow-600" />
+            <div className="flex items-center justify-center gap-2 text-foreground mb-3">
+              <BookIcon className="h-5 w-5 text-primary" />
               <span className="font-semibold">เลือกวิชา</span>
             </div>
             <div className="hidden md:flex flex-wrap justify-center gap-2">
@@ -437,7 +437,7 @@ export default function CoursesPage() {
                 <Button
                   key={s.id}
                   variant={selectedSubject === s.id ? "default" : "outline"}
-                  className={`px-4 py-1.5 text-sm ${selectedSubject === s.id ? "bg-yellow-400 hover:bg-yellow-500 text-white" : "hover:bg-yellow-50 hover:border-yellow-400"}`}
+                  className={`px-4 py-1.5 text-sm ${selectedSubject === s.id ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "hover:bg-primary/10 hover:border-primary"}`}
                   onClick={() => setSelectedSubject(s.id)}
                 >
                   {s.name}
@@ -498,7 +498,7 @@ export default function CoursesPage() {
               ))
             )}
             {!loading && error && (
-              <div className="col-span-full text-center text-red-600">เกิดข้อผิดพลาด: {error}</div>
+              <div className="col-span-full text-center text-destructive">เกิดข้อผิดพลาด: {error}</div>
             )}
             {!loading && !error && paginatedCourses.map((course) => (
               <motion.div key={course.id} variants={fadeInUp}>
@@ -513,7 +513,7 @@ export default function CoursesPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-yellow-400 text-white">{course.category?.name ?? "คอร์ส"}</Badge>
+                        <Badge className="bg-primary text-primary-foreground">{course.category?.name ?? "คอร์ส"}</Badge>
                       </div>
                     </div>
 
@@ -523,14 +523,14 @@ export default function CoursesPage() {
                         const courseSubjectId = detectSubject(course)
                         const courseSubjectLabel = subjects.find((s) => s.id === courseSubjectId)?.name
                         return courseSubjectLabel ? (
-                          <div className="mb-2 text-sm font-medium text-yellow-700">{courseSubjectLabel}</div>
+                          <div className="mb-2 text-sm font-medium text-primary">{courseSubjectLabel}</div>
                         ) : null
                       })()}
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 text-balance line-clamp-2">{course.title}</h3>
-                      <p className="text-gray-600 mb-4 text-pretty line-clamp-2">{course.description}</p>
+                      <h3 className="text-xl font-bold text-card-foreground mb-2 text-balance line-clamp-2">{course.title}</h3>
+                      <p className="text-muted-foreground mb-4 text-pretty line-clamp-2">{course.description}</p>
 
                      
-                      <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Users className="h-4 w-4" />
                           <span>{course._count?.enrollments ?? 0}</span>
@@ -559,11 +559,11 @@ export default function CoursesPage() {
                           return (
                             <>
                               {hasDiscount && (
-                                <span className="text-sm text-gray-400 line-through mr-1">
+                                <span className="text-sm text-muted-foreground line-through mr-1">
                                   ฿{original.toLocaleString()}
                                 </span>
                               )}
-                              <span className="text-2xl font-extrabold text-yellow-600">
+                              <span className="text-2xl font-extrabold text-primary">
                                 ฿{effective.toLocaleString()}
                               </span>
                             </>
@@ -573,7 +573,7 @@ export default function CoursesPage() {
 
                    
                       <Link href={`/courses/${course.id}`}>
-                        <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white">ดูรายละเอียด</Button>
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">ดูรายละเอียด</Button>
                       </Link>
                     </div>
                   </CardContent>
@@ -589,14 +589,14 @@ export default function CoursesPage() {
           )}
 
       
-          {!loading && !error && filteredCourses.length === 0 && (
+            {!loading && !error && filteredCourses.length === 0 && (
             <motion.div
               className="text-center py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-xl text-gray-500">ไม่พบคอร์สในหมวดหมู่นี้</p>
+              <p className="text-xl text-muted-foreground">ไม่พบคอร์สในหมวดหมู่นี้</p>
             </motion.div>
           )}
         </div>
