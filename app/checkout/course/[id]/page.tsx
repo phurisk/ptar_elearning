@@ -260,10 +260,10 @@ export default function CheckoutCoursePage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">ยืนยันการสั่งซื้อคอร์ส</h1>
+      <h1 className="text-2xl font-bold mb-6 text-foreground">ยืนยันการสั่งซื้อคอร์ส</h1>
 
-      {loading && <div className="text-gray-600">กำลังโหลด...</div>}
-      {error && <div className="text-red-600">{error}</div>}
+      {loading && <div className="text-muted-foreground">กำลังโหลด...</div>}
+      {error && <div className="text-destructive">{error}</div>}
       {!loading && !error && course && !checkingExisting && (
         <Card>
           <CardHeader>
@@ -281,11 +281,11 @@ export default function CheckoutCoursePage() {
                     {validatingCoupon ? (<><Loader2 className="h-4 w-4 animate-spin mr-2" />ตรวจสอบ...</>) : "ใช้คูปอง"}
                   </Button>
                 </div>
-                {couponError && <div className="text-xs text-red-600">{couponError}</div>}
+                {couponError && <div className="text-xs text-destructive">{couponError}</div>}
                 {discount > 0 && <div className="text-xs text-green-600">ส่วนลด ฿{discount.toLocaleString()}</div>}
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-gray-700">ยอดชำระ</div>
-                  <div className="text-lg font-semibold">฿{finalTotal.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground">ยอดชำระ</div>
+                  <div className="text-lg font-semibold text-foreground">฿{finalTotal.toLocaleString()}</div>
                 </div>
               </div>
             )}
@@ -302,12 +302,12 @@ export default function CheckoutCoursePage() {
                   <Input placeholder="จังหวัด" value={shipping.province} onChange={(e) => setShipping({ ...shipping, province: e.target.value })} />
                   <Input placeholder="รหัสไปรษณีย์" value={shipping.postalCode} onChange={(e) => setShipping({ ...shipping, postalCode: e.target.value })} />
                 </div>
-                {shippingError && <div className="text-xs text-red-600">{shippingError}</div>}
+                {shippingError && <div className="text-xs text-destructive">{shippingError}</div>}
               </div>
             )}
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => router.back()}>ยกเลิก</Button>
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-white" onClick={confirmOrder} disabled={creating}>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={confirmOrder} disabled={creating}>
                 {creating ? (
                   <span className="inline-flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -323,9 +323,9 @@ export default function CheckoutCoursePage() {
       )}
       {creating && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="rounded-lg bg-white px-6 py-4 shadow-lg">
-            <div className="flex items-center gap-3 text-gray-800">
-              <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+          <div className="rounded-lg bg-background px-6 py-4 shadow-lg border">
+            <div className="flex items-center gap-3 text-foreground">
+              <Loader2 className="h-5 w-5 animate-spin text-primary" />
               <span>กำลังดำเนินการคำสั่งซื้อของคุณ...</span>
             </div>
           </div>

@@ -87,7 +87,7 @@ export default function CourseExamsPage() {
     if (t === "PRACTICE") return <Badge className="bg-purple-500 text-white">แบบฝึกหัด</Badge>
     if (t === "MIDTERM") return <Badge className="bg-sky-600 text-white">สอบกลางภาค</Badge>
     if (t === "FINAL") return <Badge className="bg-red-500 text-white">สอบปลายภาค</Badge>
-    return <Badge className="bg-amber-500 text-white">แบบทดสอบ</Badge>
+    return <Badge className="bg-primary text-primary-foreground">แบบทดสอบ</Badge>
   }
 
   const statusLabel = (status?: string | null) => {
@@ -95,8 +95,8 @@ export default function CourseExamsPage() {
     if (value === "PASSED") return <Badge className="bg-emerald-100 text-emerald-700 border border-emerald-200">ผ่านแล้ว</Badge>
     if (value === "FAILED") return <Badge className="bg-rose-100 text-rose-700 border border-rose-200">ไม่ผ่าน</Badge>
     if (value === "IN_PROGRESS") return <Badge className="bg-blue-100 text-blue-700 border border-blue-200">กำลังทำ</Badge>
-    if (value === "NOT_STARTED") return <Badge className="bg-gray-100 text-gray-700 border border-gray-200">ยังไม่ได้ทำ</Badge>
-    if (value) return <Badge className="bg-gray-100 text-gray-700 border border-gray-200">{value}</Badge>
+    if (value === "NOT_STARTED") return <Badge className="bg-muted text-muted-foreground border border-border">ยังไม่ได้ทำ</Badge>
+    if (value) return <Badge className="bg-muted text-muted-foreground border border-border">{value}</Badge>
     return null
   }
 
@@ -113,7 +113,7 @@ export default function CourseExamsPage() {
   if (!isAuthenticated) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-10">
-        <div className="bg-white border rounded-lg p-6 text-gray-700">โปรดเข้าสู่ระบบ</div>
+        <div className="bg-background border rounded-lg p-6 text-muted-foreground">โปรดเข้าสู่ระบบ</div>
       </div>
     )
   }
@@ -121,7 +121,7 @@ export default function CourseExamsPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">ข้อสอบของคอร์ส</h1>
+        <h1 className="text-2xl font-bold text-foreground">ข้อสอบของคอร์ส</h1>
         <Button variant="outline" onClick={() => router.push(`/profile/my-courses/course/${encodeURIComponent(String(id))}`)}>กลับไปหน้าคอร์ส</Button>
       </div>
 
@@ -131,9 +131,9 @@ export default function CourseExamsPage() {
           <Skeleton className="h-28" />
         </div>
       )}
-      {error && <div className="text-red-600">{error}</div>}
+      {error && <div className="text-destructive">{error}</div>}
       {!loading && !error && exams.length === 0 && (
-        <div className="text-gray-600">คอร์สนี้ยังไม่มีข้อสอบ</div>
+        <div className="text-muted-foreground">คอร์สนี้ยังไม่มีข้อสอบ</div>
       )}
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -141,37 +141,37 @@ export default function CourseExamsPage() {
           const attemptText = attemptsInfo(ex.status, ex.attempts ?? (ex as any)?.attemptCount ?? null, ex.maxAttempts)
           const disableStart = ex.canRetake === false
           return (
-            <Card key={ex.id} className="bg-white border-gray-200">
+            <Card key={ex.id} className="bg-background border-border">
               <CardContent className="p-4 space-y-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
-                    <div className="text-lg font-semibold truncate">{ex.title || "ข้อสอบ"}</div>
+                    <div className="text-lg font-semibold truncate text-foreground">{ex.title || "ข้อสอบ"}</div>
                     {ex.description && (
-                      <div className="text-sm text-gray-600 line-clamp-2">{ex.description}</div>
+                      <div className="text-sm text-muted-foreground line-clamp-2">{ex.description}</div>
                     )}
                   </div>
                   {badgeForType(ex.examType)}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 text-xs text-gray-600">
+                <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                   {statusLabel(ex.status)}
                   {ex.questionCount != null && (
-                    <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                    <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground px-2 py-1 rounded">
                       {ex.questionCount} ข้อ
                     </span>
                   )}
                   {(ex.timeLimit ?? ex.duration) != null && (ex.timeLimit ?? ex.duration)! > 0 && (
-                    <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                    <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground px-2 py-1 rounded">
                       เวลา {(ex.timeLimit ?? ex.duration)} นาที
                     </span>
                   )}
                   {attemptText && (
-                    <span className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 px-2 py-1 rounded border border-yellow-100">
+                    <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">
                       {ex.canRetake === false ? "ทำครบแล้ว" : "ทำซ้ำได้"} ({attemptText})
                     </span>
                   )}
                   {attemptText == null && typeof ex.canRetake === "boolean" && (
-                    <span className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 px-2 py-1 rounded border border-yellow-100">
+                    <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">
                       {ex.canRetake ? "ทำซ้ำได้" : "ทำครบแล้ว"}
                     </span>
                   )}
@@ -180,7 +180,7 @@ export default function CourseExamsPage() {
                 <div className="flex justify-end">
                   <Link href={`/profile/my-courses/course/${encodeURIComponent(String(id))}/exams/${encodeURIComponent(String(ex.id))}`}>
                     <Button
-                      className={`bg-yellow-400 hover:bg-yellow-500 text-white ${disableStart ? "opacity-80" : ""}`}
+                      className={`bg-primary hover:bg-primary/90 text-primary-foreground ${disableStart ? "opacity-80" : ""}`}
                       disabled={disableStart}
                     >
                       {disableStart ? "ทำเสร็จแล้ว" : "เริ่มทำข้อสอบ"}

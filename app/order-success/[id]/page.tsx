@@ -534,7 +534,7 @@ export default function OrderSuccessPage() {
     <div className="max-w-5xl mx-auto px-4 py-12 space-y-6">
       <div className="space-y-2">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <h1 className="text-2xl font-bold">ยืนยันการสั่งซื้อ</h1>
+          <h1 className="text-2xl font-bold text-foreground">ยืนยันการสั่งซื้อ</h1>
           <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
             <Button variant="outline" onClick={() => router.push("/profile/orders")}>กลับไปหน้าคำสั่งซื้อ</Button>
             <Button variant="outline" onClick={refreshOrder} className="gap-2">
@@ -542,17 +542,17 @@ export default function OrderSuccessPage() {
             </Button>
           </div>
         </div>
-        {loading && <div className="text-gray-600">กำลังโหลด...</div>}
-        {!loading && error && <div className="text-red-600">{error}</div>}
+        {loading && <div className="text-muted-foreground">กำลังโหลด...</div>}
+        {!loading && error && <div className="text-destructive">{error}</div>}
         {enrollErr && (
-          <div className="text-red-600 text-sm">ลงทะเบียนอัตโนมัติไม่สำเร็จ: {enrollErr}</div>
+          <div className="text-destructive text-sm">ลงทะเบียนอัตโนมัติไม่สำเร็จ: {enrollErr}</div>
         )}
       </div>
 
       {!loading && order && (
         <>
          
-          <div className="bg-white/60 rounded-lg border p-4">
+          <div className="bg-background/60 rounded-lg border p-4">
             {(() => {
               const s = (order?.status || "").toUpperCase()
               const ps = (order?.payment?.status || "").toUpperCase()
@@ -563,32 +563,32 @@ export default function OrderSuccessPage() {
               return (
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 min-w-max">
-                    <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-yellow-500 text-white">
+                    <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                       <CheckCircle2 className="h-4 w-4" />
                     </span>
-                    <span className="text-sm font-medium text-yellow-700">สั่งซื้อ</span>
+                    <span className="text-sm font-medium text-primary">สั่งซื้อ</span>
                   </div>
-                  <div className={`h-0.5 flex-1 ${step2Active ? "bg-yellow-500" : "bg-gray-200"}`} />
+                  <div className={`h-0.5 flex-1 ${step2Active ? "bg-primary" : "bg-muted"}`} />
                   <div className="flex items-center gap-2 min-w-max">
                     {step2Done ? (
-                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-yellow-500 text-white">
+                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-primary text-primary-foreground">
                         <CheckCircle2 className="h-4 w-4" />
                       </span>
                     ) : (
-                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full border border-yellow-500 text-yellow-600">2</span>
+                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full border border-primary text-primary">2</span>
                     )}
-                    <span className={`text-sm font-medium ${step2Active ? "text-yellow-700" : "text-gray-500"}`}>{step2Label}</span>
+                    <span className={`text-sm font-medium ${step2Active ? "text-primary" : "text-muted-foreground"}`}>{step2Label}</span>
                   </div>
-                  <div className={`h-0.5 flex-1 ${step3Done ? "bg-yellow-500" : "bg-gray-200"}`} />
+                  <div className={`h-0.5 flex-1 ${step3Done ? "bg-primary" : "bg-muted"}`} />
                   <div className="flex items-center gap-2 min-w-max">
                     {step3Done ? (
                       <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-green-600 text-white">
                         <CheckCircle2 className="h-4 w-4" />
                       </span>
                     ) : (
-                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-gray-200 text-gray-500">3</span>
+                      <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-muted text-muted-foreground">3</span>
                     )}
-                    <span className={`text-sm font-medium ${step3Done ? "text-green-700" : "text-gray-500"}`}>สำเร็จ</span>
+                    <span className={`text-sm font-medium ${step3Done ? "text-green-700" : "text-muted-foreground"}`}>สำเร็จ</span>
                   </div>
                 </div>
               )
@@ -648,20 +648,20 @@ export default function OrderSuccessPage() {
                       )}
                     </div>
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-600">ช่องทางชำระเงิน</div>
-                      <div className="text-gray-900">{toPaymentMethodLabel(order.payment?.method)}</div>
+                      <div className="text-sm text-muted-foreground">ช่องทางชำระเงิน</div>
+                      <div className="text-foreground">{toPaymentMethodLabel(order.payment?.method)}</div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-600">ยอดที่ชำระ</div>
-                      <div className="text-gray-900">{formatCurrency(order.payment?.amount ?? order.total)}</div>
+                      <div className="text-sm text-muted-foreground">ยอดที่ชำระ</div>
+                      <div className="text-foreground">{formatCurrency(order.payment?.amount ?? order.total)}</div>
                       {order.payment?.paidAt && (
-                        <div className="text-xs text-gray-500">ชำระเมื่อ: {new Date(order.payment.paidAt).toLocaleString("th-TH")}</div>
+                        <div className="text-xs text-muted-foreground">ชำระเมื่อ: {new Date(order.payment.paidAt).toLocaleString("th-TH")}</div>
                       )}
                     </div>
                     {order.payment?.ref && (
                       <div className="space-y-1 sm:col-span-2">
-                        <div className="text-sm text-gray-600">เลขอ้างอิงการชำระ</div>
-                        <div className="inline-flex flex-wrap items-center gap-2 text-gray-900">
+                        <div className="text-sm text-muted-foreground">เลขอ้างอิงการชำระ</div>
+                        <div className="inline-flex flex-wrap items-center gap-2 text-foreground">
                           <span className="font-medium break-all">{order.payment.ref}</span>
                           <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText(String(order.payment!.ref))}>คัดลอก</Button>
                         </div>
@@ -669,11 +669,11 @@ export default function OrderSuccessPage() {
                     )}
                     {order.couponCode && (
                       <div className="space-y-1 sm:col-span-2">
-                        <div className="text-sm text-gray-600">คูปองที่ใช้</div>
+                        <div className="text-sm text-muted-foreground">คูปองที่ใช้</div>
                         <div className="inline-flex flex-wrap items-center gap-2">
                           <Badge className="border border-amber-200 bg-amber-100 text-amber-700">{order.couponCode}</Badge>
                           {Number(order.couponDiscount) > 0 && (
-                            <span className="text-xs text-gray-600">ลด {formatCurrency(order.couponDiscount)}</span>
+                            <span className="text-xs text-muted-foreground">ลด {formatCurrency(order.couponDiscount)}</span>
                           )}
                         </div>
                       </div>
@@ -682,8 +682,8 @@ export default function OrderSuccessPage() {
 
                   {displayItems.length > 0 && (
                     <div className="space-y-2">
-                      <div className="text-sm font-medium text-gray-700">รายการสินค้า</div>
-                      <div className="divide-y rounded-lg border bg-gray-50/60">
+                      <div className="text-sm font-medium text-card-foreground">รายการสินค้า</div>
+                      <div className="divide-y rounded-lg border bg-muted/30">
                         {displayItems.map((item) => {
                           const qty = Number(item.quantity || 1)
                           const unit = Number(item.unitPrice ?? item.totalPrice ?? 0)
@@ -692,12 +692,12 @@ export default function OrderSuccessPage() {
                           return (
                             <div key={key} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
                               <div className="space-y-1">
-                                <div className="font-medium text-gray-900">{item.title || toItemTypeLabel(item.itemType)}</div>
-                                <div className="text-xs text-gray-500">ประเภท: {toItemTypeLabel(item.itemType)}</div>
-                                <div className="text-xs text-gray-500">จำนวน: {qty}</div>
+                                <div className="font-medium text-foreground">{item.title || toItemTypeLabel(item.itemType)}</div>
+                                <div className="text-xs text-muted-foreground">ประเภท: {toItemTypeLabel(item.itemType)}</div>
+                                <div className="text-xs text-muted-foreground">จำนวน: {qty}</div>
                               </div>
                               <div className="text-right text-sm">
-                                <div className="font-semibold text-gray-900">{formatCurrency(total)}</div>
+                                <div className="font-semibold text-foreground">{formatCurrency(total)}</div>
                                 {qty > 1 && <div className="text-xs text-gray-500">({formatCurrency(unit)} / ชิ้น)</div>}
                               </div>
                             </div>
@@ -775,7 +775,7 @@ export default function OrderSuccessPage() {
                             <div key={`course-actions-${cid}`} className="flex flex-wrap items-center gap-2">
                               <Button
                                 onClick={() => router.push(`/profile/my-courses/course/${cid}`)}
-                                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                                className="bg-primary hover:bg-primary/90 text-primary-foreground"
                                 aria-label={`เข้าเรียน ${title}`}
                               >
                                 เข้าเรียน{courseItems.length > 1 ? ` • ${title}` : ""}
@@ -797,13 +797,13 @@ export default function OrderSuccessPage() {
                                 </Button>
                               )}
                               {status === "loading" && (
-                                <span className="text-xs text-gray-500">กำลังตรวจสอบสิทธิ์เข้าเรียน…</span>
+                                <span className="text-xs text-muted-foreground">กำลังตรวจสอบสิทธิ์เข้าเรียน…</span>
                               )}
                               {status === "error" && (
-                                <span className="text-xs text-red-600">ตรวจสอบสิทธิ์ไม่สำเร็จ</span>
+                                <span className="text-xs text-destructive">ตรวจสอบสิทธิ์ไม่สำเร็จ</span>
                               )}
                               {typeof err === "string" && err && (
-                                <span className="text-xs text-red-600">{err}</span>
+                                <span className="text-xs text-destructive">{err}</span>
                               )}
                             </div>
                           )
@@ -814,7 +814,7 @@ export default function OrderSuccessPage() {
                     {isCompleted && (ebookItems.length > 0 || order?.ebook) && (ebookFileUrl || ebookLink) && (
                       <>
                         <Button
-                          className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground"
                           onClick={() => {
                             const name = `${order.ebook?.title || primaryEbookItem?.title || "ebook"}.pdf`
                             const url = `/api/proxy-view?url=${encodeURIComponent(ebookFileUrl || ebookLink || "")}&filename=${encodeURIComponent(name)}`
@@ -852,7 +852,7 @@ export default function OrderSuccessPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex flex-wrap items-center gap-3">
-                    <div className="text-sm text-gray-700">สถานะคำสั่งซื้อ:</div>
+                    <div className="text-sm text-muted-foreground">สถานะคำสั่งซื้อ:</div>
                     {statusBadge(paymentStatus)}
                   </div>
 
@@ -861,7 +861,7 @@ export default function OrderSuccessPage() {
                       <div className="relative h-24 w-40 overflow-hidden rounded border">
                         <Image src={slipUrl} alt="สลิปโอนเงิน" fill className="object-cover" />
                       </div>
-                      <a href={slipUrl} target="_blank" rel="noreferrer" className="text-sm text-blue-600 underline">
+                      <a href={slipUrl} target="_blank" rel="noreferrer" className="text-sm text-primary underline">
                         เปิดสลิปต้นฉบับ
                       </a>
                     </div>
@@ -878,7 +878,7 @@ export default function OrderSuccessPage() {
                         <div>วันที่โอนที่ตรวจพบ: <span className="font-medium">{String(slipInfo.detectedDate)}</span></div>
                       )}
                       {slipInfo.summary && (
-                        <div className="sm:col-span-2 text-gray-700">
+                        <div className="sm:col-span-2 text-muted-foreground">
                           สรุปการตรวจสอบ: ผ่าน {slipInfo.summary.passed || 0} • เตือน {slipInfo.summary.warnings || 0} • ไม่ผ่าน {slipInfo.summary.failed || 0}
                         </div>
                       )}
@@ -886,7 +886,7 @@ export default function OrderSuccessPage() {
                   )}
 
                   {!slipUrl && (
-                    <div className="text-sm text-gray-600">ยังไม่มีสลิปกรอกเข้ามา กรุณาอัพโหลดหลักฐานการชำระเงิน</div>
+                    <div className="text-sm text-muted-foreground">ยังไม่มีสลิปกรอกเข้ามา กรุณาอัพโหลดหลักฐานการชำระเงิน</div>
                   )}
                 </CardContent>
               </Card>
@@ -901,26 +901,26 @@ export default function OrderSuccessPage() {
                       <div className="relative h-6 w-[140px]">
                         <Image src="/kbank-logo.png" alt="ธนาคารกสิกรไทย" fill className="object-contain" />
                       </div>
-                      <Badge className="bg-yellow-400 text-white">โอนผ่าน Mobile Banking</Badge>
+                      <Badge className="bg-primary text-primary-foreground">โอนผ่าน Mobile Banking</Badge>
                     </div>
                     <div className="space-y-2 text-sm">
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                        <span className="text-gray-700">เลขบัญชี</span>
+                        <span className="text-muted-foreground">เลขบัญชี</span>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold tracking-wider">107-889-8751</span>
+                          <span className="font-semibold tracking-wider text-foreground">107-889-8751</span>
                           <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("1078898751")}>คัดลอก</Button>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                        <span className="text-gray-700">ชื่อบัญชี</span>
+                        <span className="text-muted-foreground">ชื่อบัญชี</span>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium">นาย เชษฐา พวงบุบผา</span>
+                          <span className="font-medium text-foreground">นาย เชษฐา พวงบุบผา</span>
                           <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("นาย เชษฐา พวงบุบผา")}>คัดลอก</Button>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                        <span className="text-gray-700">ยอดที่ต้องชำระ</span>
-                        <span className="font-semibold">฿{order.total.toLocaleString()}</span>
+                        <span className="text-muted-foreground">ยอดที่ต้องชำระ</span>
+                        <span className="font-semibold text-foreground">฿{order.total.toLocaleString()}</span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-2 pt-2">
@@ -943,17 +943,17 @@ export default function OrderSuccessPage() {
                             className="h-auto w-full object-contain"
                           />
                         </div>
-                        <div className="space-y-1 bg-white px-2 pb-3 text-center text-xs text-gray-600">
+                        <div className="space-y-1 bg-white px-2 pb-3 text-center text-xs text-muted-foreground">
                           <div>กวดวิชาภาษาฟิสิกส์อาจารย์เต้ย</div>
                           <div>บัญชี บจก. เดอะนิวตัน เอ็ดดูเคชั่น</div>
                           <div>เลขอ้างอิง: KPS004KB000002221165</div>
                         </div>
                       </div>
-                      <span className="text-xs text-gray-600 text-center">สแกน QR เพื่อโอนเงิน</span>
+                      <span className="text-xs text-muted-foreground text-center">สแกน QR เพื่อโอนเงิน</span>
                     </div>
-                    <div className="text-xs text-gray-500">หลังโอนแล้ว กรุณาอัพโหลดสลิป ระบบจะตรวจสอบใช้เวลาโดยประมาณ 5-10 นาที</div>
+                    <div className="text-xs text-muted-foreground">หลังโอนแล้ว กรุณาอัพโหลดสลิป ระบบจะตรวจสอบใช้เวลาโดยประมาณ 5-10 นาที</div>
                     <div className="pt-1">
-                      <Button className="bg-yellow-400 hover:bg-yellow-500 text-white w-full" onClick={() => setOpenUpload(true)}>
+                      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full" onClick={() => setOpenUpload(true)}>
                         อัพโหลดสลิป
                       </Button>
                     </div>
@@ -973,20 +973,20 @@ export default function OrderSuccessPage() {
                 <Input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
                 {filePreview && (
                   <div className="mt-2">
-                    <div className="text-xs text-gray-600 mb-1">ตัวอย่างรูปที่เลือก</div>
-                    <div className="relative border rounded-md overflow-hidden bg-gray-50">
+                    <div className="text-xs text-muted-foreground mb-1">ตัวอย่างรูปที่เลือก</div>
+                    <div className="relative border rounded-md overflow-hidden bg-muted">
                       <img src={filePreview} alt="ตัวอย่างสลิป" className="max-h-72 w-full object-contain" />
                     </div>
                   </div>
                 )}
                 {uploadMsg && (
-                  <div aria-live="polite" className={uploadMsg.includes("สำเร็จ") || uploadMsg.includes("อนุมัติ") ? "text-green-600" : "text-red-600"}>
+                  <div aria-live="polite" className={uploadMsg.includes("สำเร็จ") || uploadMsg.includes("อนุมัติ") ? "text-green-600" : "text-destructive"}>
                     {uploadMsg}
                   </div>
                 )}
                 <div className="flex justify-end gap-2">
                   <Button variant="outline" onClick={() => setOpenUpload(false)}>ปิด</Button>
-                  <Button disabled={!file || uploading} onClick={uploadSlip} className="bg-yellow-400 hover:bg-yellow-500 text-white">
+                  <Button disabled={!file || uploading} onClick={uploadSlip} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     {uploading ? "กำลังอัพโหลด..." : "อัพโหลดสลิป"}
                   </Button>
                 </div>

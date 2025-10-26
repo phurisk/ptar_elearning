@@ -215,55 +215,55 @@ useEffect(() => {
   }
 
 const summaryContent = exam ? (
-  <div className="mt-3 space-y-3 text-sm text-gray-700">
+  <div className="mt-3 space-y-3 text-sm text-muted-foreground">
       {exam.courseTitle && (
         <div>
-          คอร์ส: <span className="font-medium text-gray-900">{exam.courseTitle}</span>
+          คอร์ส: <span className="font-medium text-foreground">{exam.courseTitle}</span>
         </div>
       )}
       <div>
-        จำนวนข้อ: <span className="font-medium text-gray-900">{totalQuestions}</span>
+        จำนวนข้อ: <span className="font-medium text-foreground">{totalQuestions}</span>
       </div>
       {typeof exam.totalMarks === "number" && (
         <div>
-          คะแนนรวม: <span className="font-medium text-gray-900">{exam.totalMarks}</span>
+          คะแนนรวม: <span className="font-medium text-foreground">{exam.totalMarks}</span>
         </div>
       )}
       {typeof exam.passingMarks === "number" && (
         <div>
-          ผ่านเมื่อได้: <span className="font-medium text-gray-900">{exam.passingMarks}</span>
+          ผ่านเมื่อได้: <span className="font-medium text-foreground">{exam.passingMarks}</span>
         </div>
       )}
       {timeLimitMinutes != null && timeLimitMinutes > 0 && (
         <div>
-          เวลาที่กำหนด: <span className="font-medium text-gray-900">{timeLimitMinutes} นาที</span>
+          เวลาที่กำหนด: <span className="font-medium text-foreground">{timeLimitMinutes} นาที</span>
         </div>
       )}
 
-      <div className="rounded-lg border bg-white px-3 py-2 text-sm text-gray-800">
-        <div className="flex items-center justify-between font-semibold text-gray-900">
+      <div className="rounded-lg border bg-card px-3 py-2 text-sm text-foreground">
+        <div className="flex items-center justify-between font-semibold text-foreground">
           <span>เวลาคงเหลือ</span>
-          <span className={remainingSeconds !== null && remainingSeconds <= 60 ? "text-red-600" : ""}>
+          <span className={remainingSeconds !== null && remainingSeconds <= 60 ? "text-destructive" : ""}>
             {formatCountdown(remainingSeconds)}
           </span>
         </div>
         {finishAtDisplay && (
-          <div className="mt-1 text-xs text-gray-500">สิ้นสุด: {finishAtDisplay}</div>
+          <div className="mt-1 text-xs text-muted-foreground">สิ้นสุด: {finishAtDisplay}</div>
         )}
         {startedAtDisplay && (
-          <div className="text-xs text-gray-500">เริ่มทำเมื่อ: {startedAtDisplay}</div>
+          <div className="text-xs text-muted-foreground">เริ่มทำเมื่อ: {startedAtDisplay}</div>
         )}
       </div>
 
       <div className="space-y-2 pt-1">
-        <div className="flex items-center justify-between text-xs font-medium text-gray-600">
+        <div className="flex items-center justify-between text-xs font-medium text-muted-foreground">
           <span>ความคืบหน้า</span>
           <span>
             {answeredCount}/{totalQuestions}
           </span>
         </div>
         <Progress value={completionPercent} className="h-2" />
-        <div className="text-right text-xs text-gray-500">{completionPercent}%</div>
+        <div className="text-right text-xs text-muted-foreground">{completionPercent}%</div>
       </div>
     </div>
   ) : null
@@ -283,7 +283,7 @@ const summaryContent = exam ? (
     if (x === "PRACTICE") return <Badge className="bg-purple-500 text-white">แบบฝึกหัด</Badge>
     if (x === "MIDTERM") return <Badge className="bg-sky-600 text-white">สอบกลางภาค</Badge>
     if (x === "FINAL") return <Badge className="bg-red-500 text-white">สอบปลายภาค</Badge>
-    return <Badge className="bg-amber-500 text-white">แบบทดสอบ</Badge>
+    return <Badge className="bg-primary text-primary-foreground">แบบทดสอบ</Badge>
   }
 
   const statusBadge = (status?: string | null) => {
@@ -291,8 +291,8 @@ const summaryContent = exam ? (
     if (value === "PASSED") return <Badge className="bg-emerald-100 text-emerald-700 border border-emerald-200">ผ่านแล้ว</Badge>
     if (value === "FAILED") return <Badge className="bg-rose-100 text-rose-700 border border-rose-200">ไม่ผ่าน</Badge>
     if (value === "IN_PROGRESS") return <Badge className="bg-blue-100 text-blue-700 border border-blue-200">กำลังทำ</Badge>
-    if (value === "NOT_STARTED") return <Badge className="bg-gray-100 text-gray-700 border border-gray-200">ยังไม่ได้ทำ</Badge>
-    if (value) return <Badge className="bg-gray-100 text-gray-700 border border-gray-200">{value}</Badge>
+    if (value === "NOT_STARTED") return <Badge className="bg-muted text-muted-foreground border border-border">ยังไม่ได้ทำ</Badge>
+    if (value) return <Badge className="bg-muted text-muted-foreground border border-border">{value}</Badge>
     return null
   }
 
@@ -391,7 +391,7 @@ const summaryContent = exam ? (
           </CardHeader>
           <CardContent className="space-y-6">
             {exam.description && (
-              <div className="rounded-lg bg-yellow-50/60 px-4 py-3 text-sm text-gray-700">
+              <div className="rounded-lg bg-muted/60 px-4 py-3 text-sm text-muted-foreground">
                 {exam.description}
               </div>
             )}
@@ -399,35 +399,35 @@ const summaryContent = exam ? (
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
               <section className="flex-1 space-y-5">
                 {qList.length === 0 && (
-                  <div className="text-sm text-gray-500">ข้อสอบนี้ยังไม่มีคำถาม</div>
+                  <div className="text-sm text-muted-foreground">ข้อสอบนี้ยังไม่มีคำถาม</div>
                 )}
 
                 {qList.map((q, idx) => {
                   const qType = (q.type || (Array.isArray(q.options) && q.options.length === 2 ? "TRUE_FALSE" : "MULTIPLE_CHOICE")).toUpperCase()
                   return (
-                    <div key={q.id} className="rounded-xl bg-white p-4 shadow-sm space-y-4 transition-shadow duration-200">
+                    <div key={q.id} className="rounded-xl bg-background p-4 shadow-sm space-y-4 transition-shadow duration-200">
                       <div className="flex items-start justify-between gap-3">
                         <div className="space-y-2">
                           {q.image && (
-                            <div className="aspect-[16/9] max-w-[830px]  relative w-full overflow-hidden rounded-md border bg-gray-50">
+                            <div className="aspect-[16/9] max-w-[830px]  relative w-full overflow-hidden rounded-md border bg-muted">
                               <Image
                                 src={q.image}
                                 alt={q.text || `Question ${idx + 1}`}
                                 width={960}
                                 height={540}
-                                className="h-auto w-full object-contain bg-white"
+                                className="h-auto w-full object-contain bg-background"
                                 unoptimized
                               />
                             </div>
                           )}
-                          <p className="font-medium text-gray-900">
+                          <p className="font-medium text-foreground">
                             {idx + 1}. {q.text || "คำถาม"}
                           </p>
                         </div>
 
                       </div>
                       {typeof q.marks === "number" && (
-                          <Badge className="bg-yellow-100 text-yellow-700 px-2 py-1 text-[11px] font-medium ">
+                          <Badge className="bg-primary/10 text-primary px-2 py-1 text-[11px] font-medium ">
                             {q.marks} คะแนน
                           </Badge>
                         )}
@@ -448,16 +448,16 @@ const summaryContent = exam ? (
                             return (
                               <label
                                 key={opt.id}
-                                className={`flex items-center gap-3 rounded-lg border px-3 py-2 transition focus-within:ring-2 focus-within:ring-yellow-400 ${selected ? "border-yellow-400 bg-yellow-50 ring-1 ring-yellow-200" : "border-gray-200 bg-white hover:bg-gray-50"}`}
+                                className={`flex items-center gap-3 rounded-lg border px-3 py-2 transition focus-within:ring-2 focus-within:ring-primary ${selected ? "border-primary bg-primary/10 ring-1 ring-primary/20" : "border-border bg-card hover:bg-accent/50"}`}
                               >
                                 <input
                                   type="radio"
                                   name={`q-${q.id}`}
-                                  className="h-4 w-4"
+                                  className="h-4 w-4 text-primary border-border focus:ring-primary"
                                   checked={selected}
                                   onChange={() => setChoice(q.id, opt.id)}
                                 />
-                                <span className="text-sm text-gray-800">{opt.text || opt.id}</span>
+                                <span className="text-sm text-foreground">{opt.text || opt.id}</span>
                               </label>
                             )
                           })}
@@ -471,7 +471,7 @@ const summaryContent = exam ? (
                   <Button variant="outline" onClick={() => router.push(`/profile/my-courses/course/${encodeURIComponent(String(courseId))}/exams`)}>
                     ยกเลิก
                   </Button>
-                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-white" onClick={submit} disabled={submitting}>
+                  <Button onClick={submit} disabled={submitting}>
                     {submitting ? "กำลังส่งคำตอบ..." : "ส่งคำตอบ"}
                   </Button>
                 </div>
@@ -479,14 +479,14 @@ const summaryContent = exam ? (
 
               {isDesktop && (
                 <aside className="w-72 shrink-0 space-y-4 sticky top-4">
-                  <div className="rounded-xl border bg-gradient-to-br from-white via-white to-yellow-50 p-4 shadow-sm ring-1 ring-black/5">
-                    <h3 className="text-sm font-semibold text-gray-900">สรุปข้อสอบ</h3>
+                  <div className="rounded-xl border bg-gradient-to-br from-card via-card to-accent/20 p-4 shadow-sm ring-1 ring-border">
+                    <h3 className="text-sm font-semibold text-foreground">สรุปข้อสอบ</h3>
                     {summaryContent}
                   </div>
 
                   {typeof exam.canRetake === "boolean" && (
-                    <div className="rounded-xl border bg-white/80 p-4 text-xs text-gray-600">
-                      <span className="font-semibold text-gray-900">เงื่อนไข:</span>
+                    <div className="rounded-xl border bg-card/80 p-4 text-xs text-muted-foreground">
+                      <span className="font-semibold text-foreground">เงื่อนไข:</span>
                       <span className="ml-2">{exam.canRetake ? "สามารถกลับมาทำข้อสอบได้อีก" : "ทำได้เพียงครั้งเดียว"}</span>
                     </div>
                   )}
@@ -503,7 +503,7 @@ const summaryContent = exam ? (
           <Button
             variant="default"
             size="icon"
-            className="fixed bottom-5 right-5 z-40 h-12 w-12 rounded-full bg-yellow-400 text-white shadow-lg transition hover:bg-yellow-500 xl:hidden"
+            className="fixed bottom-5 right-5 z-40 h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-lg transition hover:bg-primary/90 xl:hidden"
             onClick={() => setSummaryOpen((prev) => !prev)}
             aria-label={summaryOpen ? "ซ่อนสรุปข้อสอบ" : "แสดงสรุปข้อสอบ"}
           >
@@ -513,7 +513,7 @@ const summaryContent = exam ? (
           <Button
             variant="default"
             size="icon"
-            className="fixed top-1/2 right-5 z-40 hidden h-12 w-12 -translate-y-1/2 rounded-full border border-yellow-100 bg-white text-yellow-600 shadow-lg transition hover:bg-yellow-50 xl:flex"
+            className="fixed top-1/2 right-5 z-40 hidden h-12 w-12 -translate-y-1/2 rounded-full border border-border bg-background text-foreground shadow-lg transition hover:bg-accent xl:flex"
             onClick={() => setSummaryOpen((prev) => !prev)}
             aria-label={summaryOpen ? "ซ่อนสรุปข้อสอบ" : "แสดงสรุปข้อสอบ"}
           >
@@ -529,10 +529,10 @@ const summaryContent = exam ? (
             onClick={() => setSummaryOpen(false)}
           />
           <div
-            className={`fixed top-16 lg:top-20 bottom-0 right-0 z-40 w-full max-w-[90vw] sm:max-w-sm border border-yellow-100 bg-white p-5 shadow-xl transition-transform duration-300 ${summaryOpen ? "translate-x-0" : "translate-x-full"}`}
+            className={`fixed top-16 lg:top-20 bottom-0 right-0 z-40 w-full max-w-[90vw] sm:max-w-sm border border-border bg-background p-5 shadow-xl transition-transform duration-300 ${summaryOpen ? "translate-x-0" : "translate-x-full"}`}
           >
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-base font-semibold text-gray-900">สรุปข้อสอบ</h3>
+              <h3 className="text-base font-semibold text-foreground">สรุปข้อสอบ</h3>
               <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setSummaryOpen(false)} aria-label="ปิดสรุป">
                 <PanelRightClose className="h-4 w-4" />
               </Button>
@@ -540,8 +540,8 @@ const summaryContent = exam ? (
             <div className="overflow-y-auto pr-1 max-h-[calc(100vh-9rem)] lg:max-h-[calc(100vh-10rem)]">
               {summaryContent}
               {typeof exam.canRetake === "boolean" && (
-                <div className="mt-4 rounded-xl border bg-white/80 p-4 text-xs text-gray-600">
-                  <span className="font-semibold text-gray-900">เงื่อนไข:</span>
+                <div className="mt-4 rounded-xl border bg-card/80 p-4 text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">เงื่อนไข:</span>
                   <span className="ml-2">{exam.canRetake ? "สามารถกลับมาทำข้อสอบได้อีก" : "ทำได้เพียงครั้งเดียว"}</span>
                 </div>
               )}

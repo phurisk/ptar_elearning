@@ -228,11 +228,11 @@ export default function CourseDetailPage() {
 
   const progressColor =
     currentProgress === 0
-      ? 'text-gray-500'
+      ? 'text-muted-foreground'
       : currentProgress < 50
-        ? 'text-yellow-600'
+        ? 'text-primary'
         : currentProgress < 100
-          ? 'text-blue-600'
+          ? 'text-primary'
           : 'text-green-600'
 
   useEffect(() => {
@@ -426,9 +426,9 @@ export default function CourseDetailPage() {
   }
 
   const ProgressBar = ({ progress }: { progress: number }) => (
-    <div className="w-full bg-gray-200 rounded-full h-2">
+    <div className="w-full bg-muted rounded-full h-2">
       <div
-        className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-2 rounded-full transition-all duration-500"
+        className="bg-gradient-to-r from-primary to-primary/90 h-2 rounded-full transition-all duration-500"
         style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
       />
     </div>
@@ -437,8 +437,8 @@ export default function CourseDetailPage() {
   if (authLoading && !isAuthenticated) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="bg-white border rounded-lg p-6 flex items-center gap-3 text-gray-700">
-          <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+        <div className="bg-background border rounded-lg p-6 flex items-center gap-3 text-muted-foreground">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
           <span>กำลังตรวจสอบสถานะการเข้าสู่ระบบ...</span>
         </div>
       </div>
@@ -448,11 +448,11 @@ export default function CourseDetailPage() {
   if (!isAuthenticated) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="bg-white border rounded-lg p-6">
+        <div className="bg-background border rounded-lg p-6">
           <div className="flex items-center justify-between gap-4">
-            <div className="text-gray-700">กรุณาเข้าสู่ระบบเพื่อดูคอร์สของคุณ</div>
+            <div className="text-muted-foreground">กรุณาเข้าสู่ระบบเพื่อดูคอร์สของคุณ</div>
             <Button
-              className="bg-yellow-400 hover:bg-yellow-500 text-white"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
               onClick={() => setLoginOpen(true)}
             >
               เข้าสู่ระบบ
@@ -486,7 +486,7 @@ export default function CourseDetailPage() {
   if (error || !course) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12 text-center">
-        <div className="text-red-600 mb-4">เกิดข้อผิดพลาด: {error || 'ไม่พบคอร์ส'}</div>
+        <div className="text-destructive mb-4">เกิดข้อผิดพลาด: {error || 'ไม่พบคอร์ส'}</div>
         <Link href="/profile/my-courses">
           <Button variant="outline">กลับไปหน้าคอร์สของฉัน</Button>
         </Link>
@@ -495,7 +495,7 @@ export default function CourseDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 py-4 sticky top-0 z-30 ">
         <div className="flex items-center justify-between gap-3">
@@ -505,7 +505,7 @@ export default function CourseDetailPage() {
                 <ArrowLeft className="h-4 w-4 mr-2" /> กลับ
               </Button>
             </Link>
-            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 line-clamp-1">
+            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground line-clamp-1">
               {course.title}
             </h1>
           </div>
@@ -532,11 +532,11 @@ export default function CourseDetailPage() {
               />
             )}
 
-            <div className="absolute lg:static inset-y-0 left-0 w-11/12 sm:w-2/3 max-w-[380px] lg:w-auto bg-white border border-gray-200 rounded-none lg:rounded-md shadow-lg lg:shadow-none lg:sticky lg:top-24 h-full lg:h-[calc(100vh-8rem)] overflow-hidden">
+            <div className="absolute lg:static inset-y-0 left-0 w-11/12 sm:w-2/3 max-w-[380px] lg:w-auto bg-background border border-border rounded-none lg:rounded-md shadow-lg lg:shadow-none lg:sticky lg:top-24 h-full lg:h-[calc(100vh-8rem)] overflow-hidden">
               <Card className="h-full border-0">
                 <CardContent className="p-4 h-full overflow-y-auto">
                   <div className="flex items-center justify-between mb-2">
-                    <h2 className="font-semibold text-gray-800 flex items-center gap-2">
+                    <h2 className="font-semibold text-card-foreground flex items-center gap-2">
                       <BookOpen className="h-5 w-5" /> เนื้อหาคอร์ส
                     </h2>
                     <Button
@@ -560,7 +560,7 @@ export default function CourseDetailPage() {
                           <div key={chapter.id} className="space-y-2">
                             <Button
                               variant={isOpen ? 'default' : 'ghost'}
-                              className={`w-full justify-start text-left h-auto p-3 ${isOpen ? 'text-white bg-yellow-500 hover:opacity-90' : 'text-gray-700 hover:bg-gray-100'
+                              className={`w-full justify-start text-left h-auto p-3 ${isOpen ? 'text-primary-foreground bg-primary hover:opacity-90' : 'text-muted-foreground hover:bg-muted'
                                 }`}
                               onClick={() => {
                                 const first = contentsSorted[0]
@@ -589,8 +589,8 @@ export default function CourseDetailPage() {
                                       variant="ghost"
                                       size="sm"
                                       className={`w-full justify-start text-left h-auto p-2 ${isCurrent
-                                          ? ' text-gray-800 border-l-2 border-l-yellow-300'
-                                          : 'text-gray-600 hover:bg-gray-50'
+                                          ? ' text-foreground border-l-2 border-l-primary'
+                                          : 'text-muted-foreground hover:bg-muted'
                                         }`}
                                       onClick={() => handleSelectContent(c)}
                                     >
@@ -607,7 +607,7 @@ export default function CourseDetailPage() {
                                         </div>
 
                                         {isCurrent && (
-                                          <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse ml-2" />
+                                          <span className="w-2 h-2 bg-primary rounded-full animate-pulse ml-2" />
                                         )}
                                       </div>
                                     </Button>
@@ -627,7 +627,7 @@ export default function CourseDetailPage() {
           {/* Content area */}
           <section className="lg:col-span-3 space-y-6">
             {/* Video player */}
-            <Card className="bg-white border-gray-200 pt-0">
+            <Card className="bg-background border-border pt-0">
               <CardContent className="p-0">
                 <div className="aspect-video bg-black rounded-t-lg overflow-hidden relative" onContextMenu={(e) => e.preventDefault()}>
                   {selectedContent && selectedContent.contentType === 'VIDEO' && selectedEmbedSrc ? (
@@ -649,7 +649,7 @@ export default function CourseDetailPage() {
                             <p className="text-sm text-white/80">เลือกกดดูซ้ำหรือเรียนวิดีโอต่อไปจากปุ่มด้านล่าง</p>
                           </div>
                           <div className="flex flex-wrap items-center justify-center gap-3">
-                            <Button onClick={handleReplayVideo} className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                            <Button onClick={handleReplayVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                               ดูอีกครั้ง
                             </Button>
                             <Button
@@ -682,10 +682,10 @@ export default function CourseDetailPage() {
                         <h2 className="text-lg sm:text-xl font-semibold mb-1">
                           {selectedContent.title}
                         </h2>
-                        <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+                        <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                           <Badge
                             variant="secondary"
-                            className="bg-yellow-100 text-yellow-800 border border-yellow-300"
+                            className="bg-primary/10 text-primary border border-primary/20"
                           >
                             Chapter {currentChapter?.order}: {currentChapter?.title}
                           </Badge>
@@ -705,7 +705,7 @@ export default function CourseDetailPage() {
                           size="sm"
                           onClick={() => selectedContent && handleMarkCompleted(selectedContent)}
                           disabled={isCurrentCompleted || progressLoading}
-                          className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         >
                           <CheckCircle className="h-4 w-4 mr-2" />
                           {isCurrentCompleted ? 'เรียนแล้ว' : progressLoading ? 'กำลังบันทึก...' : 'เรียนวิดีโอนี้จบแล้ว'}
@@ -741,10 +741,10 @@ export default function CourseDetailPage() {
             </Card>
 
             {/* Progress */}
-            <Card className="bg-white border-gray-200">
+            <Card className="bg-background border-border">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-gray-700">ความคืบหน้า</div>
+                  <div className="text-muted-foreground">ความคืบหน้า</div>
                   <div className={`flex items-center gap-2 font-medium ${progressColor}`}>
                     <CheckCircle className="h-4 w-4" /> {currentProgress}%
                   </div>
@@ -752,9 +752,9 @@ export default function CourseDetailPage() {
                 <ProgressBar progress={currentProgress} />
                 <div className="flex justify-between items-center mt-2 text-xs">
                   <span className={progressColor}>{progressText}</span>
-                  {progressLoading && <span className="text-gray-500">กำลังอัพเดท...</span>}
+                  {progressLoading && <span className="text-muted-foreground">กำลังอัพเดท...</span>}
                 </div>
-                <div className="mt-2 text-xs text-gray-500">
+                <div className="mt-2 text-xs text-muted-foreground">
                   เรียนแล้ว {completedCount} จาก {totalContents} เนื้อหา
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -783,9 +783,9 @@ export default function CourseDetailPage() {
 
             {/* Related items in current chapter */}
             {currentChapter && (
-              <Card className="bg-white border-gray-200">
+              <Card className="bg-background border-border">
                 <CardContent className="p-4 sm:p-6">
-                  <h3 className="font-semibold text-gray-800 mb-4">
+                  <h3 className="font-semibold text-card-foreground mb-4">
                     วิดีโออื่นๆ ใน Chapter {currentChapter.order}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -796,11 +796,11 @@ export default function CourseDetailPage() {
                       .map((c) => (
                         <Card
                           key={c.id}
-                          className="cursor-pointer hover:shadow-md transition-shadow bg-gray-50 border-gray-200 hover:border-yellow-300 py-0"
+                          className="cursor-pointer hover:shadow-md transition-shadow bg-muted/30 border-border hover:border-primary py-0"
                           onClick={() => handleSelectContent(c)}
                         >
                           <CardContent className="p-3">
-                            <div className="aspect-video bg-gray-200 rounded mb-3 relative overflow-hidden">
+                            <div className="aspect-video bg-muted rounded mb-3 relative overflow-hidden">
                               {c.contentType === 'VIDEO' && getVideoThumbnailUrl(c.contentUrl) ? (
                                 <Image
                                   src={getVideoThumbnailUrl(c.contentUrl) || '/placeholder.svg'}
@@ -817,7 +817,7 @@ export default function CourseDetailPage() {
                                 />
                               )}
                             </div>
-                            <h5 className="font-medium text-sm text-gray-800 text-balance line-clamp-2">
+                            <h5 className="font-medium text-sm text-card-foreground text-balance line-clamp-2">
                               {c.title}
                             </h5>
                           </CardContent>
