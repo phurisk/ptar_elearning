@@ -99,9 +99,9 @@ function VideoModal({
         <button
           onClick={onClose}
           aria-label="Close video"
-          className="absolute top-3 right-3 inline-flex items-center justify-center rounded-full p-2 bg-white/90 hover:bg-white transition"
+          className="absolute top-3 right-3 inline-flex items-center justify-center rounded-full p-2 bg-background/90 hover:bg-background transition"
         >
-          <X className="w-5 h-5 text-gray-900" />
+          <X className="w-5 h-5 text-foreground" />
         </button>
 
       
@@ -199,12 +199,12 @@ export default function TeachingVideos() {
   }, [])
 
   return (
-    <section className="pt-0 pb-10 lg:pt-24 lg:pb-5 bg-white">
+    <section className="pt-0 pb-10 lg:pt-24 lg:pb-5 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  
         <div className="text-center mb-5">
-          <h2 className="text-xl lg:text-2xl font-bold text-white mb-4 text-balance bg-black px-8 py-4 w-fit mx-auto rounded-full shadow-sm">ตัวอย่างการสอน</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <h2 className="text-xl lg:text-2xl font-bold text-primary-foreground mb-4 text-balance bg-primary px-8 py-4 w-fit mx-auto rounded-full shadow-sm">ตัวอย่างการสอน</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             ดูตัวอย่างวิธีการสอนของผู้เชี่ยวชาญ ที่ทำให้การเรียนรู้เป็นเรื่องง่ายและเข้าใจได้
           </p>
         </div>
@@ -242,10 +242,10 @@ export default function TeachingVideos() {
 
             
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 text-balance group-hover:text-yellow-600 transition-colors duration-200">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 text-balance group-hover:text-primary transition-colors duration-200">
                     {video.title}
                   </h3>
-                  <p className="text-gray-600 text-pretty leading-relaxed">{video.description}</p>
+                  <p className="text-muted-foreground text-pretty leading-relaxed">{video.description}</p>
                 </div>
               </CardContent>
             </Card>
@@ -254,8 +254,8 @@ export default function TeachingVideos() {
 
     
         <div className="text-center ">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">ต้องการดูวิดีโอเพิ่มเติม?</h3>
-          <p className="text-gray-600 mb-6 max-w-md mx-auto ">ติดตาม YouTube Channel ของเราเพื่อดูวิดีโอการสอนเพิ่มเติม</p>
+          <h3 className="text-2xl font-bold text-foreground mb-4">ต้องการดูวิดีโอเพิ่มเติม?</h3>
+          <p className="text-muted-foreground mb-6 max-w-md mx-auto ">ติดตาม YouTube Channel ของเราเพื่อดูวิดีโอการสอนเพิ่มเติม</p>
           <Button
             size="lg"
             className="bg-red-600 hover:bg-red-700 text-white transform transition-transform duration-200 hover:scale-110 cursor-pointer"

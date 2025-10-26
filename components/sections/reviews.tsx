@@ -203,13 +203,13 @@ export default function Reviews() {
   }
 
   return (
-    <section className="pt-0 pb-10 lg:pt-24 lg:pb-5 bg-white">
+    <section className="pt-0 pb-10 lg:pt-24 lg:pb-5 bg-background">
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-2">
-          <h2 className="text-xl lg:text-2xl font-bold text-white mb-4 text-balance bg-black px-8 py-4 w-fit mx-auto rounded-full shadow-sm mb-4">
+          <h2 className="text-xl lg:text-2xl font-bold text-primary-foreground mb-4 text-balance bg-primary px-8 py-4 w-fit mx-auto rounded-full shadow-sm mb-4">
             รีวิวจากผู้เรียน
           </h2>
-          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             ฟังเสียงจากผู้เรียนที่ประสบความสำเร็จในการเรียนรู้กับเรา
           </p>
         </div>
@@ -342,9 +342,9 @@ export default function Reviews() {
           overflow: hidden;
           background: linear-gradient(
             90deg,
-            rgba(229, 229, 229, 1) 0%,
-            rgba(243, 244, 246, 1) 50%,
-            rgba(229, 229, 229, 1) 100%
+            hsl(var(--muted)) 0%,
+            hsl(var(--background)) 50%,
+            hsl(var(--muted)) 100%
           );
           background-size: 200% 100%;
           animation: shimmerSlide 1.4s ease-in-out infinite;

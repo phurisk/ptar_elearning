@@ -95,13 +95,13 @@ export default function ViewOfTeachingSection({
   const prev = () => setCurrent((p) => (p - 1 + slides.length) % slides.length)
 
   return (
-    <section className={`py-16 px-4 bg-white ${className}`}>
+    <section className={`py-16 px-4 bg-background ${className}`}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 bg-black w-fit mx-auto px-6 py-3 rounded-full shadow-sm">
+          <h2 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3 md:mb-4 bg-primary w-fit mx-auto px-6 py-3 rounded-full shadow-sm">
             {title}
           </h2>
-          {subtitle && <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto text-pretty">{subtitle}</p>}
+          {subtitle && <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{subtitle}</p>}
         </div>
 
         <div className="relative">
@@ -124,24 +124,24 @@ export default function ViewOfTeachingSection({
                       variant="outline"
                       size="icon"
                       aria-label="Previous"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/90 hover:bg-background border-primary/20 shadow-lg"
                     >
-                      <ChevronLeft className="h-4 w-4" />
+                      <ChevronLeft className="h-4 w-4 text-primary" />
                     </Button>
                     <Button
                       onClick={next}
                       variant="outline"
                       size="icon"
                       aria-label="Next"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/90 hover:bg-background border-primary/20 shadow-lg"
                     >
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight className="h-4 w-4 text-primary" />
                     </Button>
                   </>
                 )}
 
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5">
-                  <h3 className="text-white text-lg md:text-xl font-semibold">{slides[current]?.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/70 to-transparent p-5">
+                  <h3 className="text-primary-foreground text-lg md:text-xl font-semibold">{slides[current]?.title}</h3>
                 </div>
               </div>
             </CardContent>
@@ -157,7 +157,7 @@ export default function ViewOfTeachingSection({
                   }}
                   aria-label={`Go to image ${idx + 1}`}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    idx === current ? "bg-yellow-400 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                    idx === current ? "bg-primary scale-125" : "bg-muted hover:bg-muted-foreground/30"
                   }`}
                 />
               ))}

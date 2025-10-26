@@ -241,7 +241,7 @@ export const socialLinks = [
 
 export const contactInfo = {
   email: "contact@demo-physics.com",
-  schoolName: "สถาบันการเรียนรู้ออนไลน์",
+  schoolName: "โรงเรียนกวดวิชาเคมีพี่ต้า",
   subtitle: "(แพลตฟอร์มการเรียนรู้สำหรับทุกคน)",
   address: "สำนักงานใหญ่ : กรุงเทพมหานคร ประเทศไทย",
   hours: {

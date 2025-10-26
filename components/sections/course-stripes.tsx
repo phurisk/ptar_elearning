@@ -56,13 +56,13 @@ const stripes: Stripe[] = [
 
 export default function CourseStripes() {
   return (
-    <section className="pt-0 pb-10 lg:pt-20 lg:pb-5 bg-white">
+    <section className="pt-0 pb-10 lg:pt-20 lg:pb-5 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-xl lg:text-2xl font-bold text-white mb-2 text-balance bg-black px-8 py-4 w-fit mx-auto rounded-full shadow-sm mb-4">
+          <h2 className="text-xl lg:text-2xl font-bold text-primary-foreground mb-2 text-balance bg-primary px-8 py-4 w-fit mx-auto rounded-full shadow-sm mb-4">
             คอร์สเรียนออนไลน์
           </h2>
-          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             เลือกแผนการเรียนให้เหมาะกับเป้าหมายของคุณ
           </p>
         </div>
@@ -73,21 +73,21 @@ export default function CourseStripes() {
               key={idx}
               href={s.href}
               aria-label={`${s.title} ${s.subtitle}`}
-              className={`group relative overflow-hidden rounded-[28px] ring-1 ring-black/5 bg-gradient-to-br ${s.bg} px-5 py-6 md:px-8 md:py-7 flex items-center justify-between hover:shadow-xl transition-all duration-300`}
+              className={`group relative overflow-hidden rounded-[28px] ring-1 ring-border bg-gradient-to-br ${s.bg} px-5 py-6 md:px-8 md:py-7 flex items-center justify-between hover:shadow-xl transition-all duration-300`}
             >
             
               <div className="flex items-center gap-4 md:gap-6">
-                <div className="relative hidden sm:flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-2xl bg-white/70 ring-1 ring-black/5 shadow-sm">
-                  <Atom className="h-7 w-7 text-[#2688DF]" />
-                  <FlaskConical className="h-5 w-5 text-[#FEBE01] absolute -bottom-1 -right-1" />
+                <div className="relative hidden sm:flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-2xl bg-card/70 ring-1 ring-border shadow-sm">
+                  <Atom className="h-7 w-7 text-primary" />
+                  <FlaskConical className="h-5 w-5 text-accent-foreground absolute -bottom-1 -right-1" />
                 </div>
                 <div>
-                  <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                  <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground leading-tight">
                     {s.title} {s.highlight && (
-                      <span className={s.accent === "bg-[#FEBE01]" ? "text-[#e5aa00]" : "text-[#2688DF]"}>{s.highlight}</span>
+                      <span className={s.accent === "bg-[#FEBE01]" ? "text-accent-foreground" : "text-primary"}>{s.highlight}</span>
                     )}
                   </div>
-                  <div className="mt-0.5 text-gray-700 text-sm md:text-base">{s.subtitle}</div>
+                  <div className="mt-0.5 text-muted-foreground text-sm md:text-base">{s.subtitle}</div>
                 </div>
               </div>
            
@@ -101,13 +101,13 @@ export default function CourseStripes() {
               </div>
 
              
-              <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-white/40 blur-2xl opacity-60" />
-              <div className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-white/30 blur-2xl opacity-40" />
+              <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-card/40 blur-2xl opacity-60" />
+              <div className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-card/30 blur-2xl opacity-40" />
 
             
               <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
                 <svg className="absolute right-6 top-1/2 -translate-y-1/2" width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g stroke="currentColor" strokeWidth="2" className="text-gray-700">
+                  <g stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
                     <circle cx="30" cy="60" r="16" />
                     <path d="M28 44v-10M32 44v-10M22 72h16" />
                     <rect x="80" y="40" width="30" height="30" rx="4" />

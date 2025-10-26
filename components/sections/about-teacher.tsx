@@ -11,9 +11,9 @@ export default function AboutTeacher() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-12 gap-x-8 gap-y-12 items-start">
           <div className="space-y-4 text-center md:text-left max-w-2xl mx-auto md:mx-0 md:col-span-7 md:col-start-6 md:row-start-1">
-            <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">อาจารย์ Demo</h2>
+            <h2 className="text-4xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">ครูพี่ต้า (อนุชิต)</h2>
             <div className="space-y-2">
-              <h3 className="text-2xl font-semibold text-foreground text-pretty">สถาบันการเรียนรู้ออนไลน์</h3>
+              <h3 className="text-2xl font-semibold text-foreground text-pretty">โรงเรียนกวดวิชาเคมีพี่ต้า</h3>
               <p className="text-muted-foreground text-pretty">(แพลตฟอร์มการเรียนรู้สำหรับทุกคน)</p>
             </div>
           </div>
@@ -25,7 +25,7 @@ export default function AboutTeacher() {
                   <div className="relative aspect-[4/5]">
                     <Image
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=520&h=650&fit=crop&crop=center"
-                      alt="อาจารย์ Demo"
+                      alt="ครูพี่ต้า (อนุชิต)"
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 45vw, 520px"
@@ -48,13 +48,11 @@ export default function AboutTeacher() {
               </h4>
               <div className="space-y-3">
                 {[
-                  "ผู้เชี่ยวชาญด้านการสอนออนไลน์มากกว่า 10 ปี",
-                  "พัฒนาหลักสูตรการเรียนรู้สำหรับนักเรียนทุกระดับ",
-                  "ผู้ก่อตั้งแพลตฟอร์มการเรียนรู้ออนไลน์ชั้นนำ",
-                  "วิทยากรในการประชุมเทคโนโลยีการศึกษาระดับชาติ",
-                  "ผู้เขียนหนังสือและเนื้อหาการเรียนรู้มากกว่า 50 เล่ม",
-                  "ที่ปรึกษาโครงการพัฒนาการศึกษาดิจิทัล",
-                  "ผู้นำในการใช้เทคโนโลยี AI เพื่อการศึกษา"
+                  "วิทยาศาตร์เคมี ทุน พสวท.",
+                  "มหาวิทยาลัยขอนแก่น",
+                  "ประสบการณ์สอน 15 ปี มากกว่า 100 โรงเรียน",
+                  "ลูกศิษย์สอบติดโอลิมปิกวิชาการ เคมี สอวน.เคมี",
+                  "สอบติดมหาวิทยลัยชั้นนำปีละ หลายร้อย",
                 ].map((achievement, index) => (
                   <motion.div
                     key={index}
@@ -78,7 +76,7 @@ export default function AboutTeacher() {
                 <Target className="h-6 w-6 text-primary" /> ปัจจุบัน
               </h4>
               <div className="flex flex-wrap gap-2">
-                {["ผู้อำนวยการสถาบันการเรียนรู้ออนไลน์", "ที่ปรึกษาด้านเทคโนโลยีการศึกษา"].map((position, index) => (
+                {["อาจารย์ โรงเรียนกวดวิชาเคมีพี่ต้า"].map((position, index) => (
                   <Badge
                     key={index}
                     variant="secondary"

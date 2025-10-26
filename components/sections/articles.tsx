@@ -239,9 +239,9 @@ export default function Articles() {
                 <input
                   type="email"
                   placeholder="กรอกอีเมลของคุณ"
-                  className="flex-1 px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="flex-1 px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-12"
                 />
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-12 whitespace-nowrap">
                   สมัครรับข่าวสาร
                 </Button>
               </div>
@@ -257,9 +257,9 @@ export default function Articles() {
           overflow: hidden;
           background: linear-gradient(
             90deg,
-            rgba(229, 229, 229, 1) 0%,
-            rgba(243, 244, 246, 1) 50%,
-            rgba(229, 229, 229, 1) 100%
+            hsl(var(--muted)) 0%,
+            hsl(var(--background)) 50%,
+            hsl(var(--muted)) 100%
           );
           background-size: 200% 100%;
           animation: shimmerSlide 1.4s ease-in-out infinite;

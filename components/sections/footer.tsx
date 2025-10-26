@@ -30,7 +30,7 @@ export function Footer() {
 
   const contactInfo = {
     email: "contact@demo-physics.com",
-    schoolName: "สถาบันการเรียนรู้ออนไลน์",
+    schoolName: "โรงเรียนกวดวิชาเคมีพี่ต้า",
     subtitle: "(แพลตฟอร์มการเรียนรู้สำหรับทุกคน)",
     address: "สำนักงานใหญ่ : กรุงเทพมหานคร ประเทศไทย",
     hours: {
@@ -40,7 +40,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-white text-black border-t border-gray-200">
+    <footer className="bg-background text-foreground border-t border-border">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
@@ -51,18 +51,18 @@ export function Footer() {
                 <img src="/new-logo.png" alt="Logo" className="w-full h-full" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-black">Demo Learning Platform</h3>
-                <p className="text-gray-600 text-sm">แพลตฟอร์มการเรียนรู้ออนไลน์</p>
+                <h3 className="text-xl font-bold text-foreground">Demo Learning Platform</h3>
+                <p className="text-muted-foreground text-sm">แพลตฟอร์มการเรียนรู้ออนไลน์</p>
               </div>
             </div>
-            <p className="text-gray-700 mb-6 leading-relaxed max-w-md">
+            <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
               {contactInfo.schoolName} <br /> {contactInfo.subtitle} <br /> พร้อมให้บริการการเรียนการสอนออนไลน์ที่มีคุณภาพ
               เพื่อให้ผู้เรียนประสบความสำเร็จในการศึกษา
             </p>
 
 
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-black">ติดตามเราได้ที่</h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">ติดตามเราได้ที่</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
                   <Link
@@ -70,13 +70,13 @@ export function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-100 hover:bg-black text-gray-700 hover:text-white rounded-lg flex items-center justify-center transition-colors duration-200 group"
+                    className="w-10 h-10 bg-muted hover:bg-primary text-muted-foreground hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors duration-200 group"
                   >
                     <span>{getSocialIcon(social.platform)}</span>
                   </Link>
                 ))}
               </div>
-              <div className="mt-4 space-y-1 text-sm text-gray-600">
+              <div className="mt-4 space-y-1 text-sm text-muted-foreground">
                 {socialLinks.map((social) => (
                   <div key={social.platform}>
                     <span className="font-medium">{social.platform}:</span> {social.username}
@@ -88,20 +88,20 @@ export function Footer() {
 
 
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-black">ข้อมูลติดต่อ</h4>
+            <h4 className="text-lg font-semibold mb-6 text-foreground">ข้อมูลติดต่อ</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-black">อีเมล</p>
-                  <p className="text-gray-600 text-sm">{contactInfo.email}</p>
+                  <p className="font-medium text-foreground">อีเมล</p>
+                  <p className="text-muted-foreground text-sm">{contactInfo.email}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-black">ที่อยู่</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{contactInfo.address}</p>
+                  <p className="font-medium text-foreground">ที่อยู่</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{contactInfo.address}</p>
                 </div>
               </div>
             </div>
@@ -109,27 +109,27 @@ export function Footer() {
 
 
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-black">เวลาให้บริการ</h4>
+            <h4 className="text-lg font-semibold mb-6 text-foreground">เวลาให้บริการ</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <Clock className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-sm text-black">ออนไลน์</p>
-                  <p className="text-gray-600 text-sm">{contactInfo.hours.vacation}</p>
+                  <p className="font-medium text-sm text-foreground">ออนไลน์</p>
+                  <p className="text-muted-foreground text-sm">{contactInfo.hours.vacation}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <Clock className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-sm text-black">สนับสนุน</p>
-                  <p className="text-gray-600 text-sm">{contactInfo.hours.semester}</p>
+                  <p className="font-medium text-sm text-foreground">สนับสนุน</p>
+                  <p className="text-muted-foreground text-sm">{contactInfo.hours.semester}</p>
                 </div>
               </div>
             </div>
 
 
             <div className="mt-8">
-              <button className="w-full bg-black hover:bg-gray-800 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 cursor-pointer hover:font-bold">
+              <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-4 rounded-lg font-medium transition-colors duration-200 cursor-pointer hover:font-bold">
               <Link
     href="#contact"
     target="_blank"
@@ -144,15 +144,15 @@ export function Footer() {
       </div>
 
 
-      <div className="border-t border-gray-200">
+      <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-600 text-sm">Copyright © 2025 {contactInfo.schoolName} | All Rights Reserved</p>
-            <div className="flex space-x-6 text-sm text-gray-600">
-              <Link href="/privacy" className="hover:text-black transition-colors duration-200">
+            <p className="text-muted-foreground text-sm">Copyright © 2025 {contactInfo.schoolName} | All Rights Reserved</p>
+            <div className="flex space-x-6 text-sm text-muted-foreground">
+              <Link href="/privacy" className="hover:text-primary transition-colors duration-200">
                 นโยบายความเป็นส่วนตัว
               </Link>
-              <Link href="/terms" className="hover:text-black transition-colors duration-200">
+              <Link href="/terms" className="hover:text-primary transition-colors duration-200">
                 ข้อกำหนดการใช้งาน
               </Link>
             </div>
