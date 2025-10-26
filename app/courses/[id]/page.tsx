@@ -30,7 +30,7 @@ const fadeInUp = {
 
 function Skeleton({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative overflow-hidden rounded-md bg-gray-200 ${className}`}>
+    <div className={`relative overflow-hidden rounded-md bg-muted ${className}`}>
       <div className="absolute inset-0 -translate-x-full shimmer" />
     </div>
   )
@@ -136,7 +136,7 @@ function StarRating({
       {stars.map((s) => {
         const active = s <= Math.round(value)
         const base = "cursor-pointer transition-transform"
-        const cls = active ? "text-yellow-500" : "text-gray-300"
+        const cls = active ? "text-primary" : "text-muted-foreground"
         return (
           <button
             type="button"
@@ -704,12 +704,12 @@ export default function CourseDetailPage() {
           )}
 
           {!loading && error && (
-            <div className="text-center text-red-600 py-10">
+            <div className="text-center text-destructive py-10">
               เกิดข้อผิดพลาด: {error}
             </div>
           )}
           {!loading && !error && !course && (
-            <div className="text-center text-gray-600 py-10">ไม่พบคอร์สนี้</div>
+            <div className="text-center text-muted-foreground py-10">ไม่พบคอร์สนี้</div>
           )}
 
           {!loading && !error && course && (
@@ -742,7 +742,7 @@ export default function CourseDetailPage() {
                               <p className="text-lg font-semibold">ชมวิดีโอตัวอย่างจบแล้ว</p>
                               <p className="text-sm text-white/80">กดปุ่มด้านล่างเพื่อชมซ้ำ</p>
                             </div>
-                            <Button onClick={handleIntroReplay} className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                            <Button onClick={handleIntroReplay} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                               ดูอีกครั้ง
                             </Button>
                           </div>
@@ -760,7 +760,7 @@ export default function CourseDetailPage() {
                         <div className="absolute inset-0 flex items-center justify-center">
                           <Button
                             size="lg"
-                            className="bg-yellow-400 hover:bg-yellow-500 text-white shadow-lg hover:shadow-xl rounded-xl px-6 py-6 ring-1 ring-white/20 transition-all"
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl rounded-xl px-6 py-6 ring-1 ring-white/20 transition-all"
                           >
                             <Play className="h-6 w-6 mr-2" />
                             ดูตัวอย่าง
@@ -773,7 +773,7 @@ export default function CourseDetailPage() {
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <Badge className="rounded-full bg-yellow-400 text-white px-3 py-1 h-7">
+                    <Badge className="rounded-full bg-primary text-primary-foreground px-3 py-1 h-7">
                       {course.category?.name ?? "คอร์ส"}
                     </Badge>
                     {course.instructor?.name && (
@@ -783,28 +783,28 @@ export default function CourseDetailPage() {
                     )}
                   </div>
 
-                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight break-words">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 leading-tight break-words">
                     {course.title}
                   </h1>
-                  <p className="text-base text-gray-600 mb-6 whitespace-pre-line break-words">
+                  <p className="text-base text-muted-foreground mb-6 whitespace-pre-line break-words">
                     {course.description}
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-gray-700">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-muted-foreground">
                     <div className="inline-flex items-center gap-2">
-                      <Users className="h-5 w-5 text-[#004B7D]" />
+                      <Users className="h-5 w-5 text-primary" />
                       <span className="font-medium text-sm">
                         {course._count?.enrollments ?? 0} นักเรียน
                       </span>
                     </div>
                     <div className="inline-flex items-center gap-2">
-                      <BookOpen className="h-5 w-5 text-[#004B7D]" />
+                      <BookOpen className="h-5 w-5 text-primary" />
                       <span className="font-medium text-sm">
                         {chapters.length} บทเรียน
                       </span>
                     </div>
                     <div className="inline-flex items-center gap-2">
-                      <Clock className="h-5 w-5 text-[#004B7D]" />
+                      <Clock className="h-5 w-5 text-primary" />
                       <span className="font-medium text-sm">{course.duration ?? "-"}</span>
                     </div>
                   </div>
@@ -816,11 +816,11 @@ export default function CourseDetailPage() {
                   animate="animate"
                   transition={{ delay: 0.2 }}
                 >
-                  <Card className="rounded-2xl border-gray-200 shadow-sm">
+                  <Card className="rounded-2xl border-border shadow-sm">
                     <CardHeader className="p-4">
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                         <CardTitle className="text-xl">Course Overview</CardTitle>
-                        <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm text-gray-600">
+                        <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground">
                           <div className="inline-flex items-center gap-1">
                             <BookOpen className="h-4 w-4" /> {chapters.length} บทเรียน
                           </div>
@@ -835,21 +835,21 @@ export default function CourseDetailPage() {
                     <CardContent className="pt-0 p-4">
                       {totalContents > 0 && (
                         <div className="mb-5">
-                          <div className="flex items-center justify-between text-sm text-gray-700 mb-2">
+                          <div className="flex items-center justify-between text-sm text-card-foreground mb-2">
                             <div>ความคืบหน้า</div>
                             <div className="font-semibold">
                               {progressPercent}% {saving ? "(บันทึก...)" : ""}
                             </div>
                           </div>
                           <div
-                            className="h-2 w-full rounded-full bg-gray-100 overflow-hidden"
+                            className="h-2 w-full rounded-full bg-muted overflow-hidden"
                             role="progressbar"
                             aria-valuenow={progressPercent}
                             aria-valuemin={0}
                             aria-valuemax={100}
                           >
                             <div
-                              className="h-full rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-[width] duration-500"
+                              className="h-full rounded-full bg-gradient-to-r from-primary to-primary/90 transition-[width] duration-500"
                               style={{ width: `${progressPercent}%` }}
                             />
                           </div>
@@ -857,7 +857,7 @@ export default function CourseDetailPage() {
                       )}
 
                       {chapters.length === 0 ? (
-                        <div className="text-gray-500">ยังไม่มีบทเรียนในคอร์สนี้  </div>
+                        <div className="text-muted-foreground">ยังไม่มีบทเรียนในคอร์สนี้  </div>
                       ) : (
                         <div id="chapters" className="space-y-3">
                           {chapters
@@ -869,7 +869,7 @@ export default function CourseDetailPage() {
                               return (
                                 <div
                                   key={ch.id}
-                                  className="p-3 rounded-xl border bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-gray-200 hover:border-yellow-300/60 hover:bg-yellow-50/30 transition-colors shadow-sm"
+                                  className="p-3 rounded-xl border bg-card/90 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-border hover:border-primary/60 hover:bg-primary/5 transition-colors shadow-sm"
                                 >
                                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                  
@@ -878,23 +878,23 @@ export default function CourseDetailPage() {
                                       onClick={() => setActiveChapterId((prev) => (prev === ch.id ? null : ch.id))}
                                       aria-expanded={expanded}
                                       aria-controls={`chapter-panel-${ch.id}`}
-                                      className="flex items-center gap-3 min-w-0 w-full group/hd cursor-pointer focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded-lg pr-2"
+                                      className="flex items-center gap-3 min-w-0 w-full group/hd cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary rounded-lg pr-2"
                                     >
-                                      <div className="h-9 w-9 flex-shrink-0 rounded-full bg-yellow-400 text-white flex items-center justify-center font-semibold shadow-sm ring-1 ring-black/5">
+                                      <div className="h-9 w-9 flex-shrink-0 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold shadow-sm ring-1 ring-black/5">
                                         {number}
                                       </div>
                                       <div className="truncate text-left flex-1">
-                                        <div className="font-medium text-gray-900 truncate flex items-center gap-2">
+                                        <div className="font-medium text-card-foreground truncate flex items-center gap-2">
                                           {ch.title}
                                         </div>
                                       </div>
                                       <ChevronDown
-                                        className={`ml-auto sm:ml-2 h-5 w-5 text-gray-400 transition-transform ${expanded ? "rotate-180" : "rotate-0"}`}
+                                        className={`ml-auto sm:ml-2 h-5 w-5 text-muted-foreground transition-transform ${expanded ? "rotate-180" : "rotate-0"}`}
                                         aria-hidden="true"
                                       />
                                     </button>
 
-                                    <div className="flex items-center gap-2 text-sm text-gray-600 shrink-0 self-end sm:self-center">
+                                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0 self-end sm:self-center">
                                       {typeof ch.duration === "number" && (
                                         <div className="hidden sm:inline-flex items-center gap-1 text-xs">
                                           <Clock className="h-4 w-4" /> {ch.duration} นาที
@@ -939,7 +939,7 @@ export default function CourseDetailPage() {
                                         transition={{ duration: 0.25 }}
                                         className="overflow-hidden"
                                       >
-                                        <div className="mt-3 space-y-1.5 border-l-2 border-yellow-200 pl-3">
+                                        <div className="mt-3 space-y-1.5 border-l-2 border-primary/30 pl-3">
                                           {(ch as any).contents
                                             .slice()
                                             .sort(
@@ -952,24 +952,24 @@ export default function CourseDetailPage() {
                                               return (
                                                 <div
                                                   key={ct.id}
-                                                  className="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg hover:bg-yellow-50/60"
+                                                  className="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg hover:bg-primary/10"
                                                 >
-                                                  <div className="text-sm text-gray-800 truncate pr-2">
+                                                  <div className="text-sm text-foreground truncate pr-2">
                                                     • {ct.title}
                                                   </div>
                                                   <div className="flex items-center gap-3">
                                                     {canToggle ? (
-                                                      <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer select-none">
+                                                      <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
                                                         <input
                                                           type="checkbox"
-                                                          className="accent-yellow-500 h-4 w-4"
+                                                          className="accent-primary h-4 w-4"
                                                           checked={checked}
                                                           onChange={() => toggleContentViewed(ct.id)}
                                                         />
                                                         <span className="hidden sm:inline">เรียนแล้ว</span>
                                                       </label>
                                                     ) : (
-                                                      <span className="text-xs text-gray-400">ล็อก</span>
+                                                      <span className="text-xs text-muted-foreground">ล็อก</span>
                                                     )}
                                                   </div>
                                                 </div>
@@ -1008,15 +1008,15 @@ export default function CourseDetailPage() {
                             </span>
                           ) : hasDiscount ? (
                             <>
-                              <span className="text-lg sm:text-xl text-gray-400 line-through">
+                              <span className="text-lg sm:text-xl text-muted-foreground line-through">
                                 ฿{(originalPrice || 0).toLocaleString()}
                               </span>
-                              <span className="text-2xl sm:text-3xl font-extrabold text-yellow-600 tracking-tight">
+                              <span className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
                                 ฿{(effectivePrice || 0).toLocaleString()}
                               </span>
                             </>
                           ) : (
-                            <span className="text-2xl sm:text-3xl font-extrabold text-yellow-600 tracking-tight">
+                            <span className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
                               ฿{(effectivePrice || 0).toLocaleString()}
                             </span>
                           )}
@@ -1067,7 +1067,7 @@ export default function CourseDetailPage() {
                               </Button>
                             </div>
                             {couponError && (
-                              <div className="text-xs text-red-600">{couponError}</div>
+                              <div className="text-xs text-destructive">{couponError}</div>
                             )}
                             {discount > 0 && (
                               <div className="flex justify-between text-sm text-green-700">
@@ -1086,7 +1086,7 @@ export default function CourseDetailPage() {
                       <div className="space-y-3">
                         {isEnrolled ? (
                           <Link href={`/profile/my-courses/course/${id}/`}>
-                            <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white text-base sm:text-lg h-12 rounded-xl shadow hover:shadow-md transition">
+                            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base sm:text-lg h-12 rounded-xl shadow hover:shadow-md transition">
                               เข้าเรียนทันที
                             </Button>
                           </Link>
@@ -1098,7 +1098,7 @@ export default function CourseDetailPage() {
                               router.push(`/checkout/course/${encodeURIComponent(String(id))}${q}`)
                             }}
                             disabled={creating}
-                            className="w-full bg-yellow-400 hover:bg-yellow-500 text-white text-base sm:text-lg h-12 rounded-xl shadow hover:shadow-md transition"
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base sm:text-lg h-12 rounded-xl shadow hover:shadow-md transition"
                           >
                             {creating ? "กำลังสร้าง..." : "สมัครเรียนเลย"}
                           </Button>
@@ -1146,21 +1146,21 @@ export default function CourseDetailPage() {
                   animate="animate"
                   transition={{ delay: 0.25 }}
                 >
-                  <Card className="rounded-2xl border-gray-200 shadow-sm">
+                  <Card className="rounded-2xl border-border shadow-sm">
                     <CardHeader className="p-4">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                         <div>
                           <CardTitle className="text-xl">รีวิวจากผู้เรียน</CardTitle>
-                          <div className="mt-1 flex items-center gap-2 text-gray-700">
-                            <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                          <div className="mt-1 flex items-center gap-2 text-card-foreground">
+                            <Star className="h-5 w-5 text-primary fill-current" />
                             <span className="font-semibold">{averageRating.toFixed(1)}</span>
-                            <span className="text-sm text-gray-500">/ 5 จาก {totalReviews} รีวิว</span>
+                            <span className="text-sm text-muted-foreground">/ 5 จาก {totalReviews} รีวิว</span>
                           </div>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto sm:justify-end">
                           <Button
                             variant="outline"
-                            className="rounded-xl border-gray-200"
+                            className="rounded-xl border-border"
                             onClick={() => {
                               setReviews([]);
                               setReviewsPage(1);
@@ -1173,14 +1173,14 @@ export default function CourseDetailPage() {
                           </Button>
 
                           <Button
-                            className="bg-yellow-400 hover:bg-yellow-500 text-white rounded-xl"
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
                             onClick={openReviewDialog}  
                           >
                             เขียนรีวิว
                           </Button>
                         </div>
                         {reviewRestriction && (
-                          <div className="text-sm text-red-600 sm:w-full sm:basis-full">
+                          <div className="text-sm text-destructive sm:w-full sm:basis-full">
                             {reviewRestriction}
                           </div>
                         )}
@@ -1188,15 +1188,15 @@ export default function CourseDetailPage() {
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
                       {reviewsError ? (
-                        <div className="text-red-600 mb-3">{reviewsError}</div>
+                        <div className="text-destructive mb-3">{reviewsError}</div>
                       ) : reviews.length === 0 && !reviewsLoading ? (
-                        <div className="text-gray-600">ยังไม่มีรีวิวสำหรับคอร์สนี้</div>
+                        <div className="text-muted-foreground">ยังไม่มีรีวิวสำหรับคอร์สนี้</div>
                       ) : (
                         <div className="space-y-4">
                           {reviews.map((rv) => (
                             <div
                               key={rv.id}
-                              className="rounded-xl border border-gray-200 p-4 bg-white/90 shadow-sm"
+                              className="rounded-xl border border-border p-4 bg-card/90 shadow-sm"
                             >
                               <div className="flex items-start justify-between gap-3">
                                 <div className="min-w-0">
@@ -1300,7 +1300,7 @@ export default function CourseDetailPage() {
             <DialogTitle>อัพโหลดหลักฐานการชำระเงิน</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <div className="text-sm text-gray-700">
+            <div className="text-sm text-muted-foreground">
               ยอดชำระ: ฿{(orderInfo?.total ?? 0).toLocaleString()}
             </div>
             <Input
@@ -1311,8 +1311,8 @@ export default function CourseDetailPage() {
             />
             {slipPreview && (
               <div className="mt-2">
-                <div className="text-xs text-gray-600 mb-1">ตัวอย่างรูปที่เลือก</div>
-                <div className="relative border rounded-md overflow-hidden bg-gray-50">
+                <div className="text-xs text-muted-foreground mb-1">ตัวอย่างรูปที่เลือก</div>
+                <div className="relative border rounded-md overflow-hidden bg-muted">
                   <img src={slipPreview} alt="ตัวอย่างสลิป" className="max-h-72 w-full object-contain" />
                 </div>
               </div>
@@ -1334,7 +1334,7 @@ export default function CourseDetailPage() {
               <Button
                 disabled={!slip || uploading}
                 onClick={uploadSlip}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 {uploading ? "กำลังอัพโหลด..." : "อัพโหลดสลิป"}
               </Button>
@@ -1350,11 +1350,11 @@ export default function CourseDetailPage() {
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <div className="text-sm text-gray-700 mb-1">ให้คะแนน</div>
+              <div className="text-sm text-card-foreground mb-1">ให้คะแนน</div>
               <StarRating value={reviewRating} onChange={setReviewRating} />
             </div>
             <div>
-              <div className="text-sm text-gray-700 mb-1">หัวข้อรีวิว</div>
+              <div className="text-sm text-card-foreground mb-1">หัวข้อรีวิว</div>
               <Input
                 placeholder="เช่น เยี่ยมมาก! ได้ความรู้ครบถ้วน"
                 value={reviewTitle}
@@ -1363,7 +1363,7 @@ export default function CourseDetailPage() {
               />
             </div>
             <div>
-              <div className="text-sm text-gray-700 mb-1">รายละเอียด</div>
+              <div className="text-sm text-card-foreground mb-1">รายละเอียด</div>
               {Textarea ? (
                 <Textarea
                   rows={4}
@@ -1387,7 +1387,7 @@ export default function CourseDetailPage() {
                 ยกเลิก
               </Button>
               <Button
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 disabled={postingReview || !reviewTitle.trim() || !reviewComment.trim()}
                 onClick={submitReview}
               >

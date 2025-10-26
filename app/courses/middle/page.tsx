@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, BookOpen, Clock } from "lucide-react"
 import { useRecommendedCourses } from "@/hooks/use-recommended-courses"
-import { number } from "framer-motion"
+
 import Player from "@vimeo/player"
 
 type Post = { id: string; title?: string; content?: string | null }
