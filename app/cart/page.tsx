@@ -273,30 +273,30 @@ export default function CartPage() {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2"><ShoppingCart className="text-[#004B7D] w-9 h-9" />ตะกร้าสินค้า</h1>
-          <p className="text-sm text-gray-500">เลือกคอร์สหรืออีบุ๊กที่คุณต้องการ ก่อนดำเนินการชำระเงิน</p>
+          <h1 className="text-2xl font-bold flex items-center gap-2"><ShoppingCart className="text-primary w-9 h-9" />ตะกร้าสินค้า</h1>
+          <p className="text-sm text-muted-foreground">เลือกคอร์สหรืออีบุ๊กที่คุณต้องการ ก่อนดำเนินการชำระเงิน</p>
         </div>
       </div>
 
       {!isAuthenticated && (
-        <Card className="mb-6 border-dashed border-[#004B7D]/40 bg-[#f4fbff]">
+        <Card className="mb-6 border-dashed border-primary/40 bg-primary/5">
           <CardHeader>
             <CardTitle className="text-lg">เข้าสู่ระบบเพื่อใช้งานตะกร้า</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-gray-600">
+          <CardContent className="text-sm text-muted-foreground">
             ระบบตะกร้าสินค้ารองรับเฉพาะสมาชิกที่เข้าสู่ระบบ หากยังไม่มีบัญชีสามารถสมัครได้ฟรี
           </CardContent>
         </Card>
       )}
 
       {loading ? (
-        <div className="rounded-xl border border-dashed border-gray-300 p-10 text-center text-gray-500">
+        <div className="rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground">
           กำลังโหลดตะกร้า...
         </div>
       ) : itemCount === 0 ? (
         <Card className="border-dashed">
-          <CardContent className="py-16 text-center text-gray-500">
-            ยังไม่มีสินค้าในตะกร้า <Link className="text-[#004B7D]" href="/courses">เลือกสินค้าเลย</Link>
+          <CardContent className="py-16 text-center text-muted-foreground">
+            ยังไม่มีสินค้าในตะกร้า <Link className="text-primary" href="/courses">เลือกสินค้าเลย</Link>
           </CardContent>
         </Card>
       ) : (
@@ -305,14 +305,14 @@ export default function CartPage() {
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-lg">
                 รายการสินค้า
-                <span className="text-sm font-normal text-gray-500">ทั้งหมด {itemCount} รายการ</span>
+                <span className="text-sm font-normal text-muted-foreground">ทั้งหมด {itemCount} รายการ</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {items.map((item) => (
-                <div key={item.id} className="flex flex-col gap-4 rounded-lg border border-gray-200 p-4 md:flex-row md:items-center">
+                <div key={item.id} className="flex flex-col gap-4 rounded-lg border border-border p-4 md:flex-row md:items-center">
                   <div className="flex flex-1 items-start gap-4">
-                    <div className={`relative w-full max-w-[128px] overflow-hidden rounded-md bg-gray-100 ring-1 ring-black/5 ${String(item.itemType).toUpperCase() === "COURSE" ? "aspect-video" : "aspect-[3/4]"}`}>
+                    <div className={`relative w-full max-w-[128px] overflow-hidden rounded-md bg-muted ring-1 ring-border ${String(item.itemType).toUpperCase() === "COURSE" ? "aspect-video" : "aspect-[3/4]"}`}>
                       <Image
                         src={item.coverImageUrl || coverMap[`${String(item.itemType).toUpperCase()}:${item.itemId}`] || "/placeholder.svg"}
                         alt={item.title}
@@ -322,13 +322,13 @@ export default function CartPage() {
                       />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm uppercase tracking-wide text-gray-400">{item.itemType}</p>
-                      <h2 className="text-base font-semibold text-gray-800">{item.title}</h2>
-                      <p className="mt-1 text-sm text-gray-500">ราคา: ฿{(item.unitPrice || 0).toLocaleString()}</p>
+                      <p className="text-sm uppercase tracking-wide text-muted-foreground">{item.itemType}</p>
+                      <h2 className="text-base font-semibold text-foreground">{item.title}</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">ราคา: ฿{(item.unitPrice || 0).toLocaleString()}</p>
                     </div>
                   </div>
                   <div className="flex w-full items-center justify-between gap-4 md:w-auto">
-                    <div className="flex items-center rounded-full border border-gray-200 bg-white">
+                    <div className="flex items-center rounded-full border border-border bg-background">
                       <Button
                         variant="ghost"
                         className="h-9 w-9 rounded-full"
@@ -348,13 +348,13 @@ export default function CartPage() {
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>
-                    <div className="min-w-[90px] text-right text-base font-semibold text-gray-800">
+                    <div className="min-w-[90px] text-right text-base font-semibold text-foreground">
                       ฿{(((item.unitPrice || 0) * (item.quantity || 1)) || 0).toLocaleString()}
                     </div>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-9 w-9 text-gray-400 hover:text-red-500"
+                      className="h-9 w-9 text-muted-foreground hover:text-destructive"
                       onClick={() => void remove({ cartItemId: item.id, itemId: item.itemId, itemType: item.itemType })}
                       disabled={syncing}
                       aria-label={`ลบ ${item.title}`}
@@ -373,7 +373,7 @@ export default function CartPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700" htmlFor="coupon">
+                <label className="text-sm font-medium text-foreground" htmlFor="coupon">
                   โค้ดส่วนลด
                 </label>
                 <div className="flex flex-col gap-2 sm:flex-row">
@@ -404,14 +404,14 @@ export default function CartPage() {
                     )}
                   </Button>
                 </div>
-                {couponError && <p className="text-xs text-red-500">{couponError}</p>}
+                {couponError && <p className="text-xs text-destructive">{couponError}</p>}
                 {couponSuccess && !couponError && <p className="text-xs text-green-600">{couponSuccess}</p>}
               </div>
               {anyPhysical && (
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-gray-700">ที่อยู่จัดส่ง</h3>
+                  <h3 className="text-sm font-semibold text-foreground">ที่อยู่จัดส่ง</h3>
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-gray-600" htmlFor="shipping-name">
+                    <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-name">
                       ชื่อ-นามสกุลผู้รับ
                     </label>
                     <Input
@@ -422,7 +422,7 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-gray-600" htmlFor="shipping-phone">
+                    <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-phone">
                       เบอร์โทรติดต่อ
                     </label>
                     <Input
@@ -433,7 +433,7 @@ export default function CartPage() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-medium text-gray-600" htmlFor="shipping-address">
+                    <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-address">
                       ที่อยู่จัดส่ง
                     </label>
                     <Input
@@ -445,7 +445,7 @@ export default function CartPage() {
                   </div>
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                     <div className="space-y-1">
-                      <label className="text-xs font-medium text-gray-600" htmlFor="shipping-district">
+                      <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-district">
                         แขวง / ตำบล
                       </label>
                       <Input
@@ -456,7 +456,7 @@ export default function CartPage() {
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-xs font-medium text-gray-600" htmlFor="shipping-province">
+                      <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-province">
                         เขต / อำเภอ
                       </label>
                       <Input
@@ -467,7 +467,7 @@ export default function CartPage() {
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-xs font-medium text-gray-600" htmlFor="shipping-postal">
+                      <label className="text-xs font-medium text-muted-foreground" htmlFor="shipping-postal">
                         รหัสไปรษณีย์
                       </label>
                       <Input
@@ -478,11 +478,11 @@ export default function CartPage() {
                       />
                     </div>
                   </div>
-                  {shippingError && <p className="text-xs text-red-500">{shippingError}</p>}
+                  {shippingError && <p className="text-xs text-destructive">{shippingError}</p>}
                 </div>
               )}
               <Separator />
-              <div className="flex items-center justify-between text-sm text-gray-600">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span>ยอดรวม</span>
                 <span>฿{subtotal.toLocaleString()}</span>
               </div>
@@ -492,18 +492,18 @@ export default function CartPage() {
                   <span>-฿{couponDiscount.toLocaleString()}</span>
                 </div>
               )}
-              <div className="flex items-center justify-between text-sm text-gray-600">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span>ค่าจัดส่ง</span>
                 <span>฿0</span>
               </div>
               <Separator />
-              <div className="flex items-center justify-between text-base font-semibold text-gray-900">
+              <div className="flex items-center justify-between text-base font-semibold text-foreground">
                 <span>ยอดชำระทั้งหมด</span>
                 <span>฿{totalAfterDiscount.toLocaleString()}</span>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-3">
-              <Button className="w-full bg-[#004B7D] hover:bg-[#00395d]" size="lg" onClick={handleCheckout} disabled={syncing || submitting}>
+              <Button className="w-full bg-primary hover:bg-primary/90" size="lg" onClick={handleCheckout} disabled={syncing || submitting}>
                 {submitting ? (
                   <span className="flex items-center justify-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin" /> กำลังดำเนินการ...

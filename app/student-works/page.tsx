@@ -22,7 +22,7 @@ const studentWorks: WorkItem[] = [
 
 function Skeleton({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative overflow-hidden bg-gray-200 ${className}`}>
+    <div className={`relative overflow-hidden bg-muted ${className}`}>
       <div className="absolute inset-0 -translate-x-full shimmer" />
     </div>
   )
@@ -114,24 +114,24 @@ export default function StudentWorksPage() {
   return (
     <MotionConfig transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
       <Navigation />
-      <main className="min-h-screen bg-white flex flex-col">
+      <main className="min-h-screen bg-background flex flex-col">
         <section className="relative">
          
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-yellow-50 via-yellow-50/40 to-transparent" />
-            <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-yellow-50 via-yellow-50/40 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-accent via-accent/40 to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-accent via-accent/40 to-transparent" />
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(1200px 400px at 50% -200px, rgba(253, 224, 71, .22), transparent 60%)",
+                  "radial-gradient(1200px 400px at 50% -200px, hsl(var(--primary) / 0.15), transparent 60%)",
               }}
             />
             <div
               className="absolute inset-0 opacity-[0.08]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0, rgba(0,0,0,.35) 1px, transparent 1px, transparent 48px)",
+                  "repeating-linear-gradient(90deg, hsl(var(--border)) 0, hsl(var(--border)) 1px, transparent 1px, transparent 48px)",
               }}
             />
           </div>
@@ -145,16 +145,16 @@ export default function StudentWorksPage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="py-16 bg-yellow-400 mt-auto"
+          className="py-16 bg-primary mt-auto"
         >
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-primary-foreground mb-4">
               คุณก็สามารถเป็นส่วนหนึ่งของความสำเร็จได้
             </h2>
-            <p className="text-lg text-gray-700 mb-8">เริ่มต้นการเรียนรู้ฟิสิกส์กับเราวันนี้</p>
+            <p className="text-lg text-primary-foreground/80 mb-8">เริ่มต้นการเรียนรู้ฟิสิกส์กับเราวันนี้</p>
             <Link
               href="/courses"
-              className="inline-block bg-white text-yellow-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300"
+              className="inline-block bg-background text-foreground px-8 py-3 rounded-full font-semibold hover:bg-accent transition-colors duration-300"
             >
               สมัครเรียนเลย
             </Link>
@@ -252,7 +252,7 @@ function TileFrame({ children }: { children: React.ReactNode }) {
     <motion.div
       whileHover={{ y: -4, scale: 1.005 }}
       transition={{ type: "spring", stiffness: 220, damping: 20 }}
-      className="relative rounded-2xl overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.07)] ring-1 ring-black/5 bg-white/80"
+      className="relative rounded-2xl overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.07)] ring-1 ring-border bg-card/80"
       style={{ transformStyle: "preserve-3d" }}
     >
       {/* คุมสัดส่วนภาพ */}

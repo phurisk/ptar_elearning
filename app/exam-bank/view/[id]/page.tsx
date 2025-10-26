@@ -160,7 +160,7 @@ export default function ExamViewer({ params }: { params: Promise<{ id: string }>
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-white to-yellow-50 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-accent pt-20">
         <div className="container mx-auto px-4 py-6">
 <div className="mb-4">
   <div className="flex items-center gap-2 w-full">
@@ -168,7 +168,7 @@ export default function ExamViewer({ params }: { params: Promise<{ id: string }>
       <ArrowLeft className="h-4 w-4 mr-1" /> กลับ
     </Button>
 
-    <Badge variant="secondary" className="bg-yellow-400 text-white hidden sm:inline-flex">
+    <Badge variant="secondary" className="bg-primary text-primary-foreground hidden sm:inline-flex">
       {viewLabel}
     </Badge>
 
@@ -177,32 +177,32 @@ export default function ExamViewer({ params }: { params: Promise<{ id: string }>
 
 
           <div className="mb-4">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">
               {viewLabel} - {exam?.title || "กำลังโหลด..."}
             </h1>
             {!!exam?.category?.name && (
-              <p className="text-gray-600 mt-1">หมวดหมู่: {exam.category.name}</p>
+              <p className="text-muted-foreground mt-1">หมวดหมู่: {exam.category.name}</p>
             )}
           </div>
 
           {loading && (
-            <div className="text-center text-gray-500 py-10">กำลังโหลด...</div>
+            <div className="text-center text-muted-foreground py-10">กำลังโหลด...</div>
           )}
           {!loading && error && (
-            <div className="text-center text-red-600 py-10">{error}</div>
+            <div className="text-center text-destructive py-10">{error}</div>
           )}
 
           {!loading && !error && (
             <div className="grid grid-cols-1 gap-6">
-              <Card className="overflow-hidden border-2 border-yellow-100">
-                <CardContent className="p-0 bg-white">
+              <Card className="overflow-hidden border-2 border-border">
+                <CardContent className="p-0 bg-card">
                   {!activeFile ? (
-                    <div className="text-center text-gray-500 py-12">ไม่พบไฟล์สำหรับข้อสอบนี้</div>
+                    <div className="text-center text-muted-foreground py-12">ไม่พบไฟล์สำหรับข้อสอบนี้</div>
                   ) : (
-                    <div className="w-full bg-gray-100">
+                    <div className="w-full bg-muted">
                       {resolvedFile.isPdf && resolvedFile.viewerSrc ? (
                         <div className="h-[70vh] sm:h-[75vh] md:h-[80vh] lg:h-[83vh]">
-                          <PdfViewer fileUrl={resolvedFile.viewerSrc} className="rounded-b-2xl bg-white" />
+                          <PdfViewer fileUrl={resolvedFile.viewerSrc} className="rounded-b-2xl bg-background" />
                         </div>
                       ) : (
                         <iframe

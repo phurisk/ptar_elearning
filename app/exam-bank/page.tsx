@@ -520,7 +520,7 @@ export default function ExamBankPage() {
         size="sm"
         onClick={onClick}
         disabled={disabled}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-yellow-50 hover:border-yellow-400"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-primary/10 hover:border-primary"
       >
         {icon}
       </Button>
@@ -543,7 +543,7 @@ export default function ExamBankPage() {
           return (
             <span
               key={`dots-${idx}`}
-              className="flex h-9 w-9 shrink-0 items-center justify-center text-gray-400 select-none"
+              className="flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground"
             >
               &#8230;
             </span>
@@ -553,8 +553,8 @@ export default function ExamBankPage() {
         const className = [
           "flex h-9 min-w-[2.5rem] shrink-0 items-center justify-center rounded-full px-0",
           isActive
-            ? "bg-yellow-400 hover:bg-yellow-500 text-white"
-            : "hover:bg-yellow-50 hover:border-yellow-400",
+            ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+            : "hover:bg-primary/10 hover:border-primary",
         ].join(" ");
         return (
           <Button
@@ -563,11 +563,6 @@ export default function ExamBankPage() {
             size="sm"
             onClick={() => setCurrentPage(page as number)}
             className={className}
-            style={{
-              backgroundColor: isActive ? "rgb(250 202 21)" : "transparent",
-              borderColor: "rgb(250 202 21)",
-              color: isActive ? "white" : "rgb(250 202 21)",
-            }}
           >
             {page}
           </Button>
@@ -643,7 +638,7 @@ export default function ExamBankPage() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-white to-yellow-50 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-background to-accent pt-20">
         <div className="container mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -651,10 +646,10 @@ export default function ExamBankPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               คลังข้อสอบ
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               รวบรวมข้อสอบฟิสิกส์และวิชาที่เกี่ยวข้องจากหลายปีการศึกษา
               พร้อมให้ดูและดาวน์โหลดฟรี
             </p>
@@ -668,7 +663,7 @@ export default function ExamBankPage() {
           >
             <div className="flex flex-row gap-3 items-center max-w-2xl mx-auto w-85 md:w-full">
               <div className="relative flex-1 min-w-0">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   type="text"
                   placeholder="ค้นหาข้อสอบ..."
@@ -756,7 +751,7 @@ export default function ExamBankPage() {
             className="text-center mb-6"
           >
             {!loading && (
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 พบข้อสอบ {displayTotal} รายการ
                 {!normalizedSearch && (
                   <>
@@ -792,7 +787,7 @@ export default function ExamBankPage() {
               ))}
 
             {!loading && error && (
-              <div className="col-span-full text-center text-red-600 py-10">
+              <div className="col-span-full text-center text-destructive py-10">
                 เกิดข้อผิดพลาด: {error}
               </div>
             )}
@@ -847,13 +842,13 @@ export default function ExamBankPage() {
                             ปี {exam.year}
                           </Badge>
                         </div>
-                        <CardTitle className="text-lg leading-tight text-gray-900">
+                        <CardTitle className="text-lg leading-tight text-foreground">
                           {exam.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="pt-0">
                         <div className="text-center pt-2">
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-muted-foreground">
                             {canDownload
                               ? "คลิกเพื่อดูหรือดาวน์โหลด"
                               : "คลิกเพื่อดูเฉลย"}
@@ -879,11 +874,11 @@ export default function ExamBankPage() {
               transition={{ duration: 0.6 }}
               className="text-center py-12"
             >
-              <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              <FileText className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-muted-foreground mb-2">
                 ไม่พบข้อสอบที่ค้นหา
               </h3>
-              <p className="text-gray-500">
+              <p className="text-muted-foreground/80">
                 ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่อื่น
               </p>
             </motion.div>
@@ -893,19 +888,19 @@ export default function ExamBankPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-16 p-8 bg-gradient-to-r from-yellow-100 to-yellow-200 rounded-2xl"
+            className="text-center mt-16 p-8 bg-gradient-to-r from-accent to-accent/80 rounded-2xl"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
               ต้องการข้อสอบเพิ่มเติม?
             </h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               สมัครเรียนกับเราเพื่อเข้าถึงข้อสอบและเนื้อหาเพิ่มเติม
               พร้อมคำอธิบายและเทคนิคการแก้โจทย์จากอาจารย์เต้ย
             </p>
             <Link href="/courses">
               <Button
                 size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-full cursor-pointer"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-full cursor-pointer"
               >
                 สมัครเรียนออนไลน์
               </Button>
@@ -920,18 +915,18 @@ export default function ExamBankPage() {
       >
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-gray-900">
+            <DialogTitle className="text-xl font-bold text-foreground">
               {selectedExam?.title}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-600">หมวดหมู่:</span>
+                <span className="text-muted-foreground">หมวดหมู่:</span>
                 <p className="font-semibold">{selectedExam?.examType}</p>
               </div>
               <div>
-                <span className="text-gray-600">ปี:</span>
+                <span className="text-muted-foreground">ปี:</span>
                 <p className="font-semibold">{selectedExam?.year}</p>
               </div>
             </div>
@@ -956,11 +951,11 @@ export default function ExamBankPage() {
               )}
 
               {!filesLoading && filesError && (
-                <p className="text-center text-red-600 py-2">{filesError}</p>
+                <p className="text-center text-destructive py-2">{filesError}</p>
               )}
 
               {!filesLoading && !filesError && files.length === 0 && (
-                <p className="text-center text-gray-500 py-2">
+                <p className="text-center text-muted-foreground py-2">
                   ไม่พบไฟล์สำหรับข้อสอบนี้
                 </p>
               )}
@@ -973,10 +968,10 @@ export default function ExamBankPage() {
                       className="flex items-center justify-between rounded-md border p-2"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <FileText className="h-5 w-5 text-gray-600 shrink-0" />
+                        <FileText className="h-5 w-5 text-muted-foreground shrink-0" />
                         <div className="truncate">
                           <p
-                            className="text-sm font-medium text-gray-900 truncate"
+                            className="text-sm font-medium text-foreground truncate"
                             title={f.name || "ไฟล์ PDF"}
                           >
                             {formatFileName(f.name)}
