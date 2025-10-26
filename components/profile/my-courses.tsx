@@ -231,8 +231,8 @@ export default function MyCourses() {
 
   if (authLoading && !user?.id) {
     return (
-      <div className="py-12 flex items-center justify-center gap-3 text-gray-600">
-        <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+      <div className="py-12 flex items-center justify-center gap-3 text-muted-foreground">
+        <Loader2 className="h-5 w-5 animate-spin text-primary" />
         <span>กำลังตรวจสอบสถานะการเข้าสู่ระบบ...</span>
       </div>
     )
@@ -289,21 +289,21 @@ export default function MyCourses() {
                       fetchPriority={i === 0 ? "high" : undefined}
                     />
                     {c.category?.name && (
-                      <Badge className="absolute top-3 left-3 bg-yellow-400 text-white">
+                      <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">
                         {c.category.name}
                       </Badge>
                     )}
                     {expired && (
-                      <Badge className="absolute top-3 right-3 bg-red-600 text-white">
+                      <Badge className="absolute top-3 right-3 bg-destructive text-destructive-foreground">
                         หมดอายุ
                       </Badge>
                     )}
                   </div>
 
                   <div className="p-4 space-y-3">
-                    <div className="font-semibold text-gray-900 line-clamp-2">{c.title}</div>
+                    <div className="font-semibold text-foreground line-clamp-2">{c.title}</div>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="inline-flex items-center gap-1">
                         <BookOpen className="h-4 w-4" />
                         {chaptersCount} บทเรียน
@@ -318,31 +318,31 @@ export default function MyCourses() {
 
                     
                     <div className="mt-1">
-                      <div className="flex items-center justify-between text-xs text-gray-600">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span>ความคืบหน้า</span>
                         <span className="font-medium">{percent}%</span>
                       </div>
                       <div
-                        className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mt-1"
+                        className="h-2 w-full bg-muted rounded-full overflow-hidden mt-1"
                         role="progressbar"
                         aria-valuemin={0}
                         aria-valuemax={100}
                         aria-valuenow={percent}
                       >
                         <div
-                          className={`h-full rounded-full transition-[width] duration-500 ${expired ? "bg-gray-300" : "bg-yellow-400"}`}
+                          className={`h-full rounded-full transition-[width] duration-500 ${expired ? "bg-muted-foreground/30" : "bg-primary"}`}
                           style={{ width: `${percent}%` }}
                         />
                       </div>
 
                       {complete && !expired && (
-                        <div className="mt-2 inline-flex items-center gap-1 text-xs text-green-700 bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
+                        <div className="mt-2 inline-flex items-center gap-1 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
                           <Check className="h-3.5 w-3.5" />
                           เรียนจบแล้ว
                         </div>
                       )}
                       {expired && (
-                        <div className="mt-2 inline-flex items-center gap-1 text-xs text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
+                        <div className="mt-2 inline-flex items-center gap-1 text-xs text-destructive bg-destructive/10 border border-destructive/20 px-2 py-0.5 rounded-full">
                           คอร์สหมดอายุแล้ว
                         </div>
                       )}
@@ -350,12 +350,12 @@ export default function MyCourses() {
 
                     <div className="pt-1">
                       {expired ? (
-                        <Button className="bg-gray-200 text-gray-500 cursor-not-allowed" disabled>
+                        <Button className="bg-muted text-muted-foreground cursor-not-allowed" disabled>
                           คอร์สหมดอายุ
                         </Button>
                       ) : (
                         <Link href={`/profile/my-courses/course/${c.id}`}>
-                          <Button className="bg-yellow-400 hover:bg-yellow-500 text-white">เข้าเรียน</Button>
+                          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">เข้าเรียน</Button>
                         </Link>
                       )}
                     </div>
@@ -370,10 +370,10 @@ export default function MyCourses() {
       {!loading && !error && courses.length === 0 && (
         <div className="text-center py-12">
           <div className="text-5xl mb-3">📚</div>
-          <div className="text-lg font-medium text-gray-700 mb-2">ยังไม่มีคอร์สที่ซื้อ</div>
-          <div className="text-gray-600 mb-4">เริ่มเรียนรู้ได้เลย เลือกคอร์สที่สนใจ</div>
+          <div className="text-lg font-medium text-foreground mb-2">ยังไม่มีคอร์สที่ซื้อ</div>
+          <div className="text-muted-foreground mb-4">เริ่มเรียนรู้ได้เลย เลือกคอร์สที่สนใจ</div>
           <Link href="/courses">
-            <Button className="bg-yellow-400 hover:bg-yellow-500 text-white">ดูคอร์สทั้งหมด</Button>
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">ดูคอร์สทั้งหมด</Button>
           </Link>
         </div>
       )}

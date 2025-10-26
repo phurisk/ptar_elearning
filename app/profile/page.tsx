@@ -24,27 +24,27 @@ export default function ProfilePage() {
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">โปรไฟล์</h1>
         {loading && !isAuthenticated ? (
-          <div className="flex items-center gap-3 bg-white border rounded-lg p-6 text-gray-700">
-            <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+          <div className="flex items-center gap-3 bg-card border rounded-lg p-6 text-muted-foreground">
+            <Loader2 className="h-5 w-5 animate-spin text-primary" />
             <span>กำลังตรวจสอบสถานะการเข้าสู่ระบบ...</span>
           </div>
         ) : !isAuthenticated ? (
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border rounded-lg p-6">
-            <p className="text-gray-700">กรุณาเข้าสู่ระบบเพื่อจัดการโปรไฟล์และการสั่งซื้อ</p>
-            <Button className="bg-yellow-400 hover:bg-yellow-500 text-white" onClick={() => setLoginOpen(true)}>เข้าสู่ระบบ</Button>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-card border rounded-lg p-6">
+            <p className="text-muted-foreground">กรุณาเข้าสู่ระบบเพื่อจัดการโปรไฟล์และการสั่งซื้อ</p>
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => setLoginOpen(true)}>เข้าสู่ระบบ</Button>
           </div>
         ) : (
-          <div className="bg-white border rounded-lg p-6 flex items-center gap-4">
+          <div className="bg-card border rounded-lg p-6 flex items-center gap-4">
             <Avatar>
               {avatarUrl ? (
                 <AvatarImage src={avatarUrl} alt={name} />
               ) : (
-                <AvatarFallback className="bg-black text-white">{initial}</AvatarFallback>
+                <AvatarFallback className="bg-primary text-primary-foreground">{initial}</AvatarFallback>
               )}
             </Avatar>
             <div>
-              <div className="text-lg font-medium ">{name}</div>
-              {email && <div className="text-gray-600 md:text-sm text-xs truncate md:max-w-full max-w-[230px] ">{email}</div>}
+              <div className="text-lg font-medium text-foreground">{name}</div>
+              {email && <div className="text-muted-foreground md:text-sm text-xs truncate md:max-w-full max-w-[230px]">{email}</div>}
 
               <Button className="mt-2 text-xs"
                 variant="outline"
@@ -62,12 +62,12 @@ export default function ProfilePage() {
         <Link href="/profile/my-courses">
           <Card className="group cursor-pointer hover:shadow-lg transition-shadow pt-0">
             <CardContent className="p-6 flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                 <BookOpen className="h-6 w-6" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-lg font-semibold text-gray-900 group-hover:text-yellow-700">คอร์สของฉัน</div>
-                <div className="text-sm text-gray-600 truncate">ดูและเข้าเรียนคอร์สที่คุณซื้อไว้</div>
+                <div className="text-lg font-semibold text-foreground group-hover:text-primary">คอร์สของฉัน</div>
+                <div className="text-sm text-muted-foreground truncate">ดูและเข้าเรียนคอร์สที่คุณซื้อไว้</div>
               </div>
             </CardContent>
           </Card>
@@ -76,12 +76,12 @@ export default function ProfilePage() {
         <Link href="/profile/my-books">
           <Card className="group cursor-pointer hover:shadow-lg transition-shadow pt-0">
             <CardContent className="p-6 flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                 <Book className="h-6 w-6" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-lg font-semibold text-gray-900 group-hover:text-yellow-700">หนังสือของฉัน</div>
-                <div className="text-sm text-gray-600 truncate">ดูและอ่าน/ดาวน์โหลด eBook ที่ซื้อไว้</div>
+                <div className="text-lg font-semibold text-foreground group-hover:text-primary">หนังสือของฉัน</div>
+                <div className="text-sm text-muted-foreground truncate">ดูและอ่าน/ดาวน์โหลด eBook ที่ซื้อไว้</div>
               </div>
             </CardContent>
           </Card>
@@ -90,12 +90,12 @@ export default function ProfilePage() {
         <Link href="/profile/orders">
           <Card className="group cursor-pointer hover:shadow-lg transition-shadow pt-0">
             <CardContent className="p-6 flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                 <Receipt className="h-6 w-6" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-lg font-semibold text-gray-900 group-hover:text-yellow-700">คำสั่งซื้อของฉัน</div>
-                <div className="text-sm text-gray-600 truncate">ตรวจสถานะและอัพโหลดอัปสลิปชำระเงิน</div>
+                <div className="text-lg font-semibold text-foreground group-hover:text-primary">คำสั่งซื้อของฉัน</div>
+                <div className="text-sm text-muted-foreground truncate">ตรวจสถานะและอัพโหลดอัปสลิปชำระเงิน</div>
               </div>
             </CardContent>
           </Card>
