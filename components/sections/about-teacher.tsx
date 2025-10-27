@@ -24,7 +24,7 @@ export default function AboutTeacher() {
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/5]">
                     <Image
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=520&h=650&fit=crop&crop=center"
+                      src="/teacher-tar.JPG"
                       alt="ครูพี่ต้า (อนุชิต)"
                       fill
                       className="object-cover"
@@ -35,7 +35,7 @@ export default function AboutTeacher() {
                   </div>
                 </CardContent>
               </Card>
-              <div className="absolute right-2 bottom-2 md:right-4 md:bottom-4 z-10 bg-primary text-primary-foreground rounded-2xl shadow-xl p-3 md:p-4">
+              <div className="absolute left-2 top-2 md:left-4 md:top-4 z-10 bg-primary text-primary-foreground rounded-2xl shadow-xl p-3 md:p-4">
                 <Award className="h-6 w-6 md:h-8 md:w-8" />
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function AboutTeacher() {
           <div className="md:col-span-12 md:col-start-1 md:row-start-3">
             <div className="max-w-5xl mx-auto">
               <h4 className="text-2xl font-semibold text-foreground flex items-center justify-start gap-2 mb-6">
-                <GraduationCap className="h-6 w-6 text-primary" /> การศึกษา
+                <Award className="h-6 w-6 text-primary" /> ประสบการณ์ / ผลงาน
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div
@@ -104,12 +104,12 @@ export default function AboutTeacher() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="bg-muted rounded-lg p-2 shadow-sm flex items-center justify-center w-20 h-20">
-                      <GraduationCap className="h-10 w-10 text-primary" />
+                      <Award className="h-10 w-10 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-semibold text-card-foreground mb-1">มัธยมศึกษา</h5>
-                      <p className="text-muted-foreground leading-relaxed">โรงเรียนสาธิตมหาวิทยาลัย</p>
-                      <p className="text-sm text-muted-foreground mt-1">(โรงเรียนชั้นนำของประเทศ)</p>
+                      <h5 className="font-semibold text-card-foreground mb-1">ทุนการศึกษา</h5>
+                      <p className="text-muted-foreground leading-relaxed">วิทยาศาสตร์เคมี ทุน พสวท.</p>
+                      <p className="text-sm text-muted-foreground mt-1">มหาวิทยาลัยขอนแก่น</p>
                     </div>
                   </div>
                 </motion.div>
@@ -123,12 +123,12 @@ export default function AboutTeacher() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="bg-muted rounded-lg p-2 shadow-sm flex items-center justify-center w-20 h-20">
-                      <School className="h-10 w-10 text-primary" />
+                      <GraduationCap className="h-10 w-10 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-semibold text-card-foreground mb-1">ปริญญาตรี</h5>
-                      <p className="text-muted-foreground leading-relaxed">คณะวิทยาศาสตร์</p>
-                      <p className="text-sm text-muted-foreground mt-1">มหาวิทยาลัยชั้นนำ</p>
+                      <h5 className="font-semibold text-card-foreground mb-1">ประสบการณ์การสอน</h5>
+                      <p className="text-muted-foreground leading-relaxed">ประสบการณ์สอน 15 ปี</p>
+                      <p className="text-sm text-muted-foreground mt-1">มากกว่า 100 โรงเรียน</p>
                     </div>
                   </div>
                 </motion.div>
@@ -142,12 +142,12 @@ export default function AboutTeacher() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="bg-muted rounded-lg p-2 shadow-sm flex items-center justify-center w-20 h-20">
-                      <Award className="h-10 w-10 text-primary" />
+                      <Target className="h-10 w-10 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-semibold text-card-foreground mb-1">ปริญญาโท</h5>
-                      <p className="text-muted-foreground leading-relaxed">คณะเทคโนโลยีสารสนเทศ</p>
-                      <p className="text-sm text-muted-foreground mt-1">มหาวิทยาลัยเทคโนโลยี</p>
+                      <h5 className="font-semibold text-card-foreground mb-1">ผลงานการแข่งขัน</h5>
+                      <p className="text-muted-foreground leading-relaxed">ลูกศิษย์สอบติดโอลิมปิกวิชาการ</p>
+                      <p className="text-sm text-muted-foreground mt-1">เคมี สอวน.เคมี</p>
                     </div>
                   </div>
                 </motion.div>
@@ -161,12 +161,12 @@ export default function AboutTeacher() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="bg-muted rounded-lg p-2 shadow-sm flex items-center justify-center w-20 h-20">
-                      <Target className="h-10 w-10 text-primary" />
+                      <School className="h-10 w-10 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h5 className="font-semibold text-card-foreground mb-1">ปริญญาเอก</h5>
-                      <p className="text-muted-foreground leading-relaxed">คณะครุศาสตร์ (เทคโนโลยีการศึกษา)</p>
-                      <p className="text-sm text-muted-foreground mt-1">มหาวิทยาลัยชั้นนำ (กำลังศึกษา)</p>
+                      <h5 className="font-semibold text-card-foreground mb-1">ผลงานรับเข้ามหาวิทยาลัย</h5>
+                      <p className="text-muted-foreground leading-relaxed">สอบติดมหาวิทยาลัยชั้นนำ</p>
+                      <p className="text-sm text-muted-foreground mt-1">ปีละหลายร้อยคน</p>
                     </div>
                   </div>
                 </motion.div>
