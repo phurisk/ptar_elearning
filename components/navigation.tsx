@@ -89,7 +89,7 @@ export function Navigation() {
     { href: "/", label: "หน้าแรก" },
     { href: "/courses", label: "คอร์สเรียน" },
     { href: "/student-works", label: "ผลงานนักเรียน" },
-    { href: "/study-plans", label: "แผนการเรียน" },
+    // { href: "/study-plans", label: "แผนการเรียน" },
     { href: "/about", label: "เกี่ยวกับเรา" },
     // { href: "/exam-bank", label: "คลังข้อสอบ" },
   ]

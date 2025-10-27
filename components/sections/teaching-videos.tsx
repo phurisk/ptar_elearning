@@ -259,7 +259,7 @@ export default function TeachingVideos() {
           <Button
             size="lg"
             className="bg-red-600 hover:bg-red-700 text-white transform transition-transform duration-200 hover:scale-110 cursor-pointer"
-            onClick={() => window.open("https://youtube.com/@demo_learning", "_blank")}
+            onClick={() => window.open("https://www.youtube.com/@Chemistar", "_blank")}
           >
             <Youtube className="w-5 h-5 size-5 mr-2 " />
             ติดตาม YouTube

@@ -17,8 +17,8 @@ const sarabun = Sarabun({
 
 export const metadata: Metadata = {
   title: "Demo Learning Platfor",
-  description: "Demo Learning Platform ",
-  keywords: "Demo Learning Platform",
+  description: "โรงเรียนกวดวิชาเคมีพี่ต้า ",
+  keywords: "โรงเรียนกวดวิชาเคมีพี่ต้า",
   generator: "Demo-Learning.app",
   icons: {
     icon: "/new-logo.png",
