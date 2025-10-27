@@ -73,14 +73,15 @@ const PAGE_SIZE = 9
 const API_FETCH_LIMIT = 100
 
 export default function CoursesPage() {
-  const [selectedLevel, setSelectedLevel] = useState<string>("all")
+  const searchParams = useSearchParams()
+  const initialLevel = searchParams.get('level') || 'all'
+  const [selectedLevel, setSelectedLevel] = useState<string>(initialLevel)
   const [selectedSubject, setSelectedSubject] = useState<string>("all")
   const [data, setData] = useState<ApiCourse[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [isCompactPagination, setIsCompactPagination] = useState(false)
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     let active = true

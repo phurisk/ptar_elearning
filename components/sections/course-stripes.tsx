@@ -1,27 +1,26 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowRight, Atom, FlaskConical, Beaker } from "lucide-react"
+import Link from "next/link";
+import { ArrowRight, Atom, FlaskConical, Beaker } from "lucide-react";
 
 type Stripe = {
-  title: string 
-  highlight?: string 
-  subtitle: string
-  href: string
+  title: string;
+  highlight?: string;
+  subtitle: string;
+  paramTage: string;
+  bg: string;
 
-  bg: string
+  ctaClass: string;
 
-  ctaClass: string
-
-  accent: string
-}
+  accent: string;
+};
 
 const stripes: Stripe[] = [
   {
     title: "คอร์ส",
     highlight: "ม.ต้น",
+    paramTage: "ม.ต้น",
     subtitle: "(ปูพื้นฐาน-เเข่งขันสอบเข้าม.4)",
-    href: "/courses/middle",
     bg: "from-blue-50 via-white to-blue-50",
     ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
     accent: "bg-[#2688DF]",
@@ -29,8 +28,8 @@ const stripes: Stripe[] = [
   {
     title: "คอร์ส",
     highlight: "ม.ปลาย",
+    paramTage: "ม.ปลาย",
     subtitle: "(ปูพื้นฐาน-เก็บเกรดเเต่ละเทอม)",
-    href: "/courses/high",
     bg: "from-amber-50 via-white to-amber-50",
     ctaClass: "bg-[#FEBE01] hover:bg-[#e5aa00] text-black",
     accent: "bg-[#FEBE01]",
@@ -38,21 +37,21 @@ const stripes: Stripe[] = [
   {
     title: "คอร์สแข่งขัน",
     highlight: "ม.ปลาย",
+    paramTage: "คอร์สแข่งขัน",
     subtitle: "(A level ,Netsat ,สอวน. ,ENTRANCE)",
-    href: "/courses/high-competition",
     bg: "from-blue-50 via-white to-blue-50",
     ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
     accent: "bg-[#2688DF]",
   },
-  {
-    title: "ตารางรอบสดที่โรงเรียน,ถ่ายทอดสด",
-    subtitle: "(Onsite and Online)",
-    href: "/courses/live",
-    bg: "from-amber-50 via-white to-amber-50",
-    ctaClass: "bg-[#FEBE01] hover:bg-[#e5aa00] text-black",
-    accent: "bg-[#FEBE01]",
-  },
-]
+  // {
+  //   title: "ตารางรอบสดที่โรงเรียน,ถ่ายทอดสด",
+  //   subtitle: "(Onsite and Online)",
+  //   href: "/courses/live",
+  //   bg: "from-amber-50 via-white to-amber-50",
+  //   ctaClass: "bg-[#FEBE01] hover:bg-[#e5aa00] text-black",
+  //   accent: "bg-[#FEBE01]",
+  // },
+];
 
 export default function CourseStripes() {
   return (
@@ -71,11 +70,16 @@ export default function CourseStripes() {
           {stripes.map((s, idx) => (
             <Link
               key={idx}
-              href={s.href}
+              href={`/courses?level=${
+                s.paramTage?.toLowerCase() === "ม.ต้น"
+                  ? "middle"
+                  : s.paramTage?.toLowerCase() === "ม.ปลาย"
+                  ? "high"
+                  : "competition"
+              }`}
               aria-label={`${s.title} ${s.subtitle}`}
               className={`group relative overflow-hidden rounded-[28px] ring-1 ring-border bg-gradient-to-br ${s.bg} px-5 py-6 md:px-8 md:py-7 flex items-center justify-between hover:shadow-xl transition-all duration-300`}
             >
-            
               <div className="flex items-center gap-4 md:gap-6">
                 <div className="relative hidden sm:flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-2xl bg-card/70 ring-1 ring-border shadow-sm">
                   <Atom className="h-7 w-7 text-primary" />
@@ -83,14 +87,25 @@ export default function CourseStripes() {
                 </div>
                 <div>
                   <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground leading-tight">
-                    {s.title} {s.highlight && (
-                      <span className={s.accent === "bg-[#FEBE01]" ? "text-accent-foreground" : "text-primary"}>{s.highlight}</span>
+                    {s.title}{" "}
+                    {s.highlight && (
+                      <span
+                        className={
+                          s.accent === "bg-[#FEBE01]"
+                            ? "text-accent-foreground"
+                            : "text-primary"
+                        }
+                      >
+                        {s.highlight}
+                      </span>
                     )}
                   </div>
-                  <div className="mt-0.5 text-muted-foreground text-sm md:text-base">{s.subtitle}</div>
+                  <div className="mt-0.5 text-muted-foreground text-sm md:text-base">
+                    {s.subtitle}
+                  </div>
                 </div>
               </div>
-           
+
               <div className="flex items-center gap-3">
                 <span
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-colors ${s.ctaClass}`}
@@ -100,14 +115,23 @@ export default function CourseStripes() {
                 </span>
               </div>
 
-             
               <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-card/40 blur-2xl opacity-60" />
               <div className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-card/30 blur-2xl opacity-40" />
 
-            
               <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
-                <svg className="absolute right-6 top-1/2 -translate-y-1/2" width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+                <svg
+                  className="absolute right-6 top-1/2 -translate-y-1/2"
+                  width="220"
+                  height="120"
+                  viewBox="0 0 220 120"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-muted-foreground"
+                  >
                     <circle cx="30" cy="60" r="16" />
                     <path d="M28 44v-10M32 44v-10M22 72h16" />
                     <rect x="80" y="40" width="30" height="30" rx="4" />
@@ -122,5 +146,5 @@ export default function CourseStripes() {
         </div>
       </div>
     </section>
-  )
+  );
 }

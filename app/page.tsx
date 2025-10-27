@@ -40,9 +40,9 @@ export default function HomePage() {
         <AboutTeacher />
       </motion.div>
 
-      <motion.div variants={fadeInUp}>
+      {/* <motion.div variants={fadeInUp}>
         <AcademicTeam />
-      </motion.div>
+      </motion.div> */}
 
       <motion.div variants={fadeInUp}>
         <ViewOfTeaching />

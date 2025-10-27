@@ -91,7 +91,7 @@ export function Navigation() {
     { href: "/student-works", label: "ผลงานนักเรียน" },
     { href: "/study-plans", label: "แผนการเรียน" },
     { href: "/about", label: "เกี่ยวกับเรา" },
-    { href: "/exam-bank", label: "คลังข้อสอบ" },
+    // { href: "/exam-bank", label: "คลังข้อสอบ" },
   ]
 
   return (
