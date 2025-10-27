@@ -212,27 +212,27 @@ export default function LiveSchedulePage() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white via-yellow-50/30 to-white">
+    <section className="min-h-screen bg-gradient-to-br from-background to-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
+          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 text-balance">
             ตารางรอบสด
-            <span className="text-yellow-500">, ถ่ายทอดสด</span>
+            <span className="text-primary">, ถ่ายทอดสด</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             รอบเรียนสด (Onsite/Online) และรายละเอียดการสมัคร พร้อมติดตามการเรียนแบบเรียลไทม์
           </p>
           <div className="flex flex-wrap justify-center gap-6 mt-8">
-            <div className="flex items-center gap-2 text-gray-600">
-              <Video className="w-5 h-5 text-yellow-500" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Video className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium">ถ่ายทอดสดคุณภาพ HD</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Users className="w-5 h-5 text-yellow-500" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Users className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium">เรียนแบบ Interactive</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Clock className="w-5 h-5 text-yellow-500" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Clock className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium">ตารางเรียนยืดหยุ่น</span>
             </div>
           </div>
@@ -240,12 +240,12 @@ export default function LiveSchedulePage() {
 
         {showVideoSection && (
           <div className="mb-12 flex items-center justify-center">
-            <div className="bg-white w-200 rounded-2xl shadow-lg p-0 border border-gray-100">
+            <div className="bg-card w-200 rounded-2xl shadow-lg p-0 border border-border">
               <div className="aspect-video rounded-xl overflow-hidden ">
                 {loadingVideo && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="flex flex-col items-center gap-4">
-                      <div className="w-12 h-12 border-4 border-yellow-500/30 border-t-yellow-500 rounded-full animate-spin"></div>
+                      <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
                       <p className="text-white/80 text-sm">กำลังโหลดวิดีโอ...</p>
                     </div>
                   </div>
@@ -268,7 +268,7 @@ export default function LiveSchedulePage() {
                       <p className="text-lg font-semibold">ชมวิดีโอตัวอย่างจบแล้ว</p>
                       <p className="text-sm text-white/80">กดปุ่มด้านล่างเพื่อชมซ้ำ</p>
                     </div>
-                    <Button onClick={handleRetryVideo} className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                    <Button onClick={handleRetryVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                       ดูอีกครั้ง
                     </Button>
                   </div>
@@ -282,7 +282,7 @@ export default function LiveSchedulePage() {
                     </div>
                   </div>
                 )}
-                <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-600 px-4 py-2 rounded-full text-sm font-medium mb-4 mt-2">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4 mt-2">
                   <Radio className="w-4 h-4" />
                   ถ่ายทอดสดจากโรงเรียน
                 </div>
@@ -293,13 +293,13 @@ export default function LiveSchedulePage() {
 
         <div className="mb-12">
           {loadingSummaries ? (
-            <div className="relative w-full aspect-[283/400] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl animate-pulse border border-gray-200" />
+            <div className="relative w-full aspect-[283/400] bg-gradient-to-br from-muted to-muted rounded-2xl animate-pulse border border-border" />
           ) : summaries.length ? (
             <div className="grid grid-cols-1 gap-6">
               {summaries.map((item) => (
-                <Card key={item.id} className="overflow-hidden border-2 border-gray-100 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-xl py-0">
+                <Card key={item.id} className="overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl py-0">
                   <CardContent className="p-0">
-                    <div className="relative w-full aspect-[283/400] bg-white">
+                    <div className="relative w-full aspect-[283/400] bg-background">
                       {item.imageUrl && (
                         <Image
                           src={item.imageUrl}
@@ -316,8 +316,8 @@ export default function LiveSchedulePage() {
                           className="object-contain md:hidden"
                         />
                       ) : !item.imageUrl ? (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                          <ImageIcon className="w-12 h-12 text-gray-400" />
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted to-muted">
+                          <ImageIcon className="w-12 h-12 text-muted-foreground" />
                         </div>
                       ) : null}
                     </div>
@@ -327,18 +327,18 @@ export default function LiveSchedulePage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg font-medium">ไม่มีภาพสรุปรอบสด</p>
-              <p className="text-gray-400 text-sm mt-2">กรุณาลองใหม่อีกครั้งในภายหลัง</p>
+              <ImageIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <p className="text-muted-foreground text-lg font-medium">ไม่มีภาพสรุปรอบสด</p>
+              <p className="text-muted-foreground text-sm mt-2">กรุณาลองใหม่อีกครั้งในภายหลัง</p>
             </div>
           )}
         </div>
 
         <div className="text-center">
-          <div className="bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-2xl p-8 text-white shadow-xl">
+          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 text-primary-foreground shadow-xl">
             <div className="max-w-2xl mx-auto">
               <h3 className="text-2xl font-bold mb-2">พร้อมเริ่มเรียนแล้วใช่ไหม?</h3>
-              <p className="text-yellow-100 mb-6 text-lg">
+              <p className="text-primary-foreground/90 mb-6 text-lg">
                 ติดต่อสมัครเรียนผ่าน LINE ได้เลย ทีมงานพร้อมให้คำปรึกษาและแนะนำคอร์สที่เหมาะกับคุณ
               </p>
               <a href={lineUrl} target="_blank" rel="noopener noreferrer">
@@ -352,7 +352,7 @@ export default function LiveSchedulePage() {
                   ติดต่อสมัครเรียนทาง LINE
                 </Button>
               </a>
-              <div className="flex flex-wrap justify-center gap-6 mt-6 text-yellow-100 text-sm">
+              <div className="flex flex-wrap justify-center gap-6 mt-6 text-primary-foreground/90 text-sm">
                 <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   <span>ตอบกลับเร็ว</span>

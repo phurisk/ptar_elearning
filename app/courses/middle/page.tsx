@@ -195,11 +195,11 @@ export default function MiddleCoursesPage() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white via-yellow-50/30 to-white">
+    <section className="min-h-screen bg-gradient-to-br from-background to-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-balance">คอร์ส ม.ต้น</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">คอร์ส ม.ต้น</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             เลือกคอร์สที่เหมาะกับระดับ ม.ต้น พร้อมวิดีโอแนะนำและเนื้อหาคุณภาพสูง
           </p>
         </div>
@@ -225,21 +225,21 @@ export default function MiddleCoursesPage() {
                     <p className="text-lg font-semibold">ชมวิดีโอแนะนำจบแล้ว</p>
                     <p className="text-sm text-white/80">กดปุ่มด้านล่างเพื่อชมซ้ำ</p>
                   </div>
-                  <Button onClick={handleRetryVideo} className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                  <Button onClick={handleRetryVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     ดูอีกครั้ง
                   </Button>
                 </div>
               )}
               {loadingVideo && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
                 </div>
               )}
               {!videoSrc && !loadingVideo && (
                 <div className="absolute inset-0 flex items-center justify-center text-white/90">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     </div>
@@ -253,13 +253,13 @@ export default function MiddleCoursesPage() {
 
         <div className="mb-16">
           {loadingSummaries ? (
-            <div className="relative w-full aspect-[283/400] bg-gray-100 rounded-2xl animate-pulse border border-gray-200" />
+            <div className="relative w-full aspect-[283/400] bg-muted rounded-2xl animate-pulse border border-border" />
           ) : summaries.length ? (
             <div className="grid grid-cols-1 gap-6">
               {summaries.map((item) => (
-                <Card key={item.id} className="overflow-hidden border-2 border-gray-100 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-xl py-0">
+                <Card key={item.id} className="overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl py-0">
                   <CardContent className="p-0">
-                    <div className="relative w-full aspect-[283/400] bg-white">
+                    <div className="relative w-full aspect-[283/400] bg-card">
                       {item.desktop && (
                         <Image
                           src={item.desktop}
@@ -284,9 +284,9 @@ export default function MiddleCoursesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 text-gray-500">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-12 text-muted-foreground">
+              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -297,15 +297,15 @@ export default function MiddleCoursesPage() {
 
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">คอร์สแนะนำ</h2>
+            <h2 className="text-2xl font-bold text-foreground">คอร์สแนะนำ</h2>
           </div>
           <Link href="/courses">
-            <Button variant="outline" className="border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white transition-colors duration-300 bg-transparent">
+            <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 bg-transparent">
               ดูคอร์สทั้งหมด
             </Button>
           </Link>
@@ -314,13 +314,13 @@ export default function MiddleCoursesPage() {
         {loadingCourses ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {Array.from({ length: 3 }).map((_, i) => (
-              <Card key={`sk-${i}`} className="overflow-hidden border-2 border-gray-100">
+              <Card key={`sk-${i}`} className="overflow-hidden border-2 border-border">
                 <CardContent className="p-0">
-                  <div className="aspect-video bg-gray-100 animate-pulse" />
+                  <div className="aspect-video bg-muted animate-pulse" />
                   <div className="p-6 space-y-4">
-                    <div className="h-6 bg-gray-100 rounded-lg w-2/3 animate-pulse" />
-                    <div className="h-4 bg-gray-100 rounded w-1/3 animate-pulse" />
-                    <div className="h-10 bg-gray-100 rounded-lg w-32 animate-pulse" />
+                    <div className="h-6 bg-muted rounded-lg w-2/3 animate-pulse" />
+                    <div className="h-4 bg-muted rounded w-1/3 animate-pulse" />
+                    <div className="h-10 bg-muted rounded-lg w-32 animate-pulse" />
                   </div>
                 </CardContent>
               </Card>
@@ -339,13 +339,13 @@ export default function MiddleCoursesPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-yellow-400 text-white">{course.category?.name ?? "คอร์ส"}</Badge>
+                      <Badge className="bg-primary text-primary-foreground">{course.category?.name ?? "คอร์ส"}</Badge>
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 text-balance line-clamp-2">{course.title}</h3>
-                    <p className="text-gray-600 mb-4 text-pretty line-clamp-2">{course.description}</p>
-                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                    <h3 className="text-xl font-bold text-foreground mb-2 text-balance line-clamp-2">{course.title}</h3>
+                    <p className="text-muted-foreground mb-4 text-pretty line-clamp-2">{course.description}</p>
+                    <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
                         <span>{course._count?.enrollments ?? 0}</span>
@@ -370,15 +370,15 @@ export default function MiddleCoursesPage() {
                           return (
                             <>
                               {hasDiscount && (
-                                <span className="text-sm text-gray-400 line-through mr-1">฿{original.toLocaleString()}</span>
+                                <span className="text-sm text-muted-foreground line-through mr-1">฿{original.toLocaleString()}</span>
                               )}
-                              <span className="text-2xl font-extrabold text-yellow-600">฿{effective.toLocaleString()}</span>
+                              <span className="text-2xl font-extrabold text-primary">฿{effective.toLocaleString()}</span>
                             </>
                           )
                         })()}
                     </div>
                     <Link href={`/courses/${course.id}`}>
-                      <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white">ดูรายละเอียด</Button>
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">ดูรายละเอียด</Button>
                     </Link>
                   </div>
                 </CardContent>
@@ -386,9 +386,9 @@ export default function MiddleCoursesPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-gray-500">
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-16 text-muted-foreground">
+            <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
@@ -398,7 +398,7 @@ export default function MiddleCoursesPage() {
 
         <div className="text-center mt-16">
           <div className="inline-flex flex-col items-center gap-4">
-            <p className="text-gray-600 font-medium">ติดต่อสมัครเรียน?</p>
+            <p className="text-muted-foreground font-medium">ติดต่อสมัครเรียน?</p>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"

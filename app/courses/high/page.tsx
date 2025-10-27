@@ -230,13 +230,13 @@ export default function HighCoursesPage() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-white via-yellow-50/30 to-white">
+    <section className="min-h-screen bg-gradient-to-br from-background to-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-balance">
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
             คอร์ส ม.ปลาย
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             วิดีโอแนะนำและคอร์สแนะนำสำหรับ ม.ปลาย
           </p>
         </div>
@@ -262,22 +262,22 @@ export default function HighCoursesPage() {
                     <p className="text-lg font-semibold">ชมวิดีโอตัวอย่างจบแล้ว</p>
                     <p className="text-sm text-white/80">กดปุ่มด้านล่างเพื่อชมซ้ำ</p>
                   </div>
-                  <Button onClick={handleRetryVideo} className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                  <Button onClick={handleRetryVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     ดูอีกครั้ง
                   </Button>
                 </div>
               )}
               {lv && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
                 </div>
               )}
               {!video && !lv && (
                 <div className="absolute inset-0 flex items-center justify-center text-white/90">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg
-                        className="w-8 h-8 text-white"
+                        className="w-8 h-8 text-primary-foreground"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -300,16 +300,16 @@ export default function HighCoursesPage() {
 
         <div className="mb-16">
           {ls ? (
-            <div className="relative w-full aspect-[283/400] bg-gray-100 rounded-2xl animate-pulse border border-gray-200" />
+            <div className="relative w-full aspect-[283/400] bg-muted rounded-2xl animate-pulse border border-border" />
           ) : sums.length ? (
             <div className="grid grid-cols-1 gap-6">
               {sums.map((item) => (
                 <Card
                   key={item.id}
-                  className="overflow-hidden border-2 border-gray-100 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-xl"
+                  className="overflow-hidden border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
                 >
                   <CardContent className="p-0">
-                    <div className="relative w-full aspect-[283/400] bg-white">
+                    <div className="relative w-full aspect-[283/400] bg-card">
                       {item.desktop && (
                         <Image
                           src={item.desktop}
@@ -339,10 +339,10 @@ export default function HighCoursesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 text-gray-500">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-center py-12 text-muted-foreground">
+              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-gray-400"
+                  className="w-8 h-8 text-muted-foreground"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -362,9 +362,9 @@ export default function HighCoursesPage() {
 
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <svg
-                className="w-5 h-5 text-white"
+                className="w-5 h-5 text-primary-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -377,12 +377,12 @@ export default function HighCoursesPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">คอร์สแนะนำ</h2>
+            <h2 className="text-2xl font-bold text-foreground">คอร์สแนะนำ</h2>
           </div>
           <Link href="/courses">
             <Button
               variant="outline"
-              className="border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white transition-colors duration-300 bg-transparent"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300 bg-transparent"
             >
               ดูคอร์สทั้งหมด
             </Button>
@@ -394,14 +394,14 @@ export default function HighCoursesPage() {
             {Array.from({ length: 3 }).map((_, i) => (
               <Card
                 key={`sk-${i}`}
-                className="overflow-hidden border-2 border-gray-100"
+                className="overflow-hidden border-2 border-border"
               >
                 <CardContent className="p-0">
-                  <div className="aspect-video bg-gray-100 animate-pulse" />
+                  <div className="aspect-video bg-muted animate-pulse" />
                   <div className="p-6 space-y-4">
-                    <div className="h-6 bg-gray-100 rounded-lg w-2/3 animate-pulse" />
-                    <div className="h-4 bg-gray-100 rounded w-1/3 animate-pulse" />
-                    <div className="h-10 bg-gray-100 rounded-lg w-32 animate-pulse" />
+                    <div className="h-6 bg-muted rounded-lg w-2/3 animate-pulse" />
+                    <div className="h-4 bg-muted rounded w-1/3 animate-pulse" />
+                    <div className="h-10 bg-muted rounded-lg w-32 animate-pulse" />
                   </div>
                 </CardContent>
               </Card>
@@ -426,19 +426,19 @@ export default function HighCoursesPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-yellow-400 text-white">
+                      <Badge className="bg-primary text-primary-foreground">
                         {course.category?.name ?? "คอร์ส"}
                       </Badge>
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 text-balance line-clamp-2">
+                    <h3 className="text-xl font-bold text-foreground mb-2 text-balance line-clamp-2">
                       {course.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 text-pretty line-clamp-2">
+                    <p className="text-muted-foreground mb-4 text-pretty line-clamp-2">
                       {course.description}
                     </p>
-                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
                         <span>{course._count?.enrollments ?? 0}</span>
@@ -469,11 +469,11 @@ export default function HighCoursesPage() {
                           return (
                             <>
                               {hasDiscount && (
-                                <span className="text-sm text-gray-400 line-through mr-1">
+                                <span className="text-sm text-muted-foreground line-through mr-1">
                                   ฿{original.toLocaleString()}
                                 </span>
                               )}
-                              <span className="text-2xl font-extrabold text-yellow-600">
+                              <span className="text-2xl font-extrabold text-primary">
                                 ฿{effective.toLocaleString()}
                               </span>
                             </>
@@ -482,7 +482,7 @@ export default function HighCoursesPage() {
                       )}
                     </div>
                     <Link href={`/courses/${course.id}`}>
-                      <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white">
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                         ดูรายละเอียด
                       </Button>
                     </Link>
@@ -492,10 +492,10 @@ export default function HighCoursesPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-gray-500">
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="text-center py-16 text-muted-foreground">
+            <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
-                className="w-10 h-10 text-gray-400"
+                className="w-10 h-10 text-muted-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -514,7 +514,7 @@ export default function HighCoursesPage() {
 
         <div className="text-center mt-16">
           <div className="inline-flex flex-col items-center gap-4">
-            <p className="text-gray-600 font-medium">ติดต่อสมัครเรียน?</p>
+            <p className="text-muted-foreground font-medium">ติดต่อสมัครเรียน?</p>
             <a href={line} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"

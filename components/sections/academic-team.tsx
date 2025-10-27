@@ -193,10 +193,10 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
   }
 
   return (
-    <section className="py-8 md:py-12 lg:py-14 px-4 md:px-6 lg:px-8 bg-white">
+    <section className="py-8 md:py-12 lg:py-14 px-4 md:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-6 md:mb-8 lg:mb-10">
-          <h2 className="text-xl lg:text-2xl font-bold text-white mb-3 bg-black px-8 py-4 w-fit mx-auto rounded-full shadow-sm">
+          <h2 className="text-xl lg:text-2xl font-bold text-primary-foreground mb-3 bg-primary px-8 py-4 w-fit mx-auto rounded-full shadow-sm">
             ทีมวิชาการ
           </h2>
         </div>
@@ -207,20 +207,20 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
               <button
                 type="button"
                 aria-label="ก่อนหน้า"
-                className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow ring-1 ring-black/5 rounded-full p-2 disabled:opacity-40"
+                className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow ring-1 ring-border rounded-full p-2 disabled:opacity-40"
                 onClick={() => scrollToIndex(activeIndex - 1)}
                 disabled={activeIndex <= 0}
               >
-                <ChevronLeft className="h-5 w-5 text-gray-700" />
+                <ChevronLeft className="h-5 w-5 text-foreground" />
               </button>
               <button
                 type="button"
                 aria-label="ถัดไป"
-                className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow ring-1 ring-black/5 rounded-full p-2 disabled:opacity-40"
+                className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow ring-1 ring-border rounded-full p-2 disabled:opacity-40"
                 onClick={() => scrollToIndex(activeIndex + 1)}
                 disabled={activeIndex >= data.length - 1}
               >
-                <ChevronRight className="h-5 w-5 text-gray-700" />
+                <ChevronRight className="h-5 w-5 text-foreground" />
               </button>
             </>
           )}
@@ -241,7 +241,7 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
                     <div className="flex justify-center mb-3 md:mb-4">
                       <Badge
                         variant="outline"
-                        className="relative bg-white text-gray-900 border-0 rounded-none px-5 md:px-6 py-2 text-xl md:text-2xl font-bold tracking-wide before:content-[''] before:absolute before:left-3 before:right-3 before:bottom-0 before:h-[3px] before:bg-yellow-500 after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-[6px] after:h-2 after:bg-yellow-100 after:-z-10"
+                        className="relative bg-card text-foreground border-0 rounded-none px-5 md:px-6 py-2 text-xl md:text-2xl font-bold tracking-wide before:content-[''] before:absolute before:left-3 before:right-3 before:bottom-0 before:h-[3px] before:bg-primary after:content-[''] after:absolute after:left-2 after:right-2 after:bottom-[6px] after:h-2 after:bg-primary/20 after:-z-10"
                       >
                         <span className="relative z-[1]">{t.subject}</span>
                       </Badge>
@@ -250,7 +250,7 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
                     <button
                       type="button"
                       onClick={() => openDetail(t)}
-                      className="rounded-2xl overflow-hidden ring-1 ring-black/5 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="rounded-2xl overflow-hidden ring-1 ring-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       aria-label={`ดูประวัติ ${t.name}`}
                     >
                       <div className="aspect-[3/4] w-full">
@@ -266,11 +266,11 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
                     </button>
 
                     <div className="mt-4 md:mt-5 flex-1 flex flex-col items-center">
-                      <h3 className="text-lg md:text-xl font-semibold text-gray-900 text-center">{t.name}</h3>
-                      <p className="text-sm text-yellow-600 relative top-[4px]">{t.role}</p>
+                      <h3 className="text-lg md:text-xl font-semibold text-foreground text-center">{t.name}</h3>
+                      <p className="text-sm text-primary relative top-[4px]">{t.role}</p>
                       <Button
                         variant="outline"
-                        className="mt-3 rounded-xl border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 bg-transparent"
+                        className="mt-3 rounded-xl border-border hover:border-primary hover:bg-primary/5 bg-transparent"
                         onClick={() => openDetail(t)}
                       >
                         ดูประวัติ
@@ -289,7 +289,7 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
               <button
                 key={i}
                 aria-label={`ไปการ์ดที่ ${i + 1}`}
-                className={`h-2.5 w-2.5 rounded-full transition-all ${i === activeIndex ? "bg-yellow-500 scale-110" : "bg-gray-300 hover:bg-gray-400"}`}
+                className={`h-2.5 w-2.5 rounded-full transition-all ${i === activeIndex ? "bg-primary scale-110" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"}`}
                 onClick={() => scrollToIndex(i)}
               />
             ))}
@@ -327,20 +327,20 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
       <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
         <DialogContent
           showCloseButton={false}
-          className=" p-0 bg-white rounded-none sm:rounded-2xl w-full h-[100dvh] sm:h-[90vh] sm:max-h-[90vh] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl top-0 left-0 translate-x-0 translate-y-0 sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] overflow-hidden"
+          className=" p-0 bg-card rounded-none sm:rounded-2xl w-full h-[100dvh] sm:h-[90vh] sm:max-h-[90vh] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl top-0 left-0 translate-x-0 translate-y-0 sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] overflow-hidden"
         >
           <button
             type="button"
             aria-label="ปิด"
             onClick={() => setDetailOpen(false)}
-            className="absolute top-4 right-4 z-30 inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/95 backdrop-blur-sm text-gray-700 shadow-lg ring-1 ring-black/10 hover:bg-white hover:shadow-xl transition-all duration-200"
+            className="absolute top-4 right-4 z-30 inline-flex items-center justify-center h-10 w-10 rounded-full bg-background/95 backdrop-blur-sm text-foreground shadow-lg ring-1 ring-border hover:bg-background hover:shadow-xl transition-all duration-200"
           >
             <X className="h-5 w-5" />
           </button>
 
           <div className="flex h-full w-full flex-col overflow-hidden min-h-0 ">
             <div className="sm:hidden h-full flex flex-col overflow-hidden">
-              <div className="relative w-full h-[25vh] bg-gradient-to-br from-gray-50 to-gray-100 flex-shrink-0">
+              <div className="relative w-full h-[25vh] bg-gradient-to-br from-muted to-muted/80 flex-shrink-0">
                 {selected?.image && (
                   <Image
                     src={selected.image || "/placeholder.svg"}
@@ -355,7 +355,7 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
                 <div className="absolute bottom-3 left-4 right-16">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     {selected?.subject && (
-                      <Badge className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full px-3 py-1 text-sm font-medium shadow-lg">
+                      <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-3 py-1 text-sm font-medium shadow-lg">
                         {selected.subject}
                       </Badge>
                     )}
@@ -364,44 +364,44 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
                 </div>
               </div>
 
-              <div className="flex-1 min-h-0 bg-white">
+              <div className="flex-1 min-h-0 bg-card">
                 <div className="h-full overflow-y-auto custom-scrollbar snap-y snap-mandatory scroll-pt-16">
                   <div className="p-4 pb-8">
-                    <div className="sticky top-0 bg-white z-10 pb-3 mb-4 border-b border-gray-100">
-                      <h4 className="text-lg font-semibold text-gray-900">ประวัติและผลงาน</h4>
+                    <div className="sticky top-0 bg-card z-10 pb-3 mb-4 border-b border-border">
+                      <h4 className="text-lg font-semibold text-foreground">ประวัติและผลงาน</h4>
                     </div>
                     {selected?.highlights?.length ? (
-                      <ul className="space-y-3 text-sm leading-relaxed text-gray-700">
+                      <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                         {selected.highlights.map((h, i) => (
-                          <li key={i} className="flex gap-3 p-3 bg-gray-50/50 rounded-lg snap-start">
-                            <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-yellow-500 flex-shrink-0" />
+                          <li key={i} className="flex gap-3 p-3 bg-muted/50 rounded-lg snap-start">
+                            <span className="mt-1.5 inline-block h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                             <span className="flex-1">{h}</span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <div className="text-center text-gray-500 py-8">ไม่มีข้อมูลประวัติ</div>
+                      <div className="text-center text-muted-foreground py-8">ไม่มีข้อมูลประวัติ</div>
                     )}
                   </div>
                 </div>
               </div>
             </div>
 
-            <DialogHeader className="hidden sm:flex px-8 pt-8 pb-4 border-b border-gray-100">
-              <DialogTitle className="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <DialogHeader className="hidden sm:flex px-8 pt-8 pb-4 border-b border-border">
+              <DialogTitle className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-3">
                 {selected?.name}
                 {selected?.subject && (
-                  <Badge className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full px-4 py-2 text-base font-medium">
+                  <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 py-2 text-base font-medium">
                     {selected.subject}
                   </Badge>
                 )}
               </DialogTitle>
             </DialogHeader>
 
-            <div className="hidden sm:grid grid-cols-1 lg:grid-cols-5 gap-8 p-8 bg-white overflow-hidden flex-1 min-h-0">
+            <div className="hidden sm:grid grid-cols-1 lg:grid-cols-5 gap-8 p-8 bg-card overflow-hidden flex-1 min-h-0">
               <div className="lg:col-span-2">
                 {selected?.image && (
-                  <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden shadow-lg ring-1 ring-black/5">
+                  <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-muted to-muted/80 rounded-2xl overflow-hidden shadow-lg ring-1 ring-border">
                     <Image
                       src={selected.image || "/placeholder.svg"}
                       alt={selected.name}
@@ -415,25 +415,25 @@ export default function AcademicTeam({ teachers = defaultTeachers }: { teachers?
               </div>
 
               <div className="lg:col-span-3 flex flex-col overflow-hidden min-h-0">
-                <h4 className="text-xl font-semibold text-gray-900 mb-6 pb-3 border-b-2 border-yellow-500 flex-shrink-0">
+                <h4 className="text-xl font-semibold text-foreground mb-6 pb-3 border-b-2 border-primary flex-shrink-0">
                   ประวัติและผลงาน
                 </h4>
                 {selected?.highlights?.length ? (
                   <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar snap-y snap-mandatory scroll-pt-20 min-h-0">
-                    <ul className="space-y-4 text-base md:text-lg text-gray-700">
+                    <ul className="space-y-4 text-base md:text-lg text-muted-foreground">
                       {selected.highlights.map((h, i) => (
                         <li
                           key={i}
-                          className="flex gap-4 p-4 bg-gray-50/80 rounded-xl hover:bg-gray-50 transition-colors duration-200 snap-start"
+                          className="flex gap-4 p-4 bg-muted/50 rounded-xl hover:bg-muted/70 transition-colors duration-200 snap-start"
                         >
-                          <span className="mt-2.5 inline-block h-2.5 w-2.5 rounded-full bg-yellow-500 flex-shrink-0" />
+                          <span className="mt-2.5 inline-block h-2.5 w-2.5 rounded-full bg-primary flex-shrink-0" />
                           <span className="flex-1 leading-relaxed">{h}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ) : (
-                  <div className="flex-1 flex items-center justify-center text-gray-500 text-lg">ไม่มีข้อมูลประวัติ</div>
+                  <div className="flex-1 flex items-center justify-center text-muted-foreground text-lg">ไม่มีข้อมูลประวัติ</div>
                 )}
               </div>
             </div>

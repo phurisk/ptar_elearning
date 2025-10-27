@@ -154,7 +154,7 @@ export default function HeroBanner() {
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-              index === currentSlide ? "bg-yellow-400" : "bg-white/80"
+              index === currentSlide ? "bg-primary" : "bg-background/80"
             }`}
             aria-label={`Go to slide ${index + 1}`}
             onClick={() => setCurrentSlide(index)}
