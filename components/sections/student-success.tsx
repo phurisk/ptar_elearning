@@ -24,7 +24,7 @@ function ImageModal({
       onClick={onClose}
     >
       <div
-        className="relative max-w-[500px] w-full max-h-[85vh] bg-background rounded-lg overflow-hidden"
+        className="relative max-w-[500px] w-full aspect-square bg-background rounded-lg overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -37,9 +37,8 @@ function ImageModal({
           <Image
             src={image.src || "/placeholder.svg"}
             alt={image.alt}
-            width={1600}
-            height={1066}
-            className="w-[500px] h-auto object-contain"
+            fill
+            className="object-cover"
             priority
           />
         </div>
@@ -229,7 +228,7 @@ export default function StudentSuccess() {
             <div className="flex">
               {Array.from({ length: visible }).map((_, i) => (
                 <div key={i} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 sm:px-3">
-                  <div className="aspect-[3/4] md:aspect-[4/5] rounded-lg shimmer" />
+                  <div className="aspect-square rounded-lg shimmer" />
                 </div>
               ))}
             </div>
@@ -256,46 +255,41 @@ export default function StudentSuccess() {
                     key={success.id}
                     className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 sm:px-3"
                   >
-                    <Card className="h-full border-none shadow-none">
-                      <CardContent className="p-0">
-                        <div
-                          className="aspect-[3/4] md:aspect-[4/5] relative overflow-hidden rounded-lg group cursor-pointer"
-                          onClick={() =>
-                            openModal({
-                              src: success.image || "/placeholder.svg",
-                              alt: success.image ? "student success image" : "no image",
-                            })
-                          }
-                        >
-                          <Image
-                            src={success.image || "/placeholder.svg"}
-                            alt={success.image ? "student success image" : "no image"}
-                            fill
-                            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                            <div className="bg-background/80 rounded-full p-2 transform scale-75 group-hover:scale-100 transition-transform">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-primary"
-                              >
-                                <path d="M15 3h6v6"></path>
-                                <path d="M10 14 21 3"></path>
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                              </svg>
-                            </div>
-                          </div>
+                    <div className="aspect-square relative overflow-hidden rounded-lg group cursor-pointer"
+                      onClick={() =>
+                        openModal({
+                          src: success.image || "/placeholder.svg",
+                          alt: success.image ? "student success image" : "no image",
+                        })
+                      }
+                    >
+                      <Image
+                        src={success.image || "/placeholder.svg"}
+                        alt={success.image ? "student success image" : "no image"}
+                        fill
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <div className="bg-background/80 rounded-full p-2 transform scale-75 group-hover:scale-100 transition-transform">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-primary"
+                          >
+                            <path d="M15 3h6v6"></path>
+                            <path d="M10 14 21 3"></path>
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          </svg>
                         </div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
