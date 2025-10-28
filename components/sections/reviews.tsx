@@ -24,7 +24,7 @@ function ImageModal({
       onClick={onClose}
     >
       <div
-        className="relative max-w-[500px] w-full max-h-[85vh] bg-background rounded-lg overflow-hidden"
+        className="relative max-w-[500px] w-full aspect-square bg-background rounded-lg overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -37,9 +37,8 @@ function ImageModal({
           <Image
             src={image.src || "/placeholder.svg"}
             alt={image.alt}
-            width={1600}
-            height={1066}
-            className="w-[500px] h-auto object-contain"
+            fill
+            className="object-cover"
             priority
           />
         </div>
@@ -271,46 +270,42 @@ export default function Reviews() {
                       flex: "0 0 calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible))",
                     }}
                   >
-                    <Card className="h-full border-none shadow-none">
-                      <CardContent className="p-0">
-                        <div
-                          className="aspect-square relative overflow-hidden rounded-lg group cursor-pointer"
-                          onClick={() =>
-                            openModal({
-                              src: review.image || "/placeholder.svg",
-                              alt: review.image ? "review image" : "no image",
-                            })
-                          }
-                        >
-                          <Image
-                            src={review.image || "/placeholder.svg"}
-                            alt={review.image ? "review image" : "no image"}
-                            fill
-                            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                            <div className="bg-background/80 rounded-full p-2 transform scale-75 group-hover:scale-100 transition-transform">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-primary"
-                              >
-                                <path d="M15 3h6v6"></path>
-                                <path d="M10 14 21 3"></path>
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                              </svg>
-                            </div>
-                          </div>
+                    <div
+                      className="aspect-square relative overflow-hidden rounded-lg group cursor-pointer border border-border shadow-sm"
+                      onClick={() =>
+                        openModal({
+                          src: review.image || "/placeholder.svg",
+                          alt: review.image ? "review image" : "no image",
+                        })
+                      }
+                    >
+                      <Image
+                        src={review.image || "/placeholder.svg"}
+                        alt={review.image ? "review image" : "no image"}
+                        fill
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <div className="bg-background/80 rounded-full p-2 transform scale-75 group-hover:scale-100 transition-transform">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-primary"
+                          >
+                            <path d="M15 3h6v6"></path>
+                            <path d="M10 14 21 3"></path>
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          </svg>
                         </div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

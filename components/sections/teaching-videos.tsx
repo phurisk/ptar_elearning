@@ -5,7 +5,6 @@ import Image from "next/image"
 import { Play, Youtube, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { teachingVideos } from "@/lib/dummy-data"
 import http from "@/lib/http"
 
 type VideoItem = {
@@ -14,13 +13,6 @@ type VideoItem = {
   youtubeId: string
   description: string
 }
-
-const fallbackVideos: VideoItem[] = teachingVideos.map((video, idx) => ({
-  id: video.id ?? idx,
-  title: video.title ?? "",
-  youtubeId: video.youtubeId ?? "",
-  description: video.description ?? "",
-}))
 
 function extractYoutubeId(input?: unknown): string | null {
   if (!input) return null
@@ -120,7 +112,7 @@ function VideoModal({
 }
 
 export default function TeachingVideos() {
-  const [videos, setVideos] = useState<VideoItem[]>(fallbackVideos)
+  const [videos, setVideos] = useState<VideoItem[]>([])
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState<VideoItem | null>(null)
 
@@ -173,13 +165,9 @@ export default function TeachingVideos() {
 
         if (res.status >= 200 && res.status < 300 && mapped.length) {
           setVideos(mapped)
-        } else {
-          console.warn("[TeachingVideos] API ไม่คืนข้อมูลที่ต้องการ → ใช้ fallback")
-          setVideos(fallbackVideos)
         }
       } catch (error) {
         console.error("[TeachingVideos] Failed to load videos", error)
-        if (mounted) setVideos(fallbackVideos)
       }
     })()
     return () => {
