@@ -559,7 +559,7 @@ export default function Books() {
               <Button
                 disabled={creating}
                 onClick={confirmPurchase}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-blue-400 hover:bg-blue-500 text-white"
               >
                 {creating ? "กำลังดำเนินการ..." : "ยืนยันการสั่งซื้อ"}
               </Button>
@@ -581,7 +581,7 @@ export default function Books() {
                 ปิด
               </Button>
               <Button
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-blue-400 hover:bg-blue-500 text-white"
                 onClick={() => {
                   setOwnedOpen(false);
                   router.push("/profile/orders");
@@ -650,7 +650,7 @@ export default function Books() {
               <Button
                 disabled={!slip || uploading}
                 onClick={uploadSlip}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                className="bg-blue-400 hover:bg-blue-500 text-white"
               >
                 {uploading ? `กำลังอัพโหลด ${uploadProgress}%` : "อัพโหลดสลิป"}
               </Button>

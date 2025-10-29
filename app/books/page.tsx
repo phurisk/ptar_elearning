@@ -255,7 +255,7 @@ export default function AllBooksPage() {
         size="sm"
         onClick={onClick}
         disabled={disabled}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-yellow-50 hover:border-yellow-400"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full p-0 hover:bg-blue-50 hover:border-blue-400"
       >
         {icon}
       </Button>
@@ -289,8 +289,8 @@ export default function AllBooksPage() {
         const className = [
           "flex h-9 min-w-[2.5rem] shrink-0 items-center justify-center rounded-full px-0",
           isActive
-            ? "bg-yellow-400 hover:bg-yellow-500 text-white"
-            : "hover:bg-yellow-50 hover:border-yellow-400",
+            ? "bg-blue-400 hover:bg-blue-500 text-white"
+            : "hover:bg-blue-50 hover:border-blue-400",
         ].join(" ");
         return (
           <Button
@@ -351,7 +351,7 @@ export default function AllBooksPage() {
               variant={selectedCategory === c.id ? "default" : "outline"}
               onClick={() => onSelectCategory(c.id)}
               className={`px-5 rounded-full ${
-                selectedCategory === c.id ? "bg-yellow-400 text-white" : ""
+                selectedCategory === c.id ? "bg-blue-400 text-white" : ""
               }`}
             >
               {c.name}
@@ -424,7 +424,7 @@ export default function AllBooksPage() {
                       <div className="flex items-baseline gap-2">
                         {hasDiscount ? (
                           <>
-                            <div className="text-lg font-bold text-yellow-600">
+                            <div className="text-lg font-bold text-blue-600">
                               ฿{book.discountPrice.toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-500 line-through">
@@ -439,7 +439,7 @@ export default function AllBooksPage() {
                       </div>
                       <div className="pt-1">
                         <Button
-                          className="bg-yellow-400 hover:bg-yellow-500 text-white w-full"
+                          className="bg-blue-400 hover:bg-blue-500 text-white w-full"
                           onClick={() => handleDetails(book.id)}
                         >
                           ดูรายละเอียด

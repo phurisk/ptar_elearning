@@ -65,7 +65,7 @@ function StarRating({
       {stars.map((s) => {
         const active = s <= Math.round(value)
         const base = "cursor-pointer transition-transform"
-        const cls = active ? "text-yellow-500" : "text-gray-300"
+        const cls = active ? "text-blue-500" : "text-gray-300"
         return (
           <button
             type="button"
@@ -350,7 +350,7 @@ export default function BookDetailPage() {
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center gap-2">
                       {book.category?.name && (
-                        <Badge className="rounded-full bg-yellow-400 text-white px-3 py-1 h-7">
+                        <Badge className="rounded-full bg-blue-400 text-white px-3 py-1 h-7">
                           {book.category.name}
                         </Badge>
                       )}
@@ -400,10 +400,10 @@ export default function BookDetailPage() {
                       {hasDiscount ? (
                         <div className="flex items-end justify-center gap-3">
                           <span className="text-xl text-gray-400 line-through">{fmtMoney(book.price)}</span>
-                          <span className="text-3xl font-extrabold text-yellow-600 tracking-tight">{fmtMoney(book.discountPrice)}</span>
+                          <span className="text-3xl font-extrabold text-blue-600 tracking-tight">{fmtMoney(book.discountPrice)}</span>
                         </div>
                       ) : (
-                        <span className="text-3xl font-extrabold text-yellow-600 tracking-tight">{fmtMoney(book.price)}</span>
+                        <span className="text-3xl font-extrabold text-blue-600 tracking-tight">{fmtMoney(book.price)}</span>
                       )}
                       <p className="text-xs text-gray-500 mt-1">ราคารวมภาษีมูลค่าเพิ่ม</p>
                     </div>
@@ -430,7 +430,7 @@ export default function BookDetailPage() {
                           goCheckout()
                         }}
                         disabled={creating}
-                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-white text-lg py-3 rounded-xl shadow hover:shadow-md transition"
+                        className="w-full bg-blue-400 hover:bg-blue-500 text-white text-lg py-3 rounded-xl shadow hover:shadow-md transition"
                       >
                         {creating ? "กำลังไปหน้าชำระเงิน..." : "ไปหน้าชำระเงิน"}
                       </Button>

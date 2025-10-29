@@ -1274,7 +1274,7 @@ export default function CourseDetailPage() {
                 ปิด
               </Button>
               <Link href={`/profile/my-courses/course/${id}/`}>
-                <Button className="bg-yellow-400 hover:bg-yellow-500 text-white">
+                <Button className="bg-blue-400 hover:bg-blue-500 text-white">
                   เข้าเรียน
                 </Button>
               </Link>

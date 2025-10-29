@@ -302,7 +302,7 @@ export default function CheckoutEbookPage() {
 
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => router.back()}>ยกเลิก</Button>
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-white" onClick={confirmOrder} disabled={creating}>
+              <Button className="bg-blue-400 hover:bg-blue-500 text-white" onClick={confirmOrder} disabled={creating}>
                 {creating ? (
                   <span className="inline-flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -320,7 +320,7 @@ export default function CheckoutEbookPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="rounded-lg bg-white px-6 py-4 shadow-lg">
             <div className="flex items-center gap-3 text-gray-800">
-              <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+              <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
               <span>กำลังดำเนินการคำสั่งซื้อของคุณ...</span>
             </div>
           </div>

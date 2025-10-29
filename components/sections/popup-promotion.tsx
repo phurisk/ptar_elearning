@@ -126,7 +126,7 @@ export default function PopupPromotion() {
             <label className="inline-flex items-center gap-2 text-sm text-gray-700 select-none">
               <input
                 type="checkbox"
-                className="h-4 w-4 accent-yellow-500"
+                className="h-4 w-4 accent-blue-500"
                 checked={dontShowToday}
                 onChange={(e) => setDontShowToday(e.target.checked)}
               />
@@ -136,7 +136,7 @@ export default function PopupPromotion() {
             <div className="ml-auto flex items-center gap-2">
               {data?.linkUrl && (
                 <a href={data.linkUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-white">
+                  <Button className="bg-blue-400 hover:bg-blue-500 text-white">
                     ดูรายละเอียด
                   </Button>
                 </a>

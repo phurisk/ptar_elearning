@@ -73,7 +73,7 @@ export function MyCourses() {
   if (authLoading && !isAuthenticated) {
     return (
       <div className="text-center p-8 flex items-center justify-center gap-3 text-gray-600">
-        <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+        <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
         <span>กำลังตรวจสอบสถานะการเข้าสู่ระบบ...</span>
       </div>
     )
@@ -153,7 +153,7 @@ export function MyCourses() {
                     <span className={`px-2 py-1 rounded text-xs ${
                       course.status === 'PUBLISHED' 
                         ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
+                        : 'bg-blue-100 text-blue-800'
                     }`}>
                       {course.status === 'PUBLISHED' ? 'เปิดแล้ว' : 'กำลังเตรียม'}
                     </span>
