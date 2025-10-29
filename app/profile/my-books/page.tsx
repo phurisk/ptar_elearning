@@ -250,14 +250,14 @@ export default function MyBooksPage() {
 
       {authLoading && !isAuthenticated ? (
         <div className="bg-white border rounded-lg p-6 flex items-center gap-3 text-gray-700">
-          <Loader2 className="h-5 w-5 animate-spin text-yellow-500" />
+          <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
           <span>กำลังตรวจสอบสถานะการเข้าสู่ระบบ...</span>
         </div>
       ) : !isAuthenticated ? (
         <div className="bg-white border rounded-lg p-6">
           <div className="flex items-center justify-between gap-4">
             <div className="text-gray-700">กรุณาเข้าสู่ระบบเพื่อดู eBook ของคุณ</div>
-            <Button className="bg-yellow-400 hover:bg-yellow-500 text-white" onClick={() => setLoginOpen(true)}>เข้าสู่ระบบ</Button>
+            <Button className="bg-blue-400 hover:bg-blue-500 text-white" onClick={() => setLoginOpen(true)}>เข้าสู่ระบบ</Button>
           </div>
           <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
         </div>
@@ -320,7 +320,7 @@ export default function MyBooksPage() {
                                   const url = `/api/proxy-view?url=${encodeURIComponent(fileUrl)}&filename=${encodeURIComponent(filename)}`
                                   window.open(url, "_blank")
                                 }}
-                                className="bg-yellow-400 hover:bg-yellow-500 text-white"
+                                className="bg-blue-400 hover:bg-blue-500 text-white"
                               >
                                 อ่าน eBook
                               </Button>

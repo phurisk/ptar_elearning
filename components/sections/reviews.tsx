@@ -318,7 +318,7 @@ export default function Reviews() {
                   <button
                     key={i}
                     className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                      i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
+                      i === currentIndex ? "bg-blue-400" : "bg-gray-300"
                     }`}
                     onClick={() => setCurrentIndex(i)}
                   />

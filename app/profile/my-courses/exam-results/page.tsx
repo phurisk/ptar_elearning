@@ -142,7 +142,7 @@ export default function ExamResultsPage() {
                   )}
                 </div>
                 <Link href={`/profile/my-courses/exam-results/${encodeURIComponent(String(a.id))}`}>
-                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-white">ดูรายละเอียด</Button>
+                  <Button className="bg-blue-400 hover:bg-blue-500 text-white">ดูรายละเอียด</Button>
                 </Link>
               </div>
             </CardContent>
