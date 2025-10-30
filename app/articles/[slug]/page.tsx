@@ -111,7 +111,7 @@ async function fetchArticle(slug: string): Promise<ArticleItem | null> {
     const desktop = found?.imageUrl || found?.imageUrlMobileMode || ""
     const mobile = found?.imageUrlMobileMode || found?.imageUrl || ""
     const excerpt = found?.excerpt || deriveExcerpt(found?.content, 180)
-    const authorName = found?.author?.name || found?.authorName || "Physics Ptoey"
+    const authorName = found?.author?.name || found?.authorName || "เคมีพี่ต้า"
     const postContents: ArticleContentBlock[] = Array.isArray(found?.postContents)
       ? found.postContents
           .map((block: any, idx: number): ArticleContentBlock => ({
@@ -165,7 +165,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         date,
         imageDesktop: image,
         imageMobile: image,
-        authorName: "Physics Ptoey",
+        authorName: "เคมีพี่ต้า",
         readTimeMinutes: Math.max(
           1,
           Math.round(
@@ -260,8 +260,8 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                     {article.authorName?.charAt(0) ?? "P"}
                   </div>
                   <div>
-                    <div className="font-semibold text-white">{article.authorName ?? "ทีม Physics Ptoey"}</div>
-                    <div className="text-xs text-amber-100/70">ทีมคอนเทนต์ Physics Ptoey</div>
+                    <div className="font-semibold text-white">{article.authorName ?? "ทีมเคมีพี่ต้า"}</div>
+                    <div className="text-xs text-amber-100/70">ทีมคอนเทนต์เคมีพี่ต้า</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-xs uppercase tracking-wide text-amber-100/70">
