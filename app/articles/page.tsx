@@ -11,7 +11,7 @@ const PAGE_SIZE = 9
 const FETCH_LIMIT = 200
 
 export const metadata = {
-  title: "บทความทั้งหมด | Physics Ptoey",
+  title: "บทความทั้งหมด | เคมีพี่ต้า",
   description: "รวมบทความ เทคนิคการเรียนฟิสิกส์ และแนะแนวการสอบ",
 }
 
