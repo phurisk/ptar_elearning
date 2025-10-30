@@ -37,6 +37,11 @@ export function Footer() {
       username: "เคมี พี่ต้า online",
       url: "https://www.facebook.com/komkaiChemistry/?locale=th_TH",
     },
+    {
+      platform: "Line",
+      username: "0644207060",
+      url: "https://line.me/ti/p/5d1GCAr9ma",
+    },
   ];
 
   const contactInfo = {
