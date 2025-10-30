@@ -144,9 +144,9 @@ export default function CoursesPage() {
   const levels = useMemo(() => (
     [
       { id: "all", name: "ทุกระดับ" },
-      { id: "middle", name: "คอร์ส ม.ต้น" },
-      { id: "high", name: "คอร์ส ม.ปลาย" },
-      { id: "competition", name: "คอร์สแข่งขัน" },
+      { id: "netsat", name: "คอร์สเคมี NETSAT" },
+      { id: "chemistry-olympiad", name: "คอร์ส สอวน.เคมี" },
+      { id: "chemistry-content", name: "คอร์สเนื้อหาเคมี" },
     ]
   ), [])
 
@@ -163,10 +163,10 @@ export default function CoursesPage() {
   ), [])
 
   const detectLevel = (c: ApiCourse): string | null => {
-    const text = `${c.category?.name || ""} ${c.title || ""}`
-    if (/แข่งขัน/.test(text)) return "competition"
-    if (/ม\.ปลาย|ม\s*ปลาย/.test(text)) return "high"
-    if (/ม\.ต้น|ม\s*ต้น/.test(text)) return "middle"
+    const text = `${c.category?.name || ""} ${c.title || ""}`.toLowerCase()
+    if (/netsat|เนตแซท/.test(text)) return "netsat"
+    if (/สอวน|โอลิมปิก|olympiad/.test(text)) return "chemistry-olympiad"
+    if (/เนื้อหาเคมี|เก็บเกรด|สอบเข้า/.test(text)) return "chemistry-content"
     return null
   }
 
@@ -390,7 +390,7 @@ export default function CoursesPage() {
           >
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">คอร์สเรียนทั้งหมด</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              เลือกคอร์สที่เหมาะกับระดับการศึกษาของคุณ เรียนกับอาจารย์เต้ยผู้เชี่ยวชาญ
+              เลือกคอร์สที่เหมาะกับเป้าหมายของคุณ เรียนกับต้าเคมีพี่ต้าผู้เชี่ยวชาญ
             </p>
           </motion.div>
 

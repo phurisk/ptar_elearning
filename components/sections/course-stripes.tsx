@@ -17,40 +17,32 @@ type Stripe = {
 
 const stripes: Stripe[] = [
   {
-    title: "คอร์ส",
-    highlight: "ม.ต้น",
-    paramTage: "ม.ต้น",
-    subtitle: "(ปูพื้นฐาน-เเข่งขันสอบเข้าม.4)",
+    title: "คอร์สเคมี",
+    highlight: "NETSAT",
+    paramTage: "NETSAT",
+    subtitle: "(เตรียมสอบ NETSAT เคมี)",
     bg: "from-blue-50 via-white to-blue-50",
     ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
     accent: "bg-[#2688DF]",
   },
   {
     title: "คอร์ส",
-    highlight: "ม.ปลาย",
-    paramTage: "ม.ปลาย",
-    subtitle: "(ปูพื้นฐาน-เก็บเกรดเเต่ละเทอม)",
+    highlight: "สอวน.เคมี",
+    paramTage: "สอวน.เคมี",
+    subtitle: "(โอลิมปิกวิชาการเคมี)",
+    bg: "from-blue-50 via-white to-blue-50",
+    ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
+    accent: "bg-[#2688DF]",
+  },
+  {
+    title: "คอร์ส",
+    highlight: "เนื้อหาเคมี",
+    paramTage: "เนื้อหาเคมี",
+    subtitle: "(เก็บเกรดและสอบเข้ามหาวิทยาลัย)",
     bg: "from-amber-50 via-white to-amber-50",
-    ctaClass: "bg-[#FEBE01] hover:bg-[#e5aa00] text-black",
-    accent: "bg-[#FEBE01]",
-  },
-  {
-    title: "คอร์สแข่งขัน",
-    highlight: "ม.ปลาย",
-    paramTage: "คอร์สแข่งขัน",
-    subtitle: "(A level ,Netsat ,สอวน. ,ENTRANCE)",
-    bg: "from-blue-50 via-white to-blue-50",
     ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
     accent: "bg-[#2688DF]",
   },
-  // {
-  //   title: "ตารางรอบสดที่โรงเรียน,ถ่ายทอดสด",
-  //   subtitle: "(Onsite and Online)",
-  //   href: "/courses/live",
-  //   bg: "from-amber-50 via-white to-amber-50",
-  //   ctaClass: "bg-[#FEBE01] hover:bg-[#e5aa00] text-black",
-  //   accent: "bg-[#FEBE01]",
-  // },
 ];
 
 export default function CourseStripes() {
@@ -70,13 +62,12 @@ export default function CourseStripes() {
           {stripes.map((s, idx) => (
             <Link
               key={idx}
-              href={`/courses?level=${
-                s.paramTage?.toLowerCase() === "ม.ต้น"
-                  ? "middle"
-                  : s.paramTage?.toLowerCase() === "ม.ปลาย"
-                  ? "high"
-                  : "competition"
-              }`}
+              href={`/courses?level=${s.paramTage?.toLowerCase() === "netsat"
+                ? "netsat"
+                : s.paramTage?.toLowerCase() === "สอวน.เคมี"
+                  ? "chemistry-olympiad"
+                  : "chemistry-content"
+                }`}
               aria-label={`${s.title} ${s.subtitle}`}
               className={`group relative overflow-hidden rounded-[28px] ring-1 ring-border bg-gradient-to-br ${s.bg} px-5 py-6 md:px-8 md:py-7 flex items-center justify-between hover:shadow-xl transition-all duration-300`}
             >
