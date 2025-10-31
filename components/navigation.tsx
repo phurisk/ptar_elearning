@@ -157,7 +157,7 @@ export function Navigation() {
                             }}
                           />
                         ) : (
-                          <AvatarFallback className="bg-black text-white">
+                          <AvatarFallback className="bg-primary text-primary-foreground">
                             {initial}
                           </AvatarFallback>
                         )}
@@ -262,7 +262,7 @@ export function Navigation() {
                               }}
                             />
                           ) : (
-                            <AvatarFallback className="bg-black text-white">
+                            <AvatarFallback className="bg-primary text-primary-foreground">
                               {initial}
                             </AvatarFallback>
                           )}
