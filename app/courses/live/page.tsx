@@ -200,7 +200,7 @@ export default function LiveSchedulePage() {
     }
   }, [])
 
-  const lineUrl = "https://line.me/ti/p/@csw9917j"
+  const lineUrl = "https://line.me/ti/p/sjYGzkVGDL"
   const showVideoSection = loadingVideo || videoFetched
 
   const handleRetryVideo = () => {
