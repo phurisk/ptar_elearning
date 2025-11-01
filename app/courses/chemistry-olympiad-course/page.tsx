@@ -19,17 +19,32 @@ function getYouTubeEmbed(url: string) {
     ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&enablejsapi=1&playsinline=1`
     : null
 }
+
 function getVimeoEmbed(url: string) {
   const id = url.match(/(?:vimeo\.com|player\.vimeo\.com)\/(?:video\/)?(\d+)/)?.[1]
-  return id ? `https://player.vimeo.com/video/${id}?dnt=1&title=0&byline=0&portrait=0` : null
+  if (!id) return null
+  
+  const params = new URLSearchParams({
+    badge: '0',
+    autopause: '0',
+    player_id: '0',
+    app_id: '58479',
+    dnt: '1',
+    title: '0',
+    byline: '0',
+    portrait: '0'
+  })
+  
+  return `https://player.vimeo.com/video/${id}?${params.toString()}`
 }
+
 function extractFirstUrl(text?: string | null) {
   if (!text) return null
   const m = text.match(/https?:[^\s)\]]+/i)
   return m ? m[0] : null
 }
 
-export default function MiddleCoursesPage() {
+export default function ChemistryOlympiadCoursePage() {
   const [videoSrc, setVideoSrc] = useState<string | null>(null)
   const [loadingVideo, setLoadingVideo] = useState(true)
   const [videoFetched, setVideoFetched] = useState(false)
@@ -37,7 +52,7 @@ export default function MiddleCoursesPage() {
   const [videoEnded, setVideoEnded] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
   const vimeoPlayerRef = useRef<Player | null>(null)
-  const { courses, loading: loadingCourses } = useRecommendedCourses("ม.ต้น")
+  const { courses, loading: loadingCourses } = useRecommendedCourses("คอร์ส-สอวน.เคมี")
   const [summaries, setSummaries] = useState<
     { id: string; desktop?: string | null; mobile?: string | null; title?: string }[]
   >([])
@@ -51,7 +66,7 @@ export default function MiddleCoursesPage() {
       try {
         setLoadingVideo(true)
         if (videoReloadKey > 0) setVideoSrc(null)
-        const params = new URLSearchParams({ postType: "วิดีโอแนะนำ-ม.ต้น", limit: "1" })
+        const params = new URLSearchParams({ postType: "วิดีโอแนะนำ-สอวน.เคมี", limit: "1" })
         const res = await fetch(`/api/posts?${params.toString()}`, { cache: "no-store" })
         const json = await res.json().catch(() => ({}))
         const list: Post[] = Array.isArray(json?.data) ? json.data : Array.isArray(json) ? json : []
@@ -152,7 +167,7 @@ export default function MiddleCoursesPage() {
         let page = 1
         let loops = 0
         while (!cancelled && loops < 20) {
-          const params = new URLSearchParams({ postType: "ภาพสรุป-ม.ต้น", limit: String(pageSize), page: String(page) })
+          const params = new URLSearchParams({ postType: "ภาพสรุป-สอวน.เคมี", limit: String(pageSize), page: String(page) })
           const res = await fetch(`/api/posts?${params.toString()}`, { cache: "no-store" })
           const json = await res.json().catch(() => ({}))
           const list: any[] = Array.isArray(json?.data) ? json.data : Array.isArray(json) ? json : []
@@ -198,9 +213,9 @@ export default function MiddleCoursesPage() {
     <section className="min-h-screen bg-gradient-to-br from-background to-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">คอร์ส ม.ต้น</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">คอร์ส สอวน.เคมี</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            เลือกคอร์สที่เหมาะกับระดับ ม.ต้น พร้อมวิดีโอแนะนำและเนื้อหาคุณภาพสูง
+            เตรียมตัวสำหรับการแข่งขันโอลิมปิกวิชาการเคมี ด้วยเนื้อหาระดับสูงและเทคนิคการแก้ปัญหาขั้นสูง
           </p>
         </div>
 
@@ -213,10 +228,11 @@ export default function MiddleCoursesPage() {
                   ref={iframeRef}
                   src={videoSrc}
                   className="w-full h-full"
+                  frameBorder="0"
                   allowFullScreen
-                  referrerPolicy="no-referrer"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  title="วิดีโอแนะนำ ม.ต้น"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  title="วิดีโอแนะนำ สอวน.เคมี"
                 />
               )}
               {videoSrc && videoEnded && (

@@ -63,15 +63,13 @@ const teachingEnvironmentImages = [
 ]
 
 const achievements = [
-  "ที่ 1 ฟิสิกส์สามัญ ประเทศ",
-  "ชนะเลิศการแข่งขันฟิสิกส์สัประยุทธ์ กลุ่มภาคกลางและกลุ่มภาคตะวันออก",
-  "ที่ 1 ชนะเลิศการตอบปัญหาวิศวกรรมศาสตร์ (มหาวิทยาลัยเกษตรศาสตร์)",
-  "นักเรียนฟิสิกส์โอลิมปิค มหาวิทยาลัยศิลปากร (สนามจันทร์)",
-  "นักเรียนทุนส่งเสริมความเป็นเลิศทางวิทยาศาสตร์และเทคโนโลยี JSTP ของสวทช และอพวช",
-  "รับเชิญเข้าร่วมประชุมสัมนาฟิสิกส์ศึกษา เกี่ยวกับการเรียนการสอนและงานวิจัยด้านฟิสิกส์ศึกษาของประเทศไทย",
+  "วิทยาศาสตร์เคมี ทุน พสวท. มหาวิทยาลัยขอนแก่น",
+  "ประสบการณ์สอน 15 ปี มากกว่า 100 โรงเรียน",
+  "ลูกศิษย์สอบติดโอลิมปิกวิชาการ เคมี สอวน.เคมี",
+  "ลูกศิษย์สอบติดมหาวิทยาลัยชั้นนำปีละ หลายร้อยคน",
 ]
 
-const currentPositions = ["อาจารย์ฟิสิกส์ สถาบันฟิสิกส์ อ.เต้ย", "อาจารย์พิเศษห้องเรียนพิเศษทั่วประเทศ"]
+const currentPositions = ["อาจารย์พิเศษห้องเรียนพิเศษทั่วประเทศ"]
 
 export default function AboutPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -151,7 +149,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-4 lg:mb-16">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">เกี่ยวกับเรา</h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">โรงเรียนกวดวิชาฟิสิกส์อาจารย์เต้ย</p>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">โรงเรียนกวดวิชาเคมี ต้าเคมีพี่ต้า</p>
               <p className="text-lg text-muted-foreground/80 mt-2">(ในความควบคุมของกระทรวงศึกษาธิการ)</p>
             </div>
           </div>
@@ -169,10 +167,10 @@ export default function AboutPage() {
                 <div className="relative max-w-[250px] mx-auto rounded-2xl overflow-hidden shadow-2xl md:max-w-none md:w-full md:h-190">
                   <Image
                     src="/profile_about.png"
-                    alt="อาจารย์เต้ย (อ.เชษฐา)"
+                    alt="ต้าเคมีพี่ต้า"
                     width={1200}
                     height={1500}
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 468px) 50vw, 100vw"
                     className="w-full h-auto md:h-full md:object-cover"
                     priority
                   />
@@ -185,10 +183,10 @@ export default function AboutPage() {
 
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-2">ฟิสิกส์ พี่เต้ย</h2>
-                  <p className="text-xl text-muted-foreground mb-4">อาจารย์เชษฐา</p>
+                  <h2 className="text-3xl font-bold text-foreground mb-2">เคมี พี่ต้า</h2>
+                  <p className="text-xl text-muted-foreground mb-4">ต้าเคมีพี่ต้า</p>
                   <Badge variant="outline" className="text-primary border-primary">
-                    ผู้เชี่ยวชาญด้านฟิสิกส์
+                    ผู้เชี่ยวชาญด้านเคมี
                   </Badge>
                 </div>
 
@@ -312,9 +310,9 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 text-center">
               <div className="text-primary-foreground">
                 <Users className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 mx-auto mb-2 sm:mb-3 md:mb-4" />
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">1000+</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">100+</h3>
                 <p className="text-sm sm:text-base md:text-lg leading-snug">
-                  นักเรียนที่ประสบความสำเร็จ
+                  โรงเรียนที่เข้าสอน
                 </p>
               </div>
 
@@ -328,9 +326,9 @@ export default function AboutPage() {
 
               <div className="text-primary-foreground">
                 <Award className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 mx-auto mb-2 sm:mb-3 md:mb-4" />
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">50+</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">หลายร้อย</h3>
                 <p className="text-sm sm:text-base md:text-lg leading-snug">
-                  รางวัลและความสำเร็จ
+                  ลูกศิษย์ติดมหาวิทยาลัยชั้นนำ
                 </p>
               </div>
             </div>

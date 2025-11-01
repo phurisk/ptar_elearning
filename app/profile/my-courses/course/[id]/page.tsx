@@ -98,7 +98,20 @@ function getYouTubeEmbedUrl(url: string) {
 
 function getVimeoEmbedUrl(url: string) {
   const idMatch = url.match(/(?:vimeo\.com|player\.vimeo\.com)\/(?:video\/)?(\d+)/)?.[1]
-  return idMatch ? `https://player.vimeo.com/video/${idMatch}?dnt=1&title=0&byline=0&portrait=0` : null
+  if (!idMatch) return null
+  
+  const params = new URLSearchParams({
+    badge: '0',
+    autopause: '0',
+    player_id: '0',
+    app_id: '58479',
+    dnt: '1',
+    title: '0',
+    byline: '0',
+    portrait: '0'
+  })
+  
+  return `https://player.vimeo.com/video/${idMatch}?${params.toString()}`
 }
 
 function getEmbedSrc(url: string) {
@@ -637,9 +650,10 @@ export default function CourseDetailPage() {
                         ref={videoFrameRef}
                         src={selectedEmbedSrc}
                         className={`w-full h-full transition-opacity ${hasOverlay ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+                        frameBorder="0"
                         allowFullScreen
-                        referrerPolicy="no-referrer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                         title={selectedContent.title}
                       />
                       {hasOverlay && (

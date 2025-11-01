@@ -37,6 +37,11 @@ export function Footer() {
       username: "เคมี พี่ต้า online",
       url: "https://www.facebook.com/komkaiChemistry/?locale=th_TH",
     },
+    {
+      platform: "Line",
+      username: "chemistar518",
+      url: "https://line.me/ti/p/sjYGzkVGDL",
+    },
   ];
 
   const contactInfo = {
@@ -184,6 +189,14 @@ export function Footer() {
                 className="hover:text-primary transition-colors duration-200"
               >
                 ข้อกำหนดการใช้งาน
+              </Link>
+              <Link
+                href="https://backoffice.ptarchem.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors duration-200"
+              >
+                จัดการหลังบ้าน
               </Link>
             </div>
           </div>

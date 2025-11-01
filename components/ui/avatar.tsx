@@ -13,10 +13,10 @@ function Avatar({
       data-slot="avatar"
       className={cn(
         "relative flex size-8 shrink-0 overflow-hidden rounded-full",
-        "ring-2 ring-black-500 ring-offset-2 ring-offset-white",
+        "ring-2 ring-primary ring-offset-2 ring-offset-background",
         "transition-all duration-200 cursor-pointer",
         "hover:shadow-lg hover:ring-[3px] hover:scale-[1.02]",
-        "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-black-500 focus-visible:ring-offset-2",
+        "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2",
         "active:scale-95",
         className
       )}
