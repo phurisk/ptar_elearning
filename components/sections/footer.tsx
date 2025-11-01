@@ -39,8 +39,8 @@ export function Footer() {
     },
     {
       platform: "Line",
-      username: "0644207060",
-      url: "https://line.me/ti/p/5d1GCAr9ma",
+      username: "chemistar518",
+      url: "https://line.me/ti/p/sjYGzkVGDL",
     },
   ];
 

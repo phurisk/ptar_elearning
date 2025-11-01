@@ -39,7 +39,7 @@ const stripes: Stripe[] = [
     highlight: "เนื้อหาเคมี",
     paramTage: "เนื้อหาเคมี",
     subtitle: "(เก็บเกรดและสอบเข้ามหาวิทยาลัย)",
-    bg: "from-amber-50 via-white to-amber-50",
+    bg: "from-blue-50 via-white to-blue-50",
     ctaClass: "bg-[#2688DF] hover:bg-[#1f6fba] text-white",
     accent: "bg-[#2688DF]",
   },
@@ -62,12 +62,13 @@ export default function CourseStripes() {
           {stripes.map((s, idx) => (
             <Link
               key={idx}
-              href={`/courses?level=${s.paramTage?.toLowerCase() === "netsat"
-                ? "netsat"
-                : s.paramTage?.toLowerCase() === "สอวน.เคมี"
-                  ? "chemistry-olympiad"
-                  : "chemistry-content"
-                }`}
+              href={
+                s.paramTage === "NETSAT"
+                  ? "/courses/netsat-course"
+                  : s.paramTage === "สอวน.เคมี"
+                    ? "/courses/chemistry-olympiad-course"
+                    : "/courses/chemistry-content-course"
+              }
               aria-label={`${s.title} ${s.subtitle}`}
               className={`group relative overflow-hidden rounded-[28px] ring-1 ring-border bg-gradient-to-br ${s.bg} px-5 py-6 md:px-8 md:py-7 flex items-center justify-between hover:shadow-xl transition-all duration-300`}
             >
