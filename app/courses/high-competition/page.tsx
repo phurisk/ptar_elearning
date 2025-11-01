@@ -148,7 +148,7 @@ export default function HighCompetitionCoursesPage() {
     };
   }, []);
 
-  const line = "https://line.me/ti/p/@csw9917j";
+  const line = "https://line.me/ti/p/sjYGzkVGDL";
   const showVideoSection = lv || videoFetched;
 
   useEffect(() => {

@@ -23,6 +23,17 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/sections/footer"
 import { useSearchParams } from "next/navigation"
 
+// Grade Level Enum
+enum GradeLevel {
+  JUNIOR_HIGH = "JUNIOR_HIGH",
+  SENIOR_HIGH = "SENIOR_HIGH"
+}
+
+const GRADE_LEVEL_LABELS = {
+  [GradeLevel.JUNIOR_HIGH]: "ม.ต้น",
+  [GradeLevel.SENIOR_HIGH]: "ม.ปลาย"
+}
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -55,6 +66,7 @@ type ApiCourse = {
   category?: { id: string; name: string; description?: string }
   _count?: { enrollments: number; chapters: number }
   subject?: string | null
+  gradeLevel?: GradeLevel | null
 }
 
 type ApiResponse = {
@@ -74,42 +86,79 @@ const API_FETCH_LIMIT = 100
 
 export default function CoursesPage() {
   const searchParams = useSearchParams()
-  const initialLevel = searchParams.get('level') || 'all'
-  const [selectedLevel, setSelectedLevel] = useState<string>(initialLevel)
+  const initialGradeLevel = searchParams.get('gradeLevel') || 'all'
+  const [selectedGradeLevel, setSelectedGradeLevel] = useState<string>(initialGradeLevel)
   const [selectedSubject, setSelectedSubject] = useState<string>("all")
   const [data, setData] = useState<ApiCourse[]>([])
+  const [allCourses, setAllCourses] = useState<ApiCourse[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [isCompactPagination, setIsCompactPagination] = useState(false)
 
+  // Load available subjects from API
   useEffect(() => {
     let active = true
-    const load = async () => {
+    const loadFilters = async () => {
+      try {
+        const coursesRes = await fetch('/api/courses?limit=200', { cache: "no-store" })
+        if (coursesRes.ok) {
+          const coursesJson = await coursesRes.json()
+          const coursesList = Array.isArray(coursesJson?.data) ? coursesJson.data : []
+
+          const subjectCategories = new Set<string>()
+
+          coursesList.forEach((course: any) => {
+            const categoryName = course?.category?.name
+            if (categoryName && /^คอร์ส/i.test(categoryName)) {
+              subjectCategories.add(categoryName)
+            }
+          })
+
+          // Set subjects  
+          if (active && subjectCategories.size > 0) {
+            const subjects = Array.from(subjectCategories).map(name => ({
+              id: name,
+              name: name
+            }))
+            setAvailableSubjects([{ id: "all", name: "ทุกวิชา" }, ...subjects])
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to load filters:', e)
+      }
+    }
+    loadFilters()
+    return () => { active = false }
+  }, [])
+
+  // Load all courses initially
+  useEffect(() => {
+    let active = true
+    const loadAllCourses = async () => {
       try {
         setLoading(true)
         setError(null)
-        if (active) setData([])
         const collected: ApiCourse[] = []
         const seen = new Set<string>()
         let page = 1
         let lastReportedPage = 0
         const maxPages = 50
-        const subjectParam = selectedSubject === "all" ? null : selectedSubject
 
         while (page <= maxPages) {
           const params = new URLSearchParams({ page: String(page), limit: String(API_FETCH_LIMIT) })
-          if (subjectParam) params.set("subject", subjectParam)
           const res = await fetch(`${COURSES_API}?${params.toString()}`, { cache: "no-store" })
           if (!res.ok) throw new Error(`HTTP ${res.status}`)
           const json: ApiResponse & { pagination?: { page?: number; totalPages?: number } } = await res.json()
           const list = Array.isArray(json?.data) ? json.data : []
+
           for (const course of list) {
             if (course?.id && !seen.has(course.id)) {
               seen.add(course.id)
               collected.push(course)
             }
           }
+
           const pagination = json?.pagination
           const reported = Number(pagination?.page)
           const reportedPage = Number.isFinite(reported) && reported > 0 ? reported : page
@@ -124,129 +173,97 @@ export default function CoursesPage() {
           if (done) break
           page += 1
         }
-        if (active) setData(collected)
+
+        if (active) {
+          setData(collected)
+          setAllCourses(collected)
+          // Debug: Log first course to check gradeLevel field
+          if (collected.length > 0) {
+            console.log('Sample course data:', collected[0])
+            console.log('gradeLevel field:', collected[0].gradeLevel)
+          }
+        }
       } catch (e: any) {
         if (active) setError(e?.message ?? "Failed to load courses")
       } finally {
         if (active) setLoading(false)
       }
     }
-    load()
-    return () => {
-      active = false
-    }
-  }, [selectedSubject])
+    loadAllCourses()
+    return () => { active = false }
+  }, [])
+
+
+
 
   useEffect(() => {
     void searchParams; void data
   }, [data, searchParams])
 
-  const levels = useMemo(() => (
-    [
-      { id: "all", name: "ทุกระดับ" },
-      { id: "netsat", name: "คอร์สเคมี NETSAT" },
-      { id: "chemistry-olympiad", name: "คอร์ส สอวน.เคมี" },
-      { id: "chemistry-content", name: "คอร์สเนื้อหาเคมี" },
-    ]
-  ), [])
+  // Available grade levels from enum
+  const availableGradeLevels = [
+    { id: "all", name: "ทุกระดับ" },
+    { id: GradeLevel.JUNIOR_HIGH, name: GRADE_LEVEL_LABELS[GradeLevel.JUNIOR_HIGH] },
+    { id: GradeLevel.SENIOR_HIGH, name: GRADE_LEVEL_LABELS[GradeLevel.SENIOR_HIGH] }
+  ]
 
-  const subjects = useMemo(() => (
-    [
-      { id: "all", name: "ทุกวิชา" },
-      { id: "Physics", name: "ฟิสิกส์" },
-      { id: "Mathematics", name: "คณิตศาสตร์" },
-      { id: "Chemistry", name: "เคมี" },
-      { id: "Biology", name: "ชีววิทยา" },
-      { id: "English", name: "ภาษาอังกฤษ" },
-      { id: "Chinese", name: "ภาษาจีน" },
-    ]
-  ), [])
+  const [availableSubjects, setAvailableSubjects] = useState<Array<{ id: string; name: string }>>([
+    { id: "all", name: "ทุกวิชา" }
+  ])
 
-  const detectLevel = (c: ApiCourse): string | null => {
-    const text = `${c.category?.name || ""} ${c.title || ""}`.toLowerCase()
-    if (/netsat|เนตแซท/.test(text)) return "netsat"
-    if (/สอวน|โอลิมปิก|olympiad/.test(text)) return "chemistry-olympiad"
-    if (/เนื้อหาเคมี|เก็บเกรด|สอบเข้า/.test(text)) return "chemistry-content"
-    return null
-  }
 
-  const detectSubject = (c: ApiCourse): string | null => {
-    const normalize = (s?: string | null): string | null => {
-      if (!s || typeof s !== "string") return null
-      const raw = s.trim()
-      if (!raw) return null
-      const key = raw.toLowerCase()
-      const map: Record<string, string> = {
-        physics: "Physics",
-        physic: "Physics",
-        "ฟิสิกส์": "Physics",
-        mathematics: "Mathematics",
-        maths: "Mathematics",
-        math: "Mathematics",
-        "คณิตศาสตร์": "Mathematics",
-        chemistry: "Chemistry",
-        chem: "Chemistry",
-        "เคมี": "Chemistry",
-        biology: "Biology",
-        bio: "Biology",
-        "ชีววิทยา": "Biology",
-        english: "English",
-        "ภาษาอังกฤษ": "English",
-        chinese: "Chinese",
-        mandarin: "Chinese",
-        "ภาษาจีน": "Chinese",
-      }
-      return map[key] ?? null
-    }
-
-    const byField = normalize(c.subject)
-    if (byField) return byField
-
-    const text = `${c.title || ""} ${c.description || ""}`.toLowerCase()
-    const candidates: Array<{ kw: string[]; id: string }> = [
-      { kw: ["ฟิสิกส์", "physics", "physic"], id: "Physics" },
-      { kw: ["คณิตศาสตร์", "mathematics", "maths", "math"], id: "Mathematics" },
-      { kw: ["เคมี", "chemistry", "chem"], id: "Chemistry" },
-      { kw: ["ชีววิทยา", "biology", "bio"], id: "Biology" },
-      { kw: ["ภาษาอังกฤษ", "english"], id: "English" },
-      { kw: ["ภาษาจีน", "chinese", "mandarin"], id: "Chinese" },
-    ]
-    for (const cnd of candidates) {
-      if (cnd.kw.some((k) => text.includes(k.toLowerCase()))) return cnd.id
-    }
-    return null
-  }
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [selectedLevel, selectedSubject])
+  }, [selectedGradeLevel, selectedSubject])
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return
     const mq = window.matchMedia("(max-width: 480px)")
-    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+    const handleChange = (event: MediaQueryListEvent) => {
       setIsCompactPagination(event.matches)
     }
     setIsCompactPagination(mq.matches)
-    if (typeof mq.addEventListener === "function") {
-      mq.addEventListener("change", handleChange)
-    } else if (typeof mq.addListener === "function") {
-      mq.addListener(handleChange)
-    }
+    mq.addEventListener("change", handleChange)
     return () => {
-      if (typeof mq.removeEventListener === "function") {
-        mq.removeEventListener("change", handleChange)
-      } else if (typeof mq.removeListener === "function") {
-        mq.removeListener(handleChange)
-      }
+      mq.removeEventListener("change", handleChange)
     }
   }, [])
 
   const filteredCourses = useMemo(() => {
-    let list = data || []
-    if (selectedLevel !== "all") list = list.filter((c) => detectLevel(c) === selectedLevel)
-    return list
-  }, [data, selectedLevel])
+    let filtered = allCourses || []
+
+    // Client-side filtering for grade level
+    if (selectedGradeLevel !== "all") {
+      filtered = filtered.filter(course => {
+        // Check if course has gradeLevel property
+        if (course.gradeLevel) {
+          return course.gradeLevel === selectedGradeLevel
+        }
+        // Fallback: check category name for grade level indicators
+        const categoryName = course.category?.name
+        if (categoryName) {
+          if (selectedGradeLevel === GradeLevel.JUNIOR_HIGH) {
+            return categoryName.includes("ม.ต้น") || categoryName.includes("มต้น")
+          }
+          if (selectedGradeLevel === GradeLevel.SENIOR_HIGH) {
+            return categoryName.includes("ม.ปลาย") || categoryName.includes("มปลาย")
+          }
+        }
+        return false
+      })
+    }
+
+    // Client-side filtering for subject
+    if (selectedSubject !== "all") {
+      filtered = filtered.filter(course => {
+        const categoryName = course.category?.name
+        return categoryName === selectedSubject
+      })
+    }
+
+    return filtered
+  }, [allCourses, selectedGradeLevel, selectedSubject])
 
   const totalPages = useMemo(() => {
     return Math.max(1, Math.ceil((filteredCourses.length || 0) / PAGE_SIZE))
@@ -312,35 +329,35 @@ export default function CoursesPage() {
     )
 
     const pageItems = buildPageList.map((page, idx) => {
-        if (page === "...") {
-          return (
-            <span
-              key={`dots-${idx}`}
-              className="flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground"
-            >
-              &#8230;
-            </span>
-          )
-        }
-        const isActive = currentPage === page
-        const className = [
-          "flex h-9 min-w-[2.5rem] shrink-0 items-center justify-center rounded-full px-0",
-          isActive
-            ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-            : "hover:bg-primary/10 hover:border-primary",
-        ].join(" ")
+      if (page === "...") {
         return (
-          <Button
-            key={`page-${page}`}
-            variant={isActive ? "default" : "outline"}
-            size="sm"
-            onClick={() => setCurrentPage(page as number)}
-            className={className}
+          <span
+            key={`dots-${idx}`}
+            className="flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground"
           >
-            {page}
-          </Button>
+            &#8230;
+          </span>
         )
-      })
+      }
+      const isActive = currentPage === page
+      const className = [
+        "flex h-9 min-w-[2.5rem] shrink-0 items-center justify-center rounded-full px-0",
+        isActive
+          ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+          : "hover:bg-primary/10 hover:border-primary",
+      ].join(" ")
+      return (
+        <Button
+          key={`page-${page}`}
+          variant={isActive ? "default" : "outline"}
+          size="sm"
+          onClick={() => setCurrentPage(page as number)}
+          className={className}
+        >
+          {page}
+        </Button>
+      )
+    })
     items.push(...pageItems)
 
     items.push(
@@ -381,7 +398,7 @@ export default function CoursesPage() {
       <Navigation />
       <div className="min-h-screen bg-background pt-0 md:pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-         
+
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -394,7 +411,7 @@ export default function CoursesPage() {
             </p>
           </motion.div>
 
-      
+
           {/* Removed category filter as requested */}
 
           <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
@@ -403,25 +420,25 @@ export default function CoursesPage() {
               <span className="font-semibold">เลือกระดับ</span>
             </div>
             <div className="hidden md:flex flex-wrap justify-center gap-3">
-              {levels.map((l) => (
+              {availableGradeLevels.map((level) => (
                 <Button
-                  key={l.id}
-                  variant={selectedLevel === l.id ? "default" : "outline"}
-                  className={`px-5 py-2 ${selectedLevel === l.id ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "hover:bg-primary/10 hover:border-primary"}`}
-                  onClick={() => setSelectedLevel(l.id)}
+                  key={level.id}
+                  variant={selectedGradeLevel === level.id ? "default" : "outline"}
+                  className={`px-5 py-2 ${selectedGradeLevel === level.id ? "bg-primary hover:bg-primary/90 text-primary-foreground" : "hover:bg-primary/10 hover:border-primary"}`}
+                  onClick={() => setSelectedGradeLevel(level.id)}
                 >
-                  {l.name}
+                  {level.name}
                 </Button>
               ))}
             </div>
             <div className="md:hidden max-w-xs mx-auto">
-              <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+              <Select value={selectedGradeLevel} onValueChange={setSelectedGradeLevel}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="เลือกระดับ" />
                 </SelectTrigger>
                 <SelectContent>
-                  {levels.map((l) => (
-                    <SelectItem key={l.id} value={l.id}>{l.name}</SelectItem>
+                  {availableGradeLevels.map((level) => (
+                    <SelectItem key={level.id} value={level.id}>{level.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -434,7 +451,7 @@ export default function CoursesPage() {
               <span className="font-semibold">เลือกวิชา</span>
             </div>
             <div className="hidden md:flex flex-wrap justify-center gap-2">
-              {subjects.map((s) => (
+              {availableSubjects.map((s) => (
                 <Button
                   key={s.id}
                   variant={selectedSubject === s.id ? "default" : "outline"}
@@ -451,7 +468,7 @@ export default function CoursesPage() {
                   <SelectValue placeholder="เลือกวิชา" />
                 </SelectTrigger>
                 <SelectContent>
-                  {subjects.map((s) => (
+                  {availableSubjects.map((s) => (
                     <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -459,7 +476,7 @@ export default function CoursesPage() {
             </div>
           </motion.div>
 
-       
+
           <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerContainer}
@@ -505,7 +522,7 @@ export default function CoursesPage() {
               <motion.div key={course.id} variants={fadeInUp}>
                 <Card className="h-full hover:shadow-xl transition-shadow duration-300 group pt-0">
                   <CardContent className="p-0">
-                
+
                     <div className="aspect-video relative overflow-hidden rounded-t-lg">
                       <Image
                         src={course.coverImageUrl || "/placeholder.svg?height=200&width=350"}
@@ -514,23 +531,23 @@ export default function CoursesPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-primary text-primary-foreground">{course.category?.name ?? "คอร์ส"}</Badge>
+                        <Badge className="bg-primary text-primary-foreground">
+                          {course.gradeLevel ? GRADE_LEVEL_LABELS[course.gradeLevel] : course.category?.name ?? "คอร์ส"}
+                        </Badge>
                       </div>
                     </div>
 
-                
+
                     <div className="p-6">
-                      {(() => {
-                        const courseSubjectId = detectSubject(course)
-                        const courseSubjectLabel = subjects.find((s) => s.id === courseSubjectId)?.name
-                        return courseSubjectLabel ? (
-                          <div className="mb-2 text-sm font-medium text-primary">{courseSubjectLabel}</div>
-                        ) : null
-                      })()}
+                      {(course.gradeLevel || course.category?.name) && (
+                        <div className="mb-2 text-sm font-medium text-primary">
+                          {course.gradeLevel ? GRADE_LEVEL_LABELS[course.gradeLevel] : course.category?.name}
+                        </div>
+                      )}
                       <h3 className="text-xl font-bold text-card-foreground mb-2 text-balance line-clamp-2">{course.title}</h3>
                       <p className="text-muted-foreground mb-4 text-pretty line-clamp-2">{course.description}</p>
 
-                     
+
                       <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Users className="h-4 w-4" />
@@ -548,7 +565,7 @@ export default function CoursesPage() {
 
                       {/* No rating data from API; hide rating block */}
 
-               
+
                       <div className="flex items-baseline gap-2 mb-6">
                         {course.isFree || (course.price || 0) === 0 ? (
                           <span className="text-2xl font-bold text-green-600">ฟรี</span>
@@ -572,7 +589,7 @@ export default function CoursesPage() {
                         })()}
                       </div>
 
-                   
+
                       <Link href={`/courses/${course.id}`}>
                         <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">ดูรายละเอียด</Button>
                       </Link>
@@ -589,8 +606,8 @@ export default function CoursesPage() {
             </div>
           )}
 
-      
-            {!loading && !error && filteredCourses.length === 0 && (
+
+          {!loading && !error && filteredCourses.length === 0 && (
             <motion.div
               className="text-center py-12"
               initial={{ opacity: 0 }}
