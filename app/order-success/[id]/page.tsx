@@ -907,15 +907,22 @@ export default function OrderSuccessPage() {
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                         <span className="text-muted-foreground">เลขบัญชี</span>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold tracking-wider text-foreground">107-889-8751</span>
-                          <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("1078898751")}>คัดลอก</Button>
+                          <span className="font-semibold tracking-wider text-foreground">061-3-33214-6</span>
+                          <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("0613332146")}>คัดลอก</Button>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                         <span className="text-muted-foreground">ชื่อบัญชี</span>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-foreground">นาย เชษฐา พวงบุบผา</span>
-                          <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("นาย เชษฐา พวงบุบผา")}>คัดลอก</Button>
+                          <span className="font-medium text-foreground">ศรชัย น้อยลา</span>
+                          <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("ศรชัย น้อยลา")}>คัดลอก</Button>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                        <span className="text-muted-foreground">พร้อมเพย์</span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-medium text-foreground">099-632-7669</span>
+                          <Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText("0996327669")}>คัดลอก</Button>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
@@ -923,6 +930,8 @@ export default function OrderSuccessPage() {
                         <span className="font-semibold text-foreground">฿{order.total.toLocaleString()}</span>
                       </div>
                     </div>
+                    {/* QR Code Section - Commented out temporarily until QR image is available */}
+                    {/* 
                     <div className="flex flex-col items-center gap-2 pt-2">
                       <div className="flex w-65 flex-col overflow-hidden rounded-md border bg-white">
                         <div className="bg-white p-2">
@@ -951,6 +960,7 @@ export default function OrderSuccessPage() {
                       </div>
                       <span className="text-xs text-muted-foreground text-center">สแกน QR เพื่อโอนเงิน</span>
                     </div>
+                    */}
                     <div className="text-xs text-muted-foreground">หลังโอนแล้ว กรุณาอัพโหลดสลิป ระบบจะตรวจสอบใช้เวลาโดยประมาณ 5-10 นาที</div>
                     <div className="pt-1">
                       <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full" onClick={() => setOpenUpload(true)}>
