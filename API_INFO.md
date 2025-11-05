@@ -1,4 +1,6 @@
-# API Endpoint Information
+# API Endpoint Information สำหรับพี่ต้า
+
+**เว็บไซต์หลัก**: https://ptarchem.com
 
 ## Frontend Endpoint ที่ใช้
 
@@ -89,4 +91,22 @@ fetch('/api/courses?page=1&limit=100&gradeLevel=JUNIOR_HIGH')
 
 // ดึงเฉพาะคอร์ส ม.ปลาย  
 fetch('/api/courses?page=1&limit=100&gradeLevel=SENIOR_HIGH')
+```
+
+## ข้อความสำหรับพี่ต้า
+
+```
+พี่ต้าครับ endpoint ที่ผมใช้คือ /api/courses 
+
+ตอนนี้ผมต้องการ parameter gradeLevel ที่รับค่า:
+- JUNIOR_HIGH (สำหรับ ม.ต้น)
+- SENIOR_HIGH (สำหรับ ม.ปลาย)
+
+ตัวอย่าง URL:
+- /api/courses?page=1&limit=100&gradeLevel=JUNIOR_HIGH
+- /api/courses?page=1&limit=100&gradeLevel=SENIOR_HIGH
+
+ตอนนี้ gradeLevel field ยังเป็น null อยู่ครับ ต้องการให้ response มี gradeLevel field ด้วย
+
+ผมส่งไฟล์ API_INFO.md ไปด้วยครับ มีรายละเอียดครบ
 ```
