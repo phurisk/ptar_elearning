@@ -1,6 +1,6 @@
 SPDX-License-Identifier: LicenseRef-Proprietary
-LicenseRef-Proprietary — Physics P'Toey Frontend
-Version 1.0 (2025-09-14)
+LicenseRef-Proprietary — Chemistry P'Tar Frontend
+Version 1.0 (2025-11-01)
 
 Copyright (c) 2025
 Phuris Kruacharee
@@ -16,12 +16,12 @@ All rights reserved.
    - You must not remove, alter, or obscure any copyright notices or legal notices.
 
 2) Permitted Scope of Use
-   - Use is authorized solely by “the Client specified in the development contract”
-     for the “Physics P'Toey” website, strictly in accordance with the contract.
+   - Use is authorized solely by "the Client specified in the development contract"
+     for the "Chemistry P'Tar" website, strictly in accordance with the contract.
    - Any use beyond what is specified in the contract is not permitted.
 
 3) Disclaimer
-   - This software is provided “AS IS,” without warranties of any kind, express or implied.
+   - This software is provided "AS IS," without warranties of any kind, express or implied.
      The copyright holder shall not be liable for any damages arising from the use of this software.
 
 4) Governing Law
@@ -42,12 +42,12 @@ All rights reserved.
    - ห้ามลบ เปลี่ยนแปลง หรือซ่อนข้อความลิขสิทธิ์และการแจ้งเตือนทางกฎหมายใด ๆ
 
 2) ขอบเขตการใช้งานที่อนุญาต
-   - อนุญาตให้ “ลูกค้าที่ระบุไว้ในสัญญาว่าจ้าง” ใช้งานซอฟต์แวร์นี้เฉพาะสำหรับ
-     เว็บไซต์ “ฟิสิกส์ครูพี่เต้ย (Physics P'Toey)” ตามข้อตกลงในสัญญาเท่านั้น
+   - อนุญาตให้ "ลูกค้าที่ระบุไว้ในสัญญาว่าจ้าง" ใช้งานซอฟต์แวร์นี้เฉพาะสำหรับ
+     เว็บไซต์ "เคมีครูพี่ต้า (Chemistry P'Tar)" ตามข้อตกลงในสัญญาเท่านั้น
    - การใช้งานอื่นใดนอกเหนือจากที่ระบุในสัญญา ให้ถือว่าไม่ได้รับอนุญาต
 
 3) ความรับผิดชอบ
-   - ซอฟต์แวร์นี้ถูกจัดให้ “ตามสภาพที่เป็นอยู่ (AS IS)” โดยไม่มีการรับประกันใด ๆ
+   - ซอฟต์แวร์นี้ถูกจัดให้ "ตามสภาพที่เป็นอยู่ (AS IS)" โดยไม่มีการรับประกันใด ๆ
      ทั้งโดยชัดแจ้งหรือโดยปริยาย ผู้ถือลิขสิทธิ์ไม่รับผิดชอบต่อความเสียหายใด ๆ
      ที่เกิดขึ้นจากการใช้งานซอฟต์แวร์นี้
 
@@ -56,5 +56,4 @@ All rights reserved.
 
 5) การติดต่อ
    - สำหรับการขออนุญาตใช้งานเพิ่มเติม กรุณาติดต่อ: Phuris Kruacharee
-
 
