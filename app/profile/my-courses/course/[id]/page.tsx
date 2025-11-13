@@ -663,8 +663,16 @@ export default function CourseDetailPage() {
                             <p className="text-sm text-white/80">เลือกดูซ้ำหรือเรียนบทต่อไป</p>
                           </div>
                           <div className="flex flex-wrap items-center justify-center gap-3">
-                            <Button onClick={handleReplayVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                            <Button onClick={handleReplayVideo} variant="outline" className="bg-white/10 text-white hover:bg-white/20 border-white/30">
                               ดูอีกครั้ง
+                            </Button>
+                            <Button
+                              onClick={() => selectedContent && handleMarkCompleted(selectedContent)}
+                              disabled={isCurrentCompleted || progressLoading}
+                              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                            >
+                              <CheckCircle className="h-4 w-4 mr-2" />
+                              {isCurrentCompleted ? 'เรียนแล้ว' : progressLoading ? 'กำลังบันทึก...' : 'ทำเครื่องหมายว่าเรียนแล้ว'}
                             </Button>
                             {nextPlayableContent && (
                               <Button
