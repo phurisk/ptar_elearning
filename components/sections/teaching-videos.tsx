@@ -53,7 +53,7 @@ function VideoModal({
   title?: string
   onClose: () => void
 }) {
- 
+
   useEffect(() => {
     if (!isOpen) return
     const prev = document.body.style.overflow
@@ -73,7 +73,7 @@ function VideoModal({
 
   if (!isOpen || !youtubeId) return null
 
- 
+
   const src = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`
 
   return (
@@ -87,7 +87,7 @@ function VideoModal({
         className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl bg-black"
         onClick={(e) => e.stopPropagation()}
       >
-      
+
         <button
           onClick={onClose}
           aria-label="Close video"
@@ -96,7 +96,7 @@ function VideoModal({
           <X className="w-5 h-5 text-foreground" />
         </button>
 
-      
+
         <div className="aspect-video w-full">
           <iframe
             title={title ?? "YouTube video"}
@@ -118,58 +118,58 @@ export default function TeachingVideos() {
 
   useEffect(() => {
     let mounted = true
-    ;(async () => {
-      try {
-        const params = new URLSearchParams({ postType: "วิดีโอแนะนำ-หน้าแรก", limit: "12" })
-        const res = await http.get(`/api/posts?${params.toString()}`)
-        const json: any = res.data ?? null
-        const list: any[] = Array.isArray(json)
-          ? json
-          : Array.isArray(json?.data)
-          ? json.data
-          : []
+      ; (async () => {
+        try {
+          const params = new URLSearchParams({ postType: "วิดีโอแนะนำ-หน้าแรก", limit: "12" })
+          const res = await http.get(`/api/posts?${params.toString()}`)
+          const json: any = res.data ?? null
+          const list: any[] = Array.isArray(json)
+            ? json
+            : Array.isArray(json?.data)
+              ? json.data
+              : []
 
-        const mapped = list
-          .filter((item) => item?.postType?.name === "วิดีโอแนะนำ-หน้าแรก")
-          .map((item: any, idx: number) => {
-            const youtubeId = extractYoutubeId(item?.content)
-            if (!youtubeId) return null
+          const mapped = list
+            .filter((item) => item?.postType?.name === "วิดีโอแนะนำ-หน้าแรก")
+            .map((item: any, idx: number) => {
+              const youtubeId = extractYoutubeId(item?.content)
+              if (!youtubeId) return null
 
-            const title =
-              typeof item?.title === "string"
-                ? item.title
-                : item?.title != null
-                ? String(item.title)
-                : ""
-            const descriptionRaw =
-              typeof item?.excerpt === "string"
-                ? item.excerpt
-                : item?.excerpt != null
-                ? String(item.excerpt)
-                : ""
-            const description = descriptionRaw
-              .replace(/<[^>]+>/g, " ")
-              .replace(/\s+/g, " ")
-              .trim()
+              const title =
+                typeof item?.title === "string"
+                  ? item.title
+                  : item?.title != null
+                    ? String(item.title)
+                    : ""
+              const descriptionRaw =
+                typeof item?.excerpt === "string"
+                  ? item.excerpt
+                  : item?.excerpt != null
+                    ? String(item.excerpt)
+                    : ""
+              const description = descriptionRaw
+                .replace(/<[^>]+>/g, " ")
+                .replace(/\s+/g, " ")
+                .trim()
 
-            return {
-              id: item?.id ?? idx,
-              title,
-              youtubeId,
-              description,
-            }
-          })
-          .filter((video): video is VideoItem => !!video?.youtubeId)
+              return {
+                id: item?.id ?? idx,
+                title,
+                youtubeId,
+                description,
+              }
+            })
+            .filter((video): video is VideoItem => !!video?.youtubeId)
 
-        if (!mounted) return
+          if (!mounted) return
 
-        if (res.status >= 200 && res.status < 300 && mapped.length) {
-          setVideos(mapped)
+          if (res.status >= 200 && res.status < 300 && mapped.length) {
+            setVideos(mapped)
+          }
+        } catch (error) {
+          console.error("[TeachingVideos] Failed to load videos", error)
         }
-      } catch (error) {
-        console.error("[TeachingVideos] Failed to load videos", error)
-      }
-    })()
+      })()
     return () => {
       mounted = false
     }
@@ -182,14 +182,14 @@ export default function TeachingVideos() {
 
   const closeVideo = useCallback(() => {
     setOpen(false)
-  
+
     setTimeout(() => setActive(null), 150)
   }, [])
 
   return (
     <section className="pt-0 pb-10 lg:pt-24 lg:pb-5 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
- 
+
         <div className="text-center mb-5">
           <h2 className="text-xl lg:text-2xl font-bold text-primary-foreground mb-4 text-balance bg-primary px-8 py-4 w-fit mx-auto rounded-full shadow-sm">ตัวอย่างการสอน</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -197,7 +197,7 @@ export default function TeachingVideos() {
           </p>
         </div>
 
-    
+
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {videos.map((video) => (
             <Card
@@ -206,7 +206,7 @@ export default function TeachingVideos() {
               onClick={() => openVideo(video)}
             >
               <CardContent className="p-0">
-   
+
                 <div className="aspect-video relative overflow-hidden">
                   <Image
                     src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
@@ -215,20 +215,20 @@ export default function TeachingVideos() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
 
-             
+
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors duration-300">
                     <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Play className="w-6 h-6 text-white ml-1" fill="currentColor" />
                     </div>
                   </div>
-                
+
                   <div className="absolute top-4 right-4 bg-red-600 text-white px-2 py-1 rounded text-sm font-medium flex items-center">
                     <Youtube className="w-4 h-4 mr-1" />
                     YouTube
                   </div>
                 </div>
 
-            
+
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-foreground mb-3 text-balance group-hover:text-primary transition-colors duration-200">
                     {video.title}
@@ -240,7 +240,7 @@ export default function TeachingVideos() {
           ))}
         </div>
 
-    
+
         <div className="text-center ">
           <h3 className="text-2xl font-bold text-foreground mb-4">ต้องการดูวิดีโอเพิ่มเติม?</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto ">ติดตาม YouTube Channel ของเราเพื่อดูวิดีโอการสอนเพิ่มเติม</p>
@@ -255,7 +255,7 @@ export default function TeachingVideos() {
         </div>
       </div>
 
-    
+
       <VideoModal
         isOpen={open}
         youtubeId={active?.youtubeId ?? null}
