@@ -52,7 +52,7 @@ export default function ChemistryContentCoursePage() {
   const [videoEnded, setVideoEnded] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
   const vimeoPlayerRef = useRef<Player | null>(null)
-  const { courses, loading: loadingCourses } = useRecommendedCourses("เนื้อหาเคมี")
+  const { courses, loading: loadingCourses } = useRecommendedCourses("คอร์ส-เนื้อหาเคมี")
   const [summaries, setSummaries] = useState<
     { id: string; desktop?: string | null; mobile?: string | null; title?: string }[]
   >([])

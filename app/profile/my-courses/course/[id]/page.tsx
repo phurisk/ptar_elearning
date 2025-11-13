@@ -659,21 +659,35 @@ export default function CourseDetailPage() {
                       {hasOverlay && (
                         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-black/90 text-white px-6 text-center">
                           <div className="space-y-1">
-                            <p className="text-lg sm:text-xl font-semibold">ชมวิดีโอนี้จบแล้ว</p>
-                            <p className="text-sm text-white/80">เลือกกดดูซ้ำหรือเรียนวิดีโอต่อไปจากปุ่มด้านล่าง</p>
+                            <p className="text-lg sm:text-xl font-semibold">คุณดูวิดีโอนี้จบแล้ว</p>
+                            <p className="text-sm text-white/80">เลือกดูซ้ำหรือเรียนบทต่อไป</p>
                           </div>
                           <div className="flex flex-wrap items-center justify-center gap-3">
-                            <Button onClick={handleReplayVideo} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                            <Button onClick={handleReplayVideo} variant="outline" className="bg-white/10 text-white hover:bg-white/20 border-white/30">
                               ดูอีกครั้ง
                             </Button>
                             <Button
-                              onClick={handlePlayNextAvailable}
-                              disabled={!nextPlayableContent}
-                              variant="ghost"
-                              className="text-white hover:bg-white/10 hover:text-white"
+                              onClick={() => selectedContent && handleMarkCompleted(selectedContent)}
+                              disabled={isCurrentCompleted || progressLoading}
+                              className="bg-primary hover:bg-primary/90 text-primary-foreground"
                             >
-                              เล่นวิดีโอต่อไป
+                              <CheckCircle className="h-4 w-4 mr-2" />
+                              {isCurrentCompleted ? 'เรียนแล้ว' : progressLoading ? 'กำลังบันทึก...' : 'ทำเครื่องหมายว่าเรียนแล้ว'}
                             </Button>
+                            {nextPlayableContent && (
+                              <Button
+                                onClick={() => {
+                                  if (selectedContent && !isCurrentCompleted) {
+                                    handleMarkCompleted(selectedContent)
+                                  }
+                                  handlePlayNextAvailable()
+                                }}
+                                variant="ghost"
+                                className="text-white hover:bg-white/10 hover:text-white"
+                              >
+                                เรียนบทต่อไป
+                              </Button>
+                            )}
                           </div>
                         </div>
                       )}
@@ -707,14 +721,20 @@ export default function CourseDetailPage() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={handlePlayNextAvailable}
-                          disabled={!nextPlayableContent}
-                        >
-                          <Play className="h-4 w-4 mr-2" /> เล่นวิดีโอต่อไป
-                        </Button>
+                        {nextPlayableContent && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              if (selectedContent && !isCurrentCompleted) {
+                                handleMarkCompleted(selectedContent)
+                              }
+                              handlePlayNextAvailable()
+                            }}
+                          >
+                            <Play className="h-4 w-4 mr-2" /> เรียนบทต่อไป
+                          </Button>
+                        )}
                         <Button
                           size="sm"
                           onClick={() => selectedContent && handleMarkCompleted(selectedContent)}
@@ -722,7 +742,7 @@ export default function CourseDetailPage() {
                           className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         >
                           <CheckCircle className="h-4 w-4 mr-2" />
-                          {isCurrentCompleted ? 'เรียนแล้ว' : progressLoading ? 'กำลังบันทึก...' : 'เรียนวิดีโอนี้จบแล้ว'}
+                          {isCurrentCompleted ? 'เรียนแล้ว' : progressLoading ? 'กำลังบันทึก...' : 'ทำเครื่องหมายว่าเรียนแล้ว'}
                         </Button>
                       </div>
                     </div>

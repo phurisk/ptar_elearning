@@ -162,7 +162,7 @@ export function Footer() {
 
             <div className="mt-8">
               <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-4 rounded-lg font-medium transition-colors duration-200 cursor-pointer hover:font-bold">
-                <Link href="#contact" target="_blank" rel="noopener noreferrer">
+                <Link href="https://line.me/ti/p/sjYGzkVGDL" target="_blank" rel="noopener noreferrer">
                   ติดต่อเราเลย
                 </Link>
               </button>
