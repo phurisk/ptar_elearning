@@ -20,7 +20,6 @@ import {
   FileText,
   RefreshCw,
   MapPin,
-  Link,
   Download,
 } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
@@ -198,7 +197,7 @@ export default function OrderSuccessPage() {
     let json: OrderResponse | null = null;
     try {
       json = text ? JSON.parse(text) : null;
-    } catch {}
+    } catch { }
     if (!res.ok || !json?.success) {
       throw new Error(
         json?.error || (text && text.slice(0, 300)) || `HTTP ${res.status}`
@@ -283,7 +282,7 @@ export default function OrderSuccessPage() {
       let json: any = null;
       try {
         json = text ? JSON.parse(text) : null;
-      } catch {}
+      } catch { }
       const okLike = res.ok && json?.success !== false;
       if (!okLike) {
         const msg =
@@ -345,14 +344,14 @@ export default function OrderSuccessPage() {
     const items = Array.isArray(order.items)
       ? order.items.filter((i) => (i.itemType || "").toUpperCase() === "COURSE")
       : order.course?.id
-      ? [
+        ? [
           {
             itemType: "COURSE",
             itemId: order.course.id,
             title: order.course.title,
           },
         ]
-      : [];
+        : [];
 
     if (!items.length) return;
     (async () => {
@@ -387,14 +386,14 @@ export default function OrderSuccessPage() {
     const items = Array.isArray(order.items)
       ? order.items.filter((i) => (i.itemType || "").toUpperCase() === "COURSE")
       : order.course?.id
-      ? [
+        ? [
           {
             itemType: "COURSE",
             itemId: order.course.id,
             title: order.course.title,
           },
         ]
-      : [];
+        : [];
 
     if (!items.length) return;
 
@@ -455,7 +454,7 @@ export default function OrderSuccessPage() {
       let json: any = null;
       try {
         json = text ? JSON.parse(text) : null;
-      } catch {}
+      } catch { }
       if (!res.ok || json?.success === false) {
         const msg =
           json?.error || (text && text.slice(0, 300)) || `HTTP ${res.status}`;
@@ -478,7 +477,7 @@ export default function OrderSuccessPage() {
       if (filePreview) {
         try {
           URL.revokeObjectURL(filePreview);
-        } catch {}
+        } catch { }
       }
       setFilePreview(null);
       return;
@@ -488,7 +487,7 @@ export default function OrderSuccessPage() {
     return () => {
       try {
         URL.revokeObjectURL(url);
-      } catch {}
+      } catch { }
     };
   }, [file]);
 
@@ -678,7 +677,7 @@ export default function OrderSuccessPage() {
         const json = await res.json().catch(() => ({} as any));
         const link = json?.data?.previewUrl || null;
         if (!cancelled) setEbookLink(link);
-      } catch {}
+      } catch { }
     })();
     return () => {
       cancelled = true;
@@ -730,7 +729,7 @@ export default function OrderSuccessPage() {
                 hasUploadedSlip || isPaidLikeStatus(s) || isPaidLikeStatus(ps);
               const step2Label =
                 !step2Done &&
-                (s === "PENDING_VERIFICATION" || ps === "PENDING_VERIFICATION")
+                  (s === "PENDING_VERIFICATION" || ps === "PENDING_VERIFICATION")
                   ? "ตรวจสอบ"
                   : "ชำระเงิน";
               return (
@@ -744,9 +743,8 @@ export default function OrderSuccessPage() {
                     </span>
                   </div>
                   <div
-                    className={`h-0.5 flex-1 ${
-                      step2Active ? "bg-primary" : "bg-muted"
-                    }`}
+                    className={`h-0.5 flex-1 ${step2Active ? "bg-primary" : "bg-muted"
+                      }`}
                   />
                   <div className="flex items-center gap-2 min-w-max">
                     {step2Done ? (
@@ -759,17 +757,15 @@ export default function OrderSuccessPage() {
                       </span>
                     )}
                     <span
-                      className={`text-sm font-medium ${
-                        step2Active ? "text-primary" : "text-muted-foreground"
-                      }`}
+                      className={`text-sm font-medium ${step2Active ? "text-primary" : "text-muted-foreground"
+                        }`}
                     >
                       {step2Label}
                     </span>
                   </div>
                   <div
-                    className={`h-0.5 flex-1 ${
-                      step3Done ? "bg-primary" : "bg-muted"
-                    }`}
+                    className={`h-0.5 flex-1 ${step3Done ? "bg-primary" : "bg-muted"
+                      }`}
                   />
                   <div className="flex items-center gap-2 min-w-max">
                     {step3Done ? (
@@ -782,9 +778,8 @@ export default function OrderSuccessPage() {
                       </span>
                     )}
                     <span
-                      className={`text-sm font-medium ${
-                        step3Done ? "text-green-700" : "text-muted-foreground"
-                      }`}
+                      className={`text-sm font-medium ${step3Done ? "text-green-700" : "text-muted-foreground"
+                        }`}
                     >
                       สำเร็จ
                     </span>
@@ -794,7 +789,7 @@ export default function OrderSuccessPage() {
             })()}
           </div>
 
-          
+
 
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="lg:col-span-2">
@@ -1138,11 +1133,10 @@ export default function OrderSuccessPage() {
                           <Button
                             className="bg-primary hover:bg-primary/90 text-primary-foreground"
                             onClick={() => {
-                              const name = `${
-                                order.ebook?.title ||
+                              const name = `${order.ebook?.title ||
                                 primaryEbookItem?.title ||
                                 "ebook"
-                              }.pdf`;
+                                }.pdf`;
                               const url = `/api/proxy-view?url=${encodeURIComponent(
                                 ebookFileUrl || ebookLink || ""
                               )}&filename=${encodeURIComponent(name)}`;
@@ -1154,11 +1148,10 @@ export default function OrderSuccessPage() {
                           <Button
                             variant="outline"
                             onClick={() => {
-                              const name = `${
-                                order.ebook?.title ||
+                              const name = `${order.ebook?.title ||
                                 primaryEbookItem?.title ||
                                 "ebook"
-                              }.pdf`;
+                                }.pdf`;
                               const url = `/api/proxy-download-pdf?url=${encodeURIComponent(
                                 ebookFileUrl || ebookLink || ""
                               )}&filename=${encodeURIComponent(name)}`;
@@ -1184,65 +1177,67 @@ export default function OrderSuccessPage() {
 
             <div>
               {/* Payment Success Section with Download Image */}
-          {isCompleted && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-              <div className="flex flex-col items-center gap-6">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="h-8 w-8 text-green-600" />
-                  <div className="text-center">
-                    <h3 className="text-lg font-semibold text-green-800">
-                      การชำระเงินสำเร็จ!
-                    </h3>
-                    <p className="text-green-700 text-sm">
-                      คำสั่งซื้อของคุณได้รับการยืนยันแล้ว
-                    </p>
-                  </div>
-                </div>
+              {(isCompleted || hasUploadedSlip) && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+                  <div className="flex flex-col items-center gap-6">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="h-8 w-8 text-green-600" />
+                      <div className="text-center">
+                        <h3 className="text-lg font-semibold text-green-800">
+                          {isCompleted ? 'การชำระเงินสำเร็จ!' : 'อัพโหลดสลิปสำเร็จ!'}
+                        </h3>
+                        <p className="text-green-700 text-sm">
+                          {isCompleted
+                            ? 'คำสั่งซื้อของคุณได้รับการยืนยันแล้ว'
+                            : 'กำลังตรวจสอบสลิป กรุณารอสักครู่'}
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="flex flex-col items-center gap-3">
-                  <div className="relative group">
-                    <Image
-                      src="/line-qr.png"
-                      alt="Line QR Code"
-                      width={200}
-                      height={200}
-                      className="object-contain"
-                    />
-                    <button
-                      onClick={() => {
-                        const link = document.createElement('a');
-                        link.href = '/line-qr.png';
-                        link.download = 'line-qr-code.png';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      }}
-                      className="absolute top-2 right-2 bg-white hover:bg-green-50 p-2 rounded-full shadow-md transition-all duration-200 border border-green-200"
-                      title="ดาวน์โหลด QR Code"
-                    >
-                      <Download className="h-4 w-4 text-green-700" />
-                    </button>
-                  </div>
-                  <div className="text-center space-y-2">
-                    <p className="text-green-800 text-sm">
-                      Scan QR Code หรือ
-                    </p>
-                    <a 
-                      className="text-green-800 font-medium underline hover:text-green-900" 
-                      href="https://line.me/ti/p/sjYGzkVGDL" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      กดที่นี่เพื่อเข้ากลุ่มไลน์
-                    </a>
-                    <p className="text-green-700 text-xs">
-                      เพื่อสอบถามหรือ รับข้อมูลพิเศษสำหรับนักเรียนของเราเท่านั้น
-                    </p>
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="relative group">
+                        <Image
+                          src="/line-qr.jpg"
+                          alt="Line QR Code"
+                          width={200}
+                          height={200}
+                          className="object-contain"
+                        />
+                        <button
+                          onClick={() => {
+                            const link = document.createElement('a');
+                            link.href = '/line-qr.jpg';
+                            link.download = 'line-qr-code.png';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }}
+                          className="absolute top-2 right-2 bg-white hover:bg-green-50 p-2 rounded-full shadow-md transition-all duration-200 border border-green-200"
+                          title="ดาวน์โหลด QR Code"
+                        >
+                          <Download className="h-4 w-4 text-green-700" />
+                        </button>
+                      </div>
+                      <div className="text-center space-y-2">
+                        <p className="text-green-800 text-sm">
+                          Scan QR Code หรือ
+                        </p>
+                        <a
+                          className="text-green-800 font-medium underline hover:text-green-900"
+                          href="https://line.me/ti/p/sjYGzkVGDL"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          กดที่นี่เพื่อแอดไลน์เข้ากลุ่มติว!
+                        </a>
+                        <p className="text-green-700 text-xs">
+                          เพื่อสอบถามหรือ รับข้อมูลพิเศษสำหรับนักเรียนของเราเท่านั้น หรือแอด Line ID chemistar518
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          )}
+              )}
               <Card>
                 <CardHeader>
                   <CardTitle>สถานะการตรวจสลิป</CardTitle>
@@ -1401,7 +1396,7 @@ export default function OrderSuccessPage() {
                       </div>
                     </div>
                     {/* QR Code Section - Commented out temporarily until QR image is available */}
-                    {/* 
+                    
                     <div className="flex flex-col items-center gap-2 pt-2">
                       <div className="flex w-65 flex-col overflow-hidden rounded-md border bg-white">
                         <div className="bg-white p-2">
@@ -1423,14 +1418,14 @@ export default function OrderSuccessPage() {
                           />
                         </div>
                         <div className="space-y-1 bg-white px-2 pb-3 text-center text-xs text-muted-foreground">
-                          <div>กวดวิชาภาษาฟิสิกส์อาจารย์เต้ย</div>
-                          <div>บัญชี บจก. เดอะนิวตัน เอ็ดดูเคชั่น</div>
-                          <div>เลขอ้างอิง: KPS004KB000002221165</div>
+                          <div>กวดวิชาภาษาเคมีพี่ต้า</div>
+                          {/* <div>บัญชี บจก. เดอะนิวตัน เอ็ดดูเคชั่น</div>
+                          <div>เลขอ้างอิง: KPS004KB000002221165</div> */}
                         </div>
                       </div>
                       <span className="text-xs text-muted-foreground text-center">สแกน QR เพื่อโอนเงิน</span>
                     </div>
-                    */}
+                   
                     <div className="text-xs text-muted-foreground">
                       หลังโอนแล้ว กรุณาอัพโหลดสลิป ระบบจะตรวจสอบใช้เวลาโดยประมาณ
                       5-10 นาที
@@ -1479,7 +1474,7 @@ export default function OrderSuccessPage() {
                     aria-live="polite"
                     className={
                       uploadMsg.includes("สำเร็จ") ||
-                      uploadMsg.includes("อนุมัติ")
+                        uploadMsg.includes("อนุมัติ")
                         ? "text-green-600"
                         : "text-destructive"
                     }
